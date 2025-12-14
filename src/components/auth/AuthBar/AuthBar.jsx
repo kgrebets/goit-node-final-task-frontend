@@ -1,9 +1,13 @@
 import "./AuthBar.css";
 
-export function AuthBar() {
-  const handleSignIn = () => {};
+export function AuthBar({ onOpenSignIn, onOpenSignUp }) {
+  const handleSignIn = () => {
+    if (onOpenSignIn) onOpenSignIn();
+  };
 
-  const handleSignUp = () => {};
+  const handleSignUp = () => {
+    if (onOpenSignUp) onOpenSignUp();
+  };
 
   return (
     <div className="auth-bar">
