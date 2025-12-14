@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../../features/auth/AuthProvider.jsx";
+import { useCurrentUser } from "../../features/auth/hooks.js";
 import { AuthBar } from "../auth/AuthBar";
 import { UserBar } from "../auth/UserBar";
 import { SignInModal } from "../auth/SignInModal";
 import { SignUpModal } from "../auth/SignUpModal";
+import { LogOutModal } from "../auth/LogOutModal";
 import "./Header.css";
 
 export function Header() {
@@ -12,6 +14,9 @@ export function Header() {
 
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+
+  useCurrentUser();
 
   return (
     <>
@@ -20,7 +25,7 @@ export function Header() {
           <div className="app-header-spacer" />
           <div className="app-header-right">
             {isAuthenticated ? (
-              <UserBar />
+              <UserBar onOpenLogout={() => setIsLogoutOpen(true)} />
             ) : (
               <AuthBar
                 onOpenSignIn={() => setIsSignInOpen(true)}
@@ -47,6 +52,11 @@ export function Header() {
           setIsSignUpOpen(false);
           setIsSignInOpen(true);
         }}
+      />
+
+      <LogOutModal
+        isOpen={isLogoutOpen}
+        onClose={() => setIsLogoutOpen(false)}
       />
     </>
   );

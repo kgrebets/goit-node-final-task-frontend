@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "./AuthProvider.jsx";
 import AuthApi from "../../api-client/src/api/AuthApi";
+import ApiClient from "../../api-client/src/ApiClient";
 
 const AUTH_QUERY_KEYS = {
   current: ["auth", "current"],
@@ -45,6 +46,8 @@ export function useCurrentUser() {
   return useQuery({
     queryKey: AUTH_QUERY_KEYS.current,
     queryFn: () => {
+      if (!token) return;
+      ApiClient.instance.authentications.bearerAuth.accessToken = token;
       const authApi = new AuthApi();
       return authApi.apiAuthCurrentGet();
     },
