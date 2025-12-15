@@ -6,9 +6,13 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js"
+    "lint": "eslint .",
+    "start": "react-router-serve ./build/server/index.js",
+    "generate:api": "openapi-generator-cli generate -i https://goit-node-final-task-backend.onrender.com/api-docs.json -g javascript -o src/api-client --additional-properties=usePromises=true,useES6=true --skip-validate-spec"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.90.12",
+    "superagent": "^10.1.0",
     "@react-router/dev": "^7.10.1",
     "@react-router/node": "^7.10.1",
     "@tailwindcss/vite": "^4.1.18",
@@ -23,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@openapitools/openapi-generator-cli": "^2.13.5",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
