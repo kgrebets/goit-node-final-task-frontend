@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router';
-
+import Header from "./components/header";
 import './app.css';
 
 export const links = () => [
@@ -59,7 +59,17 @@ export function Layout({ children }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <footer>
+        Footer
+      </footer>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }) {
