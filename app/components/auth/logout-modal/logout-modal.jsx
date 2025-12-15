@@ -1,4 +1,4 @@
-import Modal from '../../Modal';
+import Modal from '../../modal';
 import { useLogout } from '../../../features/auth/hooks.js';
 
 export default function LogOutModal({ isOpen, onClose }) {
