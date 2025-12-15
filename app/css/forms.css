@@ -1,0 +1,41 @@
+@layer components {
+    [type='text'],
+    input:where(:not([type])),
+    [type='email'],
+    [type='url'],
+    [type='password'],
+    [type='number'],
+    [type='date'],
+    [type='datetime-local'],
+    [type='month'],
+    [type='search'],
+    [type='tel'],
+    [type='time'],
+    [type='week'],
+    [multiple],
+    textarea,
+    select,
+    .form-input,
+    .form-email,
+    .form-select,
+    .form-multiselect,
+    .form-textarea {
+        &:not(.custom) {
+            @apply rounded-7.5 py-3.5 px-4.5 text-base border font-medium hover:border-primary focus:border-primary hover:outline-primary focus:outline-primary placeholder:text-tertiary;
+        }
+    }
+
+    .form-input-secondary,
+    .form-email-secondary,
+    .form-textarea-secondary {
+        @apply rounded-7.5 py-3.5 px-4.5 text-base border font-medium hover:border-primary focus:border-primary hover:outline-primary focus:outline-primary placeholder:text-tertiary;
+    }
+
+    label {
+        @apply text-xl font-extrabold;
+
+        span {
+            @apply block;
+        }
+    }
+}

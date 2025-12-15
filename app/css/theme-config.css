@@ -1,0 +1,13 @@
+/* Base styles for */
+@theme {
+    --color-primary: #050505;
+    --color-secondary: #1A1A1A;
+    --color-tertiary: #BFBEBE;
+    --color-error-primary: #AE0000;
+
+    --font-sans: 'Mulish', sans-serif;
+
+    --spacing-7_5: 1.875rem; /** 30px */
+
+    --radius-7_5: 1.875rem; /** 30px */
+}
