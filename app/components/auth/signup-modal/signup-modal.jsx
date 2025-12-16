@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '../../Modal';
+import Modal from '../../modal';
 import { useLogin, useRegister } from '../../../features/auth/hooks.js';
 
 export default function SignUpModal({ isOpen, onClose, onSwitchToSignIn }) {
