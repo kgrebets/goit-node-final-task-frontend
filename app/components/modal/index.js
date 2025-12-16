@@ -1,1 +1,1 @@
-export { default } from './_kModal';
+export { default } from './modal';
