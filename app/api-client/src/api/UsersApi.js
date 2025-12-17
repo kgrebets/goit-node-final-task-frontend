@@ -13,8 +13,11 @@
 
 
 import ApiClient from "../ApiClient";
+import ApiUsersFollowingGet200ResponseInner from '../model/ApiUsersFollowingGet200ResponseInner';
 import ApiUsersMeGet200Response from '../model/ApiUsersMeGet200Response';
-import ApiUsersUserIdFollowersGet200ResponseInner from '../model/ApiUsersUserIdFollowersGet200ResponseInner';
+import ApiUsersRecipesGet200Response from '../model/ApiUsersRecipesGet200Response';
+import ApiUsersUserIdGet200Response from '../model/ApiUsersUserIdGet200Response';
+import ApiUsersUserIdRecipesGet200Response from '../model/ApiUsersUserIdRecipesGet200Response';
 
 /**
 * Users service.
@@ -38,12 +41,18 @@ export default class UsersApi {
 
     /**
      * Get users that the current user is following
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiUsersUserIdFollowersGet200ResponseInner>} and HTTP response
+     * @param {String} userId ID of the user whose followers are requested
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>} and HTTP response
      */
-    apiUsersFollowingGetWithHttpInfo() {
+    apiUsersFollowingGetWithHttpInfo(userId) {
       let postBody = null;
+      // verify the required parameter 'userId' is set
+      if (userId === undefined || userId === null) {
+        throw new Error("Missing the required parameter 'userId' when calling apiUsersFollowingGet");
+      }
 
       let pathParams = {
+        'userId': userId
       };
       let queryParams = {
       };
@@ -55,7 +64,7 @@ export default class UsersApi {
       let authNames = ['bearerAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [ApiUsersUserIdFollowersGet200ResponseInner];
+      let returnType = [ApiUsersFollowingGet200ResponseInner];
       return this.apiClient.callApi(
         '/api/users/following', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -65,10 +74,57 @@ export default class UsersApi {
 
     /**
      * Get users that the current user is following
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiUsersUserIdFollowersGet200ResponseInner>}
+     * @param {String} userId ID of the user whose followers are requested
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>}
      */
-    apiUsersFollowingGet() {
-      return this.apiUsersFollowingGetWithHttpInfo()
+    apiUsersFollowingGet(userId) {
+      return this.apiUsersFollowingGetWithHttpInfo(userId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Update current user's avatar
+     * @param {File} avatar 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    apiUsersMeAvatarPostWithHttpInfo(avatar) {
+      let postBody = null;
+      // verify the required parameter 'avatar' is set
+      if (avatar === undefined || avatar === null) {
+        throw new Error("Missing the required parameter 'avatar' when calling apiUsersMeAvatarPost");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+        'avatar': avatar
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = ['multipart/form-data'];
+      let accepts = [];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/api/users/me/avatar', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Update current user's avatar
+     * @param {File} avatar 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    apiUsersMeAvatarPost(avatar) {
+      return this.apiUsersMeAvatarPostWithHttpInfo(avatar)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -110,6 +166,56 @@ export default class UsersApi {
      */
     apiUsersMeGet() {
       return this.apiUsersMeGetWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get recipes of the logged-in user
+     * Returns a paginated list of recipes created by the authenticated user
+     * @param {Object} opts Optional parameters
+     * @param {Number} [page = 1)] Page number
+     * @param {Number} [limit = 12)] Number of recipes per page
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiUsersRecipesGet200Response} and HTTP response
+     */
+    apiUsersRecipesGetWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'page': opts['page'],
+        'limit': opts['limit']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ApiUsersRecipesGet200Response;
+      return this.apiClient.callApi(
+        '/api/users/recipes', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get recipes of the logged-in user
+     * Returns a paginated list of recipes created by the authenticated user
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.page Page number (default to 1)
+     * @param {Number} opts.limit Number of recipes per page (default to 12)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiUsersRecipesGet200Response}
+     */
+    apiUsersRecipesGet(opts) {
+      return this.apiUsersRecipesGetWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -165,7 +271,7 @@ export default class UsersApi {
     /**
      * Get followers of a user
      * @param {String} userId ID of the user whose followers are requested
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiUsersUserIdFollowersGet200ResponseInner>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>} and HTTP response
      */
     apiUsersUserIdFollowersGetWithHttpInfo(userId) {
       let postBody = null;
@@ -187,7 +293,7 @@ export default class UsersApi {
       let authNames = ['bearerAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [ApiUsersUserIdFollowersGet200ResponseInner];
+      let returnType = [ApiUsersFollowingGet200ResponseInner];
       return this.apiClient.callApi(
         '/api/users/{userId}/followers', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -198,7 +304,7 @@ export default class UsersApi {
     /**
      * Get followers of a user
      * @param {String} userId ID of the user whose followers are requested
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiUsersUserIdFollowersGet200ResponseInner>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>}
      */
     apiUsersUserIdFollowersGet(userId) {
       return this.apiUsersUserIdFollowersGetWithHttpInfo(userId)
@@ -248,6 +354,109 @@ export default class UsersApi {
      */
     apiUsersUserIdFollowersPost(userId) {
       return this.apiUsersUserIdFollowersPostWithHttpInfo(userId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get detailed info about another user
+     * @param {String} userId ID of the user
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiUsersUserIdGet200Response} and HTTP response
+     */
+    apiUsersUserIdGetWithHttpInfo(userId) {
+      let postBody = null;
+      // verify the required parameter 'userId' is set
+      if (userId === undefined || userId === null) {
+        throw new Error("Missing the required parameter 'userId' when calling apiUsersUserIdGet");
+      }
+
+      let pathParams = {
+        'userId': userId
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ApiUsersUserIdGet200Response;
+      return this.apiClient.callApi(
+        '/api/users/{userId}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get detailed info about another user
+     * @param {String} userId ID of the user
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiUsersUserIdGet200Response}
+     */
+    apiUsersUserIdGet(userId) {
+      return this.apiUsersUserIdGetWithHttpInfo(userId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get recipes of a specific user
+     * Returns a paginated list of recipes created by the specified user
+     * @param {String} userId ID of the user
+     * @param {Object} opts Optional parameters
+     * @param {Number} [page = 1)] Page number
+     * @param {Number} [limit = 12)] Number of recipes per page
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiUsersUserIdRecipesGet200Response} and HTTP response
+     */
+    apiUsersUserIdRecipesGetWithHttpInfo(userId, opts) {
+      opts = opts || {};
+      let postBody = null;
+      // verify the required parameter 'userId' is set
+      if (userId === undefined || userId === null) {
+        throw new Error("Missing the required parameter 'userId' when calling apiUsersUserIdRecipesGet");
+      }
+
+      let pathParams = {
+        'userId': userId
+      };
+      let queryParams = {
+        'page': opts['page'],
+        'limit': opts['limit']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ApiUsersUserIdRecipesGet200Response;
+      return this.apiClient.callApi(
+        '/api/users/{userId}/recipes', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get recipes of a specific user
+     * Returns a paginated list of recipes created by the specified user
+     * @param {String} userId ID of the user
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.page Page number (default to 1)
+     * @param {Number} opts.limit Number of recipes per page (default to 12)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiUsersUserIdRecipesGet200Response}
+     */
+    apiUsersUserIdRecipesGet(userId, opts) {
+      return this.apiUsersUserIdRecipesGetWithHttpInfo(userId, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

@@ -12,7 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
-import RecipePreview from './RecipePreview';
+import ApiRecipesGet200ResponseResultsInner from './ApiRecipesGet200ResponseResultsInner';
 
 /**
  * The ApiRecipesGet200Response model module.
@@ -58,7 +58,7 @@ class ApiRecipesGet200Response {
                 obj['totalPages'] = ApiClient.convertToType(data['totalPages'], 'Number');
             }
             if (data.hasOwnProperty('results')) {
-                obj['results'] = ApiClient.convertToType(data['results'], [RecipePreview]);
+                obj['results'] = ApiClient.convertToType(data['results'], [ApiRecipesGet200ResponseResultsInner]);
             }
         }
         return obj;
@@ -70,9 +70,15 @@ class ApiRecipesGet200Response {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiRecipesGet200Response</code>.
      */
     static validateJSON(data) {
-        // ensure the json data is an array
-        if (!Array.isArray(data['results'])) {
-            throw new Error("Expected the field `results` to be an array in the JSON data but got " + data['results']);
+        if (data['results']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['results'])) {
+                throw new Error("Expected the field `results` to be an array in the JSON data but got " + data['results']);
+            }
+            // validate the optional field `results` (array)
+            for (const item of data['results']) {
+                ApiRecipesGet200ResponseResultsInner.validateJSON(item);
+            };
         }
 
         return true;
@@ -99,7 +105,7 @@ ApiRecipesGet200Response.prototype['page'] = undefined;
 ApiRecipesGet200Response.prototype['totalPages'] = undefined;
 
 /**
- * @member {Array.<module:model/RecipePreview>} results
+ * @member {Array.<module:model/ApiRecipesGet200ResponseResultsInner>} results
  */
 ApiRecipesGet200Response.prototype['results'] = undefined;
 
