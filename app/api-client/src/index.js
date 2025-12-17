@@ -20,11 +20,40 @@ import ApiAuthLoginPost200ResponseUser from './model/ApiAuthLoginPost200Response
 import ApiAuthLoginPostRequest from './model/ApiAuthLoginPostRequest';
 import ApiAuthRegisterPost201Response from './model/ApiAuthRegisterPost201Response';
 import ApiAuthRegisterPostRequest from './model/ApiAuthRegisterPostRequest';
+import ApiCategoriesGet200ResponseInner from './model/ApiCategoriesGet200ResponseInner';
+import ApiIngredientsGet200Response from './model/ApiIngredientsGet200Response';
+import ApiIngredientsGet200ResponseResultsInner from './model/ApiIngredientsGet200ResponseResultsInner';
+import ApiRecipesFavoritesGet200Response from './model/ApiRecipesFavoritesGet200Response';
+import ApiRecipesFavoritesGet200ResponseResultsInner from './model/ApiRecipesFavoritesGet200ResponseResultsInner';
 import ApiRecipesGet200Response from './model/ApiRecipesGet200Response';
+import ApiRecipesGet200ResponseResultsInner from './model/ApiRecipesGet200ResponseResultsInner';
+import ApiRecipesIdFavoriteDelete200Response from './model/ApiRecipesIdFavoriteDelete200Response';
+import ApiRecipesIdFavoritePost201Response from './model/ApiRecipesIdFavoritePost201Response';
+import ApiRecipesIdGet200Response from './model/ApiRecipesIdGet200Response';
+import ApiRecipesIdGet200ResponseRecipeIngredientsInner from './model/ApiRecipesIdGet200ResponseRecipeIngredientsInner';
+import ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient from './model/ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient';
+import ApiRecipesPopularGet200ResponseInner from './model/ApiRecipesPopularGet200ResponseInner';
+import ApiRecipesPost201Response from './model/ApiRecipesPost201Response';
+import ApiRecipesPost201ResponseRecipeIngredientsInner from './model/ApiRecipesPost201ResponseRecipeIngredientsInner';
+import ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient from './model/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient';
+import ApiRecipesPostRequest from './model/ApiRecipesPostRequest';
+import ApiRecipesPostRequestIngredientsInner from './model/ApiRecipesPostRequestIngredientsInner';
+import ApiUsersFollowingGet200ResponseInner from './model/ApiUsersFollowingGet200ResponseInner';
 import ApiUsersMeGet200Response from './model/ApiUsersMeGet200Response';
-import ApiUsersUserIdFollowersGet200ResponseInner from './model/ApiUsersUserIdFollowersGet200ResponseInner';
+import ApiUsersRecipesGet200Response from './model/ApiUsersRecipesGet200Response';
+import ApiUsersUserIdGet200Response from './model/ApiUsersUserIdGet200Response';
+import ApiUsersUserIdRecipesGet200Response from './model/ApiUsersUserIdRecipesGet200Response';
+import ApiUsersUserIdRecipesGet200ResponseResultsInner from './model/ApiUsersUserIdRecipesGet200ResponseResultsInner';
+import Ingredient from './model/Ingredient';
+import PopularRecipe from './model/PopularRecipe';
+import Recipe from './model/Recipe';
+import RecipeIngredientItem from './model/RecipeIngredientItem';
+import RecipePreview from './model/RecipePreview';
+import RecipesListResponse from './model/RecipesListResponse';
 import AreasApi from './api/AreasApi';
 import AuthApi from './api/AuthApi';
+import CategoriesApi from './api/CategoriesApi';
+import IngredientsApi from './api/IngredientsApi';
 import RecipesApi from './api/RecipesApi';
 import TestimonialsApi from './api/TestimonialsApi';
 import UsersApi from './api/UsersApi';
@@ -111,10 +140,118 @@ export {
     ApiAuthRegisterPostRequest,
 
     /**
+     * The ApiCategoriesGet200ResponseInner model constructor.
+     * @property {module:model/ApiCategoriesGet200ResponseInner}
+     */
+    ApiCategoriesGet200ResponseInner,
+
+    /**
+     * The ApiIngredientsGet200Response model constructor.
+     * @property {module:model/ApiIngredientsGet200Response}
+     */
+    ApiIngredientsGet200Response,
+
+    /**
+     * The ApiIngredientsGet200ResponseResultsInner model constructor.
+     * @property {module:model/ApiIngredientsGet200ResponseResultsInner}
+     */
+    ApiIngredientsGet200ResponseResultsInner,
+
+    /**
+     * The ApiRecipesFavoritesGet200Response model constructor.
+     * @property {module:model/ApiRecipesFavoritesGet200Response}
+     */
+    ApiRecipesFavoritesGet200Response,
+
+    /**
+     * The ApiRecipesFavoritesGet200ResponseResultsInner model constructor.
+     * @property {module:model/ApiRecipesFavoritesGet200ResponseResultsInner}
+     */
+    ApiRecipesFavoritesGet200ResponseResultsInner,
+
+    /**
      * The ApiRecipesGet200Response model constructor.
      * @property {module:model/ApiRecipesGet200Response}
      */
     ApiRecipesGet200Response,
+
+    /**
+     * The ApiRecipesGet200ResponseResultsInner model constructor.
+     * @property {module:model/ApiRecipesGet200ResponseResultsInner}
+     */
+    ApiRecipesGet200ResponseResultsInner,
+
+    /**
+     * The ApiRecipesIdFavoriteDelete200Response model constructor.
+     * @property {module:model/ApiRecipesIdFavoriteDelete200Response}
+     */
+    ApiRecipesIdFavoriteDelete200Response,
+
+    /**
+     * The ApiRecipesIdFavoritePost201Response model constructor.
+     * @property {module:model/ApiRecipesIdFavoritePost201Response}
+     */
+    ApiRecipesIdFavoritePost201Response,
+
+    /**
+     * The ApiRecipesIdGet200Response model constructor.
+     * @property {module:model/ApiRecipesIdGet200Response}
+     */
+    ApiRecipesIdGet200Response,
+
+    /**
+     * The ApiRecipesIdGet200ResponseRecipeIngredientsInner model constructor.
+     * @property {module:model/ApiRecipesIdGet200ResponseRecipeIngredientsInner}
+     */
+    ApiRecipesIdGet200ResponseRecipeIngredientsInner,
+
+    /**
+     * The ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient model constructor.
+     * @property {module:model/ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient}
+     */
+    ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient,
+
+    /**
+     * The ApiRecipesPopularGet200ResponseInner model constructor.
+     * @property {module:model/ApiRecipesPopularGet200ResponseInner}
+     */
+    ApiRecipesPopularGet200ResponseInner,
+
+    /**
+     * The ApiRecipesPost201Response model constructor.
+     * @property {module:model/ApiRecipesPost201Response}
+     */
+    ApiRecipesPost201Response,
+
+    /**
+     * The ApiRecipesPost201ResponseRecipeIngredientsInner model constructor.
+     * @property {module:model/ApiRecipesPost201ResponseRecipeIngredientsInner}
+     */
+    ApiRecipesPost201ResponseRecipeIngredientsInner,
+
+    /**
+     * The ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient model constructor.
+     * @property {module:model/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient}
+     */
+    ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient,
+
+    /**
+     * The ApiRecipesPostRequest model constructor.
+     * @property {module:model/ApiRecipesPostRequest}
+     */
+    ApiRecipesPostRequest,
+
+    /**
+     * The ApiRecipesPostRequestIngredientsInner model constructor.
+     * @property {module:model/ApiRecipesPostRequestIngredientsInner}
+     */
+    ApiRecipesPostRequestIngredientsInner,
+
+    /**
+     * The ApiUsersFollowingGet200ResponseInner model constructor.
+     * @property {module:model/ApiUsersFollowingGet200ResponseInner}
+     */
+    ApiUsersFollowingGet200ResponseInner,
 
     /**
      * The ApiUsersMeGet200Response model constructor.
@@ -123,10 +260,64 @@ export {
     ApiUsersMeGet200Response,
 
     /**
-     * The ApiUsersUserIdFollowersGet200ResponseInner model constructor.
-     * @property {module:model/ApiUsersUserIdFollowersGet200ResponseInner}
+     * The ApiUsersRecipesGet200Response model constructor.
+     * @property {module:model/ApiUsersRecipesGet200Response}
      */
-    ApiUsersUserIdFollowersGet200ResponseInner,
+    ApiUsersRecipesGet200Response,
+
+    /**
+     * The ApiUsersUserIdGet200Response model constructor.
+     * @property {module:model/ApiUsersUserIdGet200Response}
+     */
+    ApiUsersUserIdGet200Response,
+
+    /**
+     * The ApiUsersUserIdRecipesGet200Response model constructor.
+     * @property {module:model/ApiUsersUserIdRecipesGet200Response}
+     */
+    ApiUsersUserIdRecipesGet200Response,
+
+    /**
+     * The ApiUsersUserIdRecipesGet200ResponseResultsInner model constructor.
+     * @property {module:model/ApiUsersUserIdRecipesGet200ResponseResultsInner}
+     */
+    ApiUsersUserIdRecipesGet200ResponseResultsInner,
+
+    /**
+     * The Ingredient model constructor.
+     * @property {module:model/Ingredient}
+     */
+    Ingredient,
+
+    /**
+     * The PopularRecipe model constructor.
+     * @property {module:model/PopularRecipe}
+     */
+    PopularRecipe,
+
+    /**
+     * The Recipe model constructor.
+     * @property {module:model/Recipe}
+     */
+    Recipe,
+
+    /**
+     * The RecipeIngredientItem model constructor.
+     * @property {module:model/RecipeIngredientItem}
+     */
+    RecipeIngredientItem,
+
+    /**
+     * The RecipePreview model constructor.
+     * @property {module:model/RecipePreview}
+     */
+    RecipePreview,
+
+    /**
+     * The RecipesListResponse model constructor.
+     * @property {module:model/RecipesListResponse}
+     */
+    RecipesListResponse,
 
     /**
     * The AreasApi service constructor.
@@ -139,6 +330,18 @@ export {
     * @property {module:api/AuthApi}
     */
     AuthApi,
+
+    /**
+    * The CategoriesApi service constructor.
+    * @property {module:api/CategoriesApi}
+    */
+    CategoriesApi,
+
+    /**
+    * The IngredientsApi service constructor.
+    * @property {module:api/IngredientsApi}
+    */
+    IngredientsApi,
 
     /**
     * The RecipesApi service constructor.

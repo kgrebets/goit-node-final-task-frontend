@@ -13,8 +13,14 @@
 
 
 import ApiClient from "../ApiClient";
+import ApiRecipesFavoritesGet200Response from '../model/ApiRecipesFavoritesGet200Response';
 import ApiRecipesGet200Response from '../model/ApiRecipesGet200Response';
-import RecipeDetails from '../model/RecipeDetails';
+import ApiRecipesIdFavoriteDelete200Response from '../model/ApiRecipesIdFavoriteDelete200Response';
+import ApiRecipesIdFavoritePost201Response from '../model/ApiRecipesIdFavoritePost201Response';
+import ApiRecipesIdGet200Response from '../model/ApiRecipesIdGet200Response';
+import ApiRecipesPopularGet200ResponseInner from '../model/ApiRecipesPopularGet200ResponseInner';
+import ApiRecipesPost201Response from '../model/ApiRecipesPost201Response';
+import ApiRecipesPostRequest from '../model/ApiRecipesPostRequest';
 
 /**
 * Recipes service.
@@ -37,12 +43,62 @@ export default class RecipesApi {
 
 
     /**
+     * Get favorite recipes of the authenticated user
+     * Returns a paginated list of recipes added to favorites by the authenticated user
+     * @param {Object} opts Optional parameters
+     * @param {Number} [page = 1)] Page number
+     * @param {Number} [limit = 12)] Number of recipes per page
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesFavoritesGet200Response} and HTTP response
+     */
+    apiRecipesFavoritesGetWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'page': opts['page'],
+        'limit': opts['limit']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ApiRecipesFavoritesGet200Response;
+      return this.apiClient.callApi(
+        '/api/recipes/favorites', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get favorite recipes of the authenticated user
+     * Returns a paginated list of recipes added to favorites by the authenticated user
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.page Page number (default to 1)
+     * @param {Number} opts.limit Number of recipes per page (default to 12)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesFavoritesGet200Response}
+     */
+    apiRecipesFavoritesGet(opts) {
+      return this.apiRecipesFavoritesGetWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Get list of recipes
      * @param {Object} opts Optional parameters
      * @param {Number} [page] 
      * @param {Number} [limit] 
-     * @param {String} [category] 
-     * @param {String} [area] 
+     * @param {String} [categoryid] 
+     * @param {String} [areaid] 
      * @param {String} [ingredient] 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesGet200Response} and HTTP response
      */
@@ -55,8 +111,8 @@ export default class RecipesApi {
       let queryParams = {
         'page': opts['page'],
         'limit': opts['limit'],
-        'category': opts['category'],
-        'area': opts['area'],
+        'categoryid': opts['categoryid'],
+        'areaid': opts['areaid'],
         'ingredient': opts['ingredient']
       };
       let headerParams = {
@@ -80,8 +136,8 @@ export default class RecipesApi {
      * @param {Object} opts Optional parameters
      * @param {Number} opts.page 
      * @param {Number} opts.limit 
-     * @param {String} opts.category 
-     * @param {String} opts.area 
+     * @param {String} opts.categoryid 
+     * @param {String} opts.areaid 
      * @param {String} opts.ingredient 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesGet200Response}
      */
@@ -94,9 +150,151 @@ export default class RecipesApi {
 
 
     /**
-     * Get recipe by id
+     * Delete a recipe
      * @param {String} id 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RecipeDetails} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    apiRecipesIdDeleteWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling apiRecipesIdDelete");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = [];
+      let accepts = [];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/api/recipes/{id}', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete a recipe
+     * @param {String} id 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    apiRecipesIdDelete(id) {
+      return this.apiRecipesIdDeleteWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Remove recipe from favorites
+     * Removes the specified recipe from the authenticated user's favorites list
+     * @param {String} id Recipe ID
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesIdFavoriteDelete200Response} and HTTP response
+     */
+    apiRecipesIdFavoriteDeleteWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling apiRecipesIdFavoriteDelete");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ApiRecipesIdFavoriteDelete200Response;
+      return this.apiClient.callApi(
+        '/api/recipes/{id}/favorite', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Remove recipe from favorites
+     * Removes the specified recipe from the authenticated user's favorites list
+     * @param {String} id Recipe ID
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesIdFavoriteDelete200Response}
+     */
+    apiRecipesIdFavoriteDelete(id) {
+      return this.apiRecipesIdFavoriteDeleteWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Add recipe to favorites
+     * Adds the specified recipe to the authenticated user's favorites list
+     * @param {String} id Recipe ID
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesIdFavoritePost201Response} and HTTP response
+     */
+    apiRecipesIdFavoritePostWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling apiRecipesIdFavoritePost");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ApiRecipesIdFavoritePost201Response;
+      return this.apiClient.callApi(
+        '/api/recipes/{id}/favorite', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Add recipe to favorites
+     * Adds the specified recipe to the authenticated user's favorites list
+     * @param {String} id Recipe ID
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesIdFavoritePost201Response}
+     */
+    apiRecipesIdFavoritePost(id) {
+      return this.apiRecipesIdFavoritePostWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get recipe by ID
+     * @param {String} id 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesIdGet200Response} and HTTP response
      */
     apiRecipesIdGetWithHttpInfo(id) {
       let postBody = null;
@@ -118,7 +316,7 @@ export default class RecipesApi {
       let authNames = [];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = RecipeDetails;
+      let returnType = ApiRecipesIdGet200Response;
       return this.apiClient.callApi(
         '/api/recipes/{id}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -127,12 +325,105 @@ export default class RecipesApi {
     }
 
     /**
-     * Get recipe by id
+     * Get recipe by ID
      * @param {String} id 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RecipeDetails}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesIdGet200Response}
      */
     apiRecipesIdGet(id) {
       return this.apiRecipesIdGetWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Get popular recipes
+     * @param {Object} opts Optional parameters
+     * @param {Number} [page] 
+     * @param {Number} [limit] 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiRecipesPopularGet200ResponseInner>} and HTTP response
+     */
+    apiRecipesPopularGetWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'page': opts['page'],
+        'limit': opts['limit']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [ApiRecipesPopularGet200ResponseInner];
+      return this.apiClient.callApi(
+        '/api/recipes/popular', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Get popular recipes
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.page 
+     * @param {Number} opts.limit 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiRecipesPopularGet200ResponseInner>}
+     */
+    apiRecipesPopularGet(opts) {
+      return this.apiRecipesPopularGetWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Create a new recipe
+     * @param {module:model/ApiRecipesPostRequest} apiRecipesPostRequest 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesPost201Response} and HTTP response
+     */
+    apiRecipesPostWithHttpInfo(apiRecipesPostRequest) {
+      let postBody = apiRecipesPostRequest;
+      // verify the required parameter 'apiRecipesPostRequest' is set
+      if (apiRecipesPostRequest === undefined || apiRecipesPostRequest === null) {
+        throw new Error("Missing the required parameter 'apiRecipesPostRequest' when calling apiRecipesPost");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['bearerAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ApiRecipesPost201Response;
+      return this.apiClient.callApi(
+        '/api/recipes', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create a new recipe
+     * @param {module:model/ApiRecipesPostRequest} apiRecipesPostRequest 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesPost201Response}
+     */
+    apiRecipesPost(apiRecipesPostRequest) {
+      return this.apiRecipesPostWithHttpInfo(apiRecipesPostRequest)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

@@ -12,21 +12,21 @@
  */
 
 import ApiClient from '../ApiClient';
-import ApiRecipesGet200ResponseResultsInner from './ApiRecipesGet200ResponseResultsInner';
+import ApiRecipesFavoritesGet200ResponseResultsInner from './ApiRecipesFavoritesGet200ResponseResultsInner';
 
 /**
- * The ApiRecipesGet200Response model module.
- * @module model/ApiRecipesGet200Response
+ * The ApiRecipesFavoritesGet200Response model module.
+ * @module model/ApiRecipesFavoritesGet200Response
  * @version 1.0.0
  */
-class ApiRecipesGet200Response {
+class ApiRecipesFavoritesGet200Response {
     /**
-     * Constructs a new <code>ApiRecipesGet200Response</code>.
-     * @alias module:model/ApiRecipesGet200Response
+     * Constructs a new <code>ApiRecipesFavoritesGet200Response</code>.
+     * @alias module:model/ApiRecipesFavoritesGet200Response
      */
     constructor() { 
         
-        ApiRecipesGet200Response.initialize(this);
+        ApiRecipesFavoritesGet200Response.initialize(this);
     }
 
     /**
@@ -38,15 +38,15 @@ class ApiRecipesGet200Response {
     }
 
     /**
-     * Constructs a <code>ApiRecipesGet200Response</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ApiRecipesFavoritesGet200Response</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ApiRecipesGet200Response} obj Optional instance to populate.
-     * @return {module:model/ApiRecipesGet200Response} The populated <code>ApiRecipesGet200Response</code> instance.
+     * @param {module:model/ApiRecipesFavoritesGet200Response} obj Optional instance to populate.
+     * @return {module:model/ApiRecipesFavoritesGet200Response} The populated <code>ApiRecipesFavoritesGet200Response</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new ApiRecipesGet200Response();
+            obj = obj || new ApiRecipesFavoritesGet200Response();
 
             if (data.hasOwnProperty('total')) {
                 obj['total'] = ApiClient.convertToType(data['total'], 'Number');
@@ -58,16 +58,16 @@ class ApiRecipesGet200Response {
                 obj['totalPages'] = ApiClient.convertToType(data['totalPages'], 'Number');
             }
             if (data.hasOwnProperty('results')) {
-                obj['results'] = ApiClient.convertToType(data['results'], [ApiRecipesGet200ResponseResultsInner]);
+                obj['results'] = ApiClient.convertToType(data['results'], [ApiRecipesFavoritesGet200ResponseResultsInner]);
             }
         }
         return obj;
     }
 
     /**
-     * Validates the JSON data with respect to <code>ApiRecipesGet200Response</code>.
+     * Validates the JSON data with respect to <code>ApiRecipesFavoritesGet200Response</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiRecipesGet200Response</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiRecipesFavoritesGet200Response</code>.
      */
     static validateJSON(data) {
         if (data['results']) { // data not null
@@ -77,7 +77,7 @@ class ApiRecipesGet200Response {
             }
             // validate the optional field `results` (array)
             for (const item of data['results']) {
-                ApiRecipesGet200ResponseResultsInner.validateJSON(item);
+                ApiRecipesFavoritesGet200ResponseResultsInner.validateJSON(item);
             };
         }
 
@@ -92,27 +92,27 @@ class ApiRecipesGet200Response {
 /**
  * @member {Number} total
  */
-ApiRecipesGet200Response.prototype['total'] = undefined;
+ApiRecipesFavoritesGet200Response.prototype['total'] = undefined;
 
 /**
  * @member {Number} page
  */
-ApiRecipesGet200Response.prototype['page'] = undefined;
+ApiRecipesFavoritesGet200Response.prototype['page'] = undefined;
 
 /**
  * @member {Number} totalPages
  */
-ApiRecipesGet200Response.prototype['totalPages'] = undefined;
+ApiRecipesFavoritesGet200Response.prototype['totalPages'] = undefined;
 
 /**
- * @member {Array.<module:model/ApiRecipesGet200ResponseResultsInner>} results
+ * @member {Array.<module:model/ApiRecipesFavoritesGet200ResponseResultsInner>} results
  */
-ApiRecipesGet200Response.prototype['results'] = undefined;
+ApiRecipesFavoritesGet200Response.prototype['results'] = undefined;
 
 
 
 
 
 
-export default ApiRecipesGet200Response;
+export default ApiRecipesFavoritesGet200Response;
 

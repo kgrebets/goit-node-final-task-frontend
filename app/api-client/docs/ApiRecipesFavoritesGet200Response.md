@@ -1,4 +1,4 @@
-# FoodiesApi.ApiRecipesGet200Response
+# FoodiesApi.ApiRecipesFavoritesGet200Response
 
 ## Properties
 
@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **total** | **Number** |  | [optional] 
 **page** | **Number** |  | [optional] 
 **totalPages** | **Number** |  | [optional] 
-**results** | [**[ApiRecipesGet200ResponseResultsInner]**](ApiRecipesGet200ResponseResultsInner.md) |  | [optional] 
+**results** | [**[ApiRecipesFavoritesGet200ResponseResultsInner]**](ApiRecipesFavoritesGet200ResponseResultsInner.md) |  | [optional] 
 
 

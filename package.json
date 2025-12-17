@@ -8,7 +8,7 @@
     "dev": "react-router dev",
     "lint": "eslint .",
     "start": "react-router-serve ./build/server/index.js",
-    "generate:api": "openapi-generator-cli generate -i https://goit-node-final-task-backend.onrender.com/api-docs.json -g javascript -o src/api-client --additional-properties=usePromises=true,useES6=true --skip-validate-spec"
+    "generate:api": "openapi-generator-cli generate -i https://goit-node-final-task-backend.onrender.com/api-docs.json -g javascript -o app/api-client --additional-properties=usePromises=true,useES6=true --skip-validate-spec"
   },
   "dependencies": {
     "@react-router/dev": "^7.10.1",
