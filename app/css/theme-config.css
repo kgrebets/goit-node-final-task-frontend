@@ -10,4 +10,6 @@
     --spacing-7_5: 1.875rem; /** 30px */
 
     --radius-7_5: 1.875rem; /** 30px */
+
+    --breakpoint-2xl: 87.5rem;
 }
