@@ -8,6 +8,7 @@ import {
 } from 'react-router';
 import Header from "./components/header";
 import './app.css';
+import Footer from './components/footer';
 
 export const links = () => [
   {
@@ -65,9 +66,7 @@ export default function App() {
       <main>
         <Outlet />
       </main>
-      <footer>
-        Footer
-      </footer>
+      <Footer />
     </>
   );
 }
