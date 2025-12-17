@@ -1,42 +1,50 @@
 import React from 'react';
 
-const Hamburger = ({ width = '28', height = '28', ...props }) => {
+const Hamburger = ({ width = 24, height = 24, ...props }) => {
   return (
     <svg
       width={width}
       height={height}
-      viewBox="0 0 28 28"
-      fill="currentColor"
+      viewBox="0 0 24 24"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        d="M24.5 11.6667H3.5"
-        stroke="white"
+      <line
+        x1="4"
+        y1="6"
+        x2="20"
+        y2="6"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      <path
-        d="M24.5 7H3.5"
-        stroke="white"
+      <line
+        x1="4"
+        y1="10"
+        x2="20"
+        y2="10"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      <path
-        d="M24.5 16.3333H3.5"
-        stroke="white"
+      <line
+        x1="4"
+        y1="14"
+        x2="20"
+        y2="14"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      <path
-        d="M24.5 21H3.5"
-        stroke="white"
+      <line
+        x1="4"
+        y1="18"
+        x2="20"
+        y2="18"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   );
