@@ -1,11 +1,36 @@
+import { useRef } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import UsersApi from '../../api-client/src/api/UsersApi.js';
 import Icon from "../Icon";
 
-export default function UserInfo({ user }) {
+const usersApi = new UsersApi();
+
+export default function UserInfo({ user, isOwnProfile = false }) {
   const displayName = user?.name || user?.email || 'User';
   const initial = displayName.charAt(0).toUpperCase();
+  const fileInputRef = useRef(null);
+  const queryClient = useQueryClient();
+
+  const uploadAvatarMutation = useMutation({
+    mutationFn: (file) => usersApi.apiUsersMeAvatarPost(file),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+    },
+    onError: (error) => {
+      console.error('Failed to upload avatar:', error);
+    },
+  });
 
   const handleAddClick = () => {
-    console.log('Add button clicked');
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      uploadAvatarMutation.mutate(file);
+    }
+    event.target.value = '';
   };
 
   return (
@@ -22,13 +47,25 @@ export default function UserInfo({ user }) {
         )}
       </div>
 
-      <button
-        type="button"
-        onClick={handleAddClick}
-        className="p-0 font-normal relative top-[-24px] flex h-[38px] w-[38px] items-center justify-center rounded-full bg-black text-xl leading-none text-white hover:bg-black/80"
-      >
-        <Icon name="plus" size={20} />
-      </button>
+      {isOwnProfile && (
+        <>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+          <button
+            type="button"
+            onClick={handleAddClick}
+            disabled={uploadAvatarMutation.isPending}
+            className="p-0 font-normal relative top-[-24px] flex h-[38px] w-[38px] items-center justify-center rounded-full bg-black text-xl leading-none text-white hover:bg-black/80 disabled:opacity-50"
+          >
+            <Icon name="plus" size={20} />
+          </button>
+        </>
+      )}
 
       <div className="mt-6 flex flex-col gap-2 text-left text-secondary text-sm">
         <p>
