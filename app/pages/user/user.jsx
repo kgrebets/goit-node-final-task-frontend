@@ -53,11 +53,13 @@ const User = () => {
     );
   }
 
+  const isOwnProfile = !id || id === 'me';
+
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mx-auto max-w-2xl">
         <h1 className="mb-8 text-3xl font-bold tracking-tight">Profile</h1>
-        <UserInfo user={user} />
+        <UserInfo user={user} isOwnProfile={isOwnProfile} />
       </div>
     </div>
   );
