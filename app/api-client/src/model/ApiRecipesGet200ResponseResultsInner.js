@@ -12,6 +12,9 @@
  */
 
 import ApiClient from '../ApiClient';
+import ApiRecipesGet200ResponseResultsInnerArea from './ApiRecipesGet200ResponseResultsInnerArea';
+import ApiRecipesGet200ResponseResultsInnerCategory from './ApiRecipesGet200ResponseResultsInnerCategory';
+import ApiRecipesGet200ResponseResultsInnerCreator from './ApiRecipesGet200ResponseResultsInnerCreator';
 
 /**
  * The ApiRecipesGet200ResponseResultsInner model module.
@@ -50,23 +53,23 @@ class ApiRecipesGet200ResponseResultsInner {
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('userid')) {
-                obj['userid'] = ApiClient.convertToType(data['userid'], 'String');
-            }
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
             if (data.hasOwnProperty('thumb')) {
                 obj['thumb'] = ApiClient.convertToType(data['thumb'], 'String');
             }
-            if (data.hasOwnProperty('areaid')) {
-                obj['areaid'] = ApiClient.convertToType(data['areaid'], 'String');
-            }
-            if (data.hasOwnProperty('categoryid')) {
-                obj['categoryid'] = ApiClient.convertToType(data['categoryid'], 'String');
-            }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
+            }
+            if (data.hasOwnProperty('Creator')) {
+                obj['Creator'] = ApiRecipesGet200ResponseResultsInnerCreator.constructFromObject(data['Creator']);
+            }
+            if (data.hasOwnProperty('category')) {
+                obj['category'] = ApiRecipesGet200ResponseResultsInnerCategory.constructFromObject(data['category']);
+            }
+            if (data.hasOwnProperty('area')) {
+                obj['area'] = ApiRecipesGet200ResponseResultsInnerArea.constructFromObject(data['area']);
             }
         }
         return obj;
@@ -83,10 +86,6 @@ class ApiRecipesGet200ResponseResultsInner {
             throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
         }
         // ensure the json data is a string
-        if (data['userid'] && !(typeof data['userid'] === 'string' || data['userid'] instanceof String)) {
-            throw new Error("Expected the field `userid` to be a primitive type in the JSON string but got " + data['userid']);
-        }
-        // ensure the json data is a string
         if (data['title'] && !(typeof data['title'] === 'string' || data['title'] instanceof String)) {
             throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
         }
@@ -95,16 +94,20 @@ class ApiRecipesGet200ResponseResultsInner {
             throw new Error("Expected the field `thumb` to be a primitive type in the JSON string but got " + data['thumb']);
         }
         // ensure the json data is a string
-        if (data['areaid'] && !(typeof data['areaid'] === 'string' || data['areaid'] instanceof String)) {
-            throw new Error("Expected the field `areaid` to be a primitive type in the JSON string but got " + data['areaid']);
-        }
-        // ensure the json data is a string
-        if (data['categoryid'] && !(typeof data['categoryid'] === 'string' || data['categoryid'] instanceof String)) {
-            throw new Error("Expected the field `categoryid` to be a primitive type in the JSON string but got " + data['categoryid']);
-        }
-        // ensure the json data is a string
         if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
             throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
+        }
+        // validate the optional field `Creator`
+        if (data['Creator']) { // data not null
+          ApiRecipesGet200ResponseResultsInnerCreator.validateJSON(data['Creator']);
+        }
+        // validate the optional field `category`
+        if (data['category']) { // data not null
+          ApiRecipesGet200ResponseResultsInnerCategory.validateJSON(data['category']);
+        }
+        // validate the optional field `area`
+        if (data['area']) { // data not null
+          ApiRecipesGet200ResponseResultsInnerArea.validateJSON(data['area']);
         }
 
         return true;
@@ -121,11 +124,6 @@ class ApiRecipesGet200ResponseResultsInner {
 ApiRecipesGet200ResponseResultsInner.prototype['id'] = undefined;
 
 /**
- * @member {String} userid
- */
-ApiRecipesGet200ResponseResultsInner.prototype['userid'] = undefined;
-
-/**
  * @member {String} title
  */
 ApiRecipesGet200ResponseResultsInner.prototype['title'] = undefined;
@@ -136,19 +134,24 @@ ApiRecipesGet200ResponseResultsInner.prototype['title'] = undefined;
 ApiRecipesGet200ResponseResultsInner.prototype['thumb'] = undefined;
 
 /**
- * @member {String} areaid
- */
-ApiRecipesGet200ResponseResultsInner.prototype['areaid'] = undefined;
-
-/**
- * @member {String} categoryid
- */
-ApiRecipesGet200ResponseResultsInner.prototype['categoryid'] = undefined;
-
-/**
  * @member {String} description
  */
 ApiRecipesGet200ResponseResultsInner.prototype['description'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesGet200ResponseResultsInnerCreator} Creator
+ */
+ApiRecipesGet200ResponseResultsInner.prototype['Creator'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesGet200ResponseResultsInnerCategory} category
+ */
+ApiRecipesGet200ResponseResultsInner.prototype['category'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesGet200ResponseResultsInnerArea} area
+ */
+ApiRecipesGet200ResponseResultsInner.prototype['area'] = undefined;
 
 
 

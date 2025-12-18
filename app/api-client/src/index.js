@@ -27,11 +27,18 @@ import ApiRecipesFavoritesGet200Response from './model/ApiRecipesFavoritesGet200
 import ApiRecipesFavoritesGet200ResponseResultsInner from './model/ApiRecipesFavoritesGet200ResponseResultsInner';
 import ApiRecipesGet200Response from './model/ApiRecipesGet200Response';
 import ApiRecipesGet200ResponseResultsInner from './model/ApiRecipesGet200ResponseResultsInner';
+import ApiRecipesGet200ResponseResultsInnerArea from './model/ApiRecipesGet200ResponseResultsInnerArea';
+import ApiRecipesGet200ResponseResultsInnerCategory from './model/ApiRecipesGet200ResponseResultsInnerCategory';
+import ApiRecipesGet200ResponseResultsInnerCreator from './model/ApiRecipesGet200ResponseResultsInnerCreator';
 import ApiRecipesIdFavoriteDelete200Response from './model/ApiRecipesIdFavoriteDelete200Response';
 import ApiRecipesIdFavoritePost201Response from './model/ApiRecipesIdFavoritePost201Response';
 import ApiRecipesIdGet200Response from './model/ApiRecipesIdGet200Response';
+import ApiRecipesIdGet200ResponseArea from './model/ApiRecipesIdGet200ResponseArea';
+import ApiRecipesIdGet200ResponseCategory from './model/ApiRecipesIdGet200ResponseCategory';
+import ApiRecipesIdGet200ResponseCreator from './model/ApiRecipesIdGet200ResponseCreator';
 import ApiRecipesIdGet200ResponseRecipeIngredientsInner from './model/ApiRecipesIdGet200ResponseRecipeIngredientsInner';
 import ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient from './model/ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient';
+import ApiRecipesIdGet404Response from './model/ApiRecipesIdGet404Response';
 import ApiRecipesPopularGet200ResponseInner from './model/ApiRecipesPopularGet200ResponseInner';
 import ApiRecipesPost201Response from './model/ApiRecipesPost201Response';
 import ApiRecipesPost201ResponseRecipeIngredientsInner from './model/ApiRecipesPost201ResponseRecipeIngredientsInner';
@@ -182,6 +189,24 @@ export {
     ApiRecipesGet200ResponseResultsInner,
 
     /**
+     * The ApiRecipesGet200ResponseResultsInnerArea model constructor.
+     * @property {module:model/ApiRecipesGet200ResponseResultsInnerArea}
+     */
+    ApiRecipesGet200ResponseResultsInnerArea,
+
+    /**
+     * The ApiRecipesGet200ResponseResultsInnerCategory model constructor.
+     * @property {module:model/ApiRecipesGet200ResponseResultsInnerCategory}
+     */
+    ApiRecipesGet200ResponseResultsInnerCategory,
+
+    /**
+     * The ApiRecipesGet200ResponseResultsInnerCreator model constructor.
+     * @property {module:model/ApiRecipesGet200ResponseResultsInnerCreator}
+     */
+    ApiRecipesGet200ResponseResultsInnerCreator,
+
+    /**
      * The ApiRecipesIdFavoriteDelete200Response model constructor.
      * @property {module:model/ApiRecipesIdFavoriteDelete200Response}
      */
@@ -200,6 +225,24 @@ export {
     ApiRecipesIdGet200Response,
 
     /**
+     * The ApiRecipesIdGet200ResponseArea model constructor.
+     * @property {module:model/ApiRecipesIdGet200ResponseArea}
+     */
+    ApiRecipesIdGet200ResponseArea,
+
+    /**
+     * The ApiRecipesIdGet200ResponseCategory model constructor.
+     * @property {module:model/ApiRecipesIdGet200ResponseCategory}
+     */
+    ApiRecipesIdGet200ResponseCategory,
+
+    /**
+     * The ApiRecipesIdGet200ResponseCreator model constructor.
+     * @property {module:model/ApiRecipesIdGet200ResponseCreator}
+     */
+    ApiRecipesIdGet200ResponseCreator,
+
+    /**
      * The ApiRecipesIdGet200ResponseRecipeIngredientsInner model constructor.
      * @property {module:model/ApiRecipesIdGet200ResponseRecipeIngredientsInner}
      */
@@ -210,6 +253,12 @@ export {
      * @property {module:model/ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient}
      */
     ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient,
+
+    /**
+     * The ApiRecipesIdGet404Response model constructor.
+     * @property {module:model/ApiRecipesIdGet404Response}
+     */
+    ApiRecipesIdGet404Response,
 
     /**
      * The ApiRecipesPopularGet200ResponseInner model constructor.

@@ -131,7 +131,7 @@ Class | Method | HTTP request | Description
 *FoodiesApi.RecipesApi* | [**apiRecipesIdFavoriteDelete**](docs/RecipesApi.md#apiRecipesIdFavoriteDelete) | **DELETE** /api/recipes/{id}/favorite | Remove recipe from favorites
 *FoodiesApi.RecipesApi* | [**apiRecipesIdFavoritePost**](docs/RecipesApi.md#apiRecipesIdFavoritePost) | **POST** /api/recipes/{id}/favorite | Add recipe to favorites
 *FoodiesApi.RecipesApi* | [**apiRecipesIdGet**](docs/RecipesApi.md#apiRecipesIdGet) | **GET** /api/recipes/{id} | Get recipe by ID
-*FoodiesApi.RecipesApi* | [**apiRecipesPopularGet**](docs/RecipesApi.md#apiRecipesPopularGet) | **GET** /api/recipes/popular | Get popular recipes
+*FoodiesApi.RecipesApi* | [**apiRecipesPopularGet**](docs/RecipesApi.md#apiRecipesPopularGet) | **GET** /api/recipes/popular | Get popular recipes (most favorited)
 *FoodiesApi.RecipesApi* | [**apiRecipesPost**](docs/RecipesApi.md#apiRecipesPost) | **POST** /api/recipes | Create a new recipe
 *FoodiesApi.TestimonialsApi* | [**apiTestimonialsGet**](docs/TestimonialsApi.md#apiTestimonialsGet) | **GET** /api/testimonials | Get all testimonials
 *FoodiesApi.UsersApi* | [**apiUsersFollowingGet**](docs/UsersApi.md#apiUsersFollowingGet) | **GET** /api/users/following | Get users that the current user is following
@@ -161,11 +161,18 @@ Class | Method | HTTP request | Description
  - [FoodiesApi.ApiRecipesFavoritesGet200ResponseResultsInner](docs/ApiRecipesFavoritesGet200ResponseResultsInner.md)
  - [FoodiesApi.ApiRecipesGet200Response](docs/ApiRecipesGet200Response.md)
  - [FoodiesApi.ApiRecipesGet200ResponseResultsInner](docs/ApiRecipesGet200ResponseResultsInner.md)
+ - [FoodiesApi.ApiRecipesGet200ResponseResultsInnerArea](docs/ApiRecipesGet200ResponseResultsInnerArea.md)
+ - [FoodiesApi.ApiRecipesGet200ResponseResultsInnerCategory](docs/ApiRecipesGet200ResponseResultsInnerCategory.md)
+ - [FoodiesApi.ApiRecipesGet200ResponseResultsInnerCreator](docs/ApiRecipesGet200ResponseResultsInnerCreator.md)
  - [FoodiesApi.ApiRecipesIdFavoriteDelete200Response](docs/ApiRecipesIdFavoriteDelete200Response.md)
  - [FoodiesApi.ApiRecipesIdFavoritePost201Response](docs/ApiRecipesIdFavoritePost201Response.md)
  - [FoodiesApi.ApiRecipesIdGet200Response](docs/ApiRecipesIdGet200Response.md)
+ - [FoodiesApi.ApiRecipesIdGet200ResponseArea](docs/ApiRecipesIdGet200ResponseArea.md)
+ - [FoodiesApi.ApiRecipesIdGet200ResponseCategory](docs/ApiRecipesIdGet200ResponseCategory.md)
+ - [FoodiesApi.ApiRecipesIdGet200ResponseCreator](docs/ApiRecipesIdGet200ResponseCreator.md)
  - [FoodiesApi.ApiRecipesIdGet200ResponseRecipeIngredientsInner](docs/ApiRecipesIdGet200ResponseRecipeIngredientsInner.md)
  - [FoodiesApi.ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient](docs/ApiRecipesIdGet200ResponseRecipeIngredientsInnerIngredient.md)
+ - [FoodiesApi.ApiRecipesIdGet404Response](docs/ApiRecipesIdGet404Response.md)
  - [FoodiesApi.ApiRecipesPopularGet200ResponseInner](docs/ApiRecipesPopularGet200ResponseInner.md)
  - [FoodiesApi.ApiRecipesPost201Response](docs/ApiRecipesPost201Response.md)
  - [FoodiesApi.ApiRecipesPost201ResponseRecipeIngredientsInner](docs/ApiRecipesPost201ResponseRecipeIngredientsInner.md)

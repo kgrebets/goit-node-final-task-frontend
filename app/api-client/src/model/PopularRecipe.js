@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import ApiRecipesGet200ResponseResultsInnerCreator from './ApiRecipesGet200ResponseResultsInnerCreator';
 
 /**
  * The PopularRecipe model module.
@@ -50,9 +51,6 @@ class PopularRecipe {
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('userid')) {
-                obj['userid'] = ApiClient.convertToType(data['userid'], 'String');
-            }
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
@@ -61,6 +59,9 @@ class PopularRecipe {
             }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
+            }
+            if (data.hasOwnProperty('Creator')) {
+                obj['Creator'] = ApiRecipesGet200ResponseResultsInnerCreator.constructFromObject(data['Creator']);
             }
             if (data.hasOwnProperty('favoritesCount')) {
                 obj['favoritesCount'] = ApiClient.convertToType(data['favoritesCount'], 'Number');
@@ -80,10 +81,6 @@ class PopularRecipe {
             throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
         }
         // ensure the json data is a string
-        if (data['userid'] && !(typeof data['userid'] === 'string' || data['userid'] instanceof String)) {
-            throw new Error("Expected the field `userid` to be a primitive type in the JSON string but got " + data['userid']);
-        }
-        // ensure the json data is a string
         if (data['title'] && !(typeof data['title'] === 'string' || data['title'] instanceof String)) {
             throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
         }
@@ -94,6 +91,10 @@ class PopularRecipe {
         // ensure the json data is a string
         if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
             throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
+        }
+        // validate the optional field `Creator`
+        if (data['Creator']) { // data not null
+          ApiRecipesGet200ResponseResultsInnerCreator.validateJSON(data['Creator']);
         }
 
         return true;
@@ -110,11 +111,6 @@ class PopularRecipe {
 PopularRecipe.prototype['id'] = undefined;
 
 /**
- * @member {String} userid
- */
-PopularRecipe.prototype['userid'] = undefined;
-
-/**
  * @member {String} title
  */
 PopularRecipe.prototype['title'] = undefined;
@@ -128,6 +124,11 @@ PopularRecipe.prototype['thumb'] = undefined;
  * @member {String} description
  */
 PopularRecipe.prototype['description'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesGet200ResponseResultsInnerCreator} Creator
+ */
+PopularRecipe.prototype['Creator'] = undefined;
 
 /**
  * @member {Number} favoritesCount
