@@ -7,17 +7,17 @@ export function useFollow() {
   return useMutation({
     mutationFn: async ({ userId, action }) => {
       const api = new UsersApi();
+      
       if (action === 'follow') {
-        return api.apiUsersUserIdFollowersPost(userId);
-      } else if (action === 'unfollow') {
-        return api.apiUsersUserIdFollowersDelete(userId);
+        return await api.apiUsersUserIdFollowersPost(userId);
+      } else {
+        return await api.apiUsersUserIdFollowersDelete(userId);
       }
-      throw new Error('Invalid action');
     },
-    onSuccess: (response, variables) => {
-      queryClient.invalidateQueries(['user', variables.userId]);
-      queryClient.invalidateQueries(['followers']);
-      queryClient.invalidateQueries(['following']);
-    },
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ['user', variables.userId]
+      });
+    }
   });
 }

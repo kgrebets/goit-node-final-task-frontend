@@ -1,23 +1,60 @@
 import { useRef, useState } from 'react';
 import { useFollow } from '../../../features/users/useFollow.js';
 import { useQueryClient } from '@tanstack/react-query';
-import  UsersApi  from '../../../api-client/src/api/UsersApi.js';
+import UsersApi from '../../../api-client/src/api/UsersApi.js';
 import LogOutModal from '../../auth/logout-modal/logout-modal.jsx';
 
-export default function UserInfo({ user, isOwnProfile }) {
+export default function UserInfo({ user, isOwnProfile, onFollow }) {
   const followMutation = useFollow();
   const queryClient = useQueryClient();
   const fileInputRef = useRef(null);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   
+
+  console.log('🔴 UserInfo DEBUG:', {
+    userId: user?.id,
+    userName: user?.name,
+    isFollowing: user?.isFollowing,
+    isOwnProfile,
+    userData: user
+  });
+  
+  if (!user) {
+    return (
+      <div className="flex gap-6 items-start mb-8">
+        <div className="w-32 h-32 rounded-full bg-gray-300 animate-pulse"></div>
+        <div className="space-y-4">
+          <div className="h-8 w-48 bg-gray-300 rounded animate-pulse"></div>
+          <div className="h-4 w-32 bg-gray-300 rounded animate-pulse"></div>
+        </div>
+      </div>
+    );
+  }
+  
   const isFollowing = user?.isFollowing || false;
   
   const handleFollow = () => {
     if (isOwnProfile) return;
-    followMutation.mutate({ 
-      userId: user.id, 
-      action: isFollowing ? 'unfollow' : 'follow' 
+    
+    console.log('🟢 handleFollow clicked:', {
+      userId: user?.id,
+      currentIsFollowing: isFollowing,
+      newAction: isFollowing ? 'unfollow' : 'follow'
     });
+    
+    if (!user?.id) {
+      console.error('❌ ERROR: user.id is undefined!', user);
+      return;
+    }
+    
+    if (onFollow) {
+      onFollow(user.id, isFollowing);
+    } else {
+      followMutation.mutate({ 
+        userId: user.id, 
+        action: isFollowing ? 'unfollow' : 'follow' 
+      });
+    }
   };
   
   const handleAvatarChange = async (event) => {
@@ -32,6 +69,10 @@ export default function UserInfo({ user, isOwnProfile }) {
       console.error('Failed to upload avatar:', error);
     }
   };
+
+  const buttonText = followMutation.isPending 
+    ? 'Loading...' 
+    : isFollowing ? 'Unfollow' : 'Follow';
   
   return (
     <>
@@ -102,10 +143,7 @@ export default function UserInfo({ user, isOwnProfile }) {
                     : 'bg-blue-600 text-white hover:bg-blue-700'
                 } disabled:opacity-50`}
               >
-                {followMutation.isPending 
-                  ? 'Loading...' 
-                  : isFollowing ? 'Unfollow' : 'Follow'
-                }
+                {buttonText}
               </button>
             )}
           </div>

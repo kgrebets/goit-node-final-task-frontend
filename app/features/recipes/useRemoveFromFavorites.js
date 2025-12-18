@@ -10,10 +10,7 @@ export function useRemoveFromFavorites() {
       return api.apiUsersUserIdFavoritesDelete(recipeId);
     },
     onSuccess: () => {
-      // Инвалидируем запрос избранного
       queryClient.invalidateQueries(['favorites']);
-      
-      // Если нужно, инвалидируем общие данные пользователя
       queryClient.invalidateQueries(['user']);
     },
   });
