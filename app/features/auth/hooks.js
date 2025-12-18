@@ -1,10 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "./AuthProvider.jsx";
-import AuthApi from "../../api-client/src/api/AuthApi";
-import ApiClient from "../../api-client/src/ApiClient";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useAuth } from './AuthProvider.jsx';
+import AuthApi from '../../api-client/src/api/AuthApi';
+import ApiClient from '../../api-client/src/ApiClient.js';
 
 const AUTH_QUERY_KEYS = {
-  current: ["auth", "current"],
+  current: ['auth', 'current'],
 };
 
 export function useLogin() {

@@ -4,4 +4,5 @@ export default [
   index('./pages/home/home.jsx'),
   route('style-guide', './pages/style-guide/style-guide.jsx'),
   route('user/:id?', './pages/user/user.jsx'),
+  route('recipe/:id', './pages/recipes/recipe-details.jsx'),
 ];

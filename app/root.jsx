@@ -14,28 +14,28 @@ import { HeaderThemeProvider } from './features/header-theme.jsx';
 export const links = () => [
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-400-normal.woff2',
+    href: '/app/fonts/mulish-latin-400-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-500-normal.woff2',
+    href: '/app/fonts/mulish-latin-500-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-700-normal.woff2',
+    href: '/app/fonts/mulish-latin-700-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-800-normal.woff2',
+    href: '/app/fonts/mulish-latin-800-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',

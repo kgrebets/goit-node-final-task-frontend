@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import ApiClient from "../../api-client/src/ApiClient";
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import ApiClient from '../../api-client/src/ApiClient';
 
-const AUTH_STORAGE_KEY = "auth";
+const AUTH_STORAGE_KEY = 'auth';
 
 const AuthContext = createContext(null);
 
@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
       const raw = localStorage.getItem(AUTH_STORAGE_KEY);
       if (!raw) return;
       const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === "object") {
+      if (parsed && typeof parsed === 'object') {
         if (parsed.token) setToken(parsed.token);
         if (parsed.user) setUser(parsed.user);
       }
@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return ctx;
 }
