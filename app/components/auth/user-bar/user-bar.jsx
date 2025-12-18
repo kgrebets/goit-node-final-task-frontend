@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../../../features/auth/AuthProvider.jsx';
 import { useHeaderTheme } from '../../../features/header-theme.jsx';
 import ChevronDown from '../../icons/chevron-down.jsx';
@@ -10,6 +10,7 @@ export default function UserBar({ onOpenLogout, className }) {
   const { user } = useAuth();
   const { theme } = useHeaderTheme();
   const isDark = theme === 'dark';
+  const navigate = useNavigate();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const containerRef = useRef(null);
@@ -88,7 +89,7 @@ export default function UserBar({ onOpenLogout, className }) {
             className="flex w-full items-center gap-1 border-0 bg-transparent px-0 py-0 text-white hover:text-white/80"
             onClick={() => {
               setIsMenuOpen(false);
-              // TODO: navigate to profile page when it exists
+              navigate('/user/me');
             }}
           >
             <span>Profile</span>
