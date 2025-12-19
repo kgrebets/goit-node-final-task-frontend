@@ -8,18 +8,20 @@ import {
   fetchStart,
   fetchSuccess,
   fetchError,
-  clearPopularRecipes,
 } from '../../../redux/slices/recipes/popularRecipesSlice';
 
 export default function PopularRecipesContainer() {
   const dispatch = useDispatch();
-  const { data, isLoading, error } = useSelector(
-    (state) => state.popularRecipes
-  );
+
+  const items = useSelector((state) => state.popularRecipes.data ?? []);
+  const isLoading = useSelector((state) => state.popularRecipes.isLoading);
 
   useEffect(() => {
+    if (items.length || isLoading) return;
+
     const load = async () => {
       const api = new RecipesApi();
+
       dispatch(fetchStart());
       try {
         const res = await api.apiRecipesPopularGet();
@@ -30,10 +32,7 @@ export default function PopularRecipesContainer() {
     };
 
     load();
-    return () => dispatch(clearPopularRecipes());
-  }, [dispatch]);
+  }, [dispatch, items.length, isLoading]);
 
-  return (
-    <PopularRecipes items={data ?? []} isLoading={isLoading} error={error} />
-  );
+  return <PopularRecipes items={items} />;
 }

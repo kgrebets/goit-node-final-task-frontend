@@ -16,41 +16,32 @@ export default function RecipeDetailsContainer({ requireAuth }) {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { data, isLoading, error } = useSelector(
-    (state) => state.recipeDetails
-  );
+  const recipe = useSelector((state) => state.recipeDetails.data);
+  const isLoading = useSelector((state) => state.recipeDetails.isLoading);
 
   useEffect(() => {
     if (!id) return;
+
+    if (isLoading) return;
+    if (recipe?.id === id) return;
 
     const api = new RecipesApi();
 
     const load = async () => {
       dispatch(fetchStart());
       try {
-        const recipe = await api.apiRecipesIdGet(id);
-        console.log('RES keys:', Object.keys(recipe));
-        console.log('RES.data keys:', Object.keys(recipe));
-        console.log('RES.data.time:', recipe.time);
-        dispatch(fetchSuccess(recipe));
+        const res = await api.apiRecipesIdGet(id);
+        dispatch(fetchSuccess(res));
       } catch (e) {
         dispatch(fetchError(e?.message || 'No recipe found'));
       }
     };
 
     load();
-
     return () => {
       dispatch(clearRecipeDetails());
     };
-  }, [id, dispatch]);
+  }, [id, dispatch, recipe?.id, isLoading]);
 
-  return (
-    <RecipeInfo
-      recipe={data}
-      requireAuth={requireAuth}
-      isLoading={isLoading}
-      error={error}
-    />
-  );
+  return <RecipeInfo recipe={recipe} requireAuth={requireAuth} />;
 }
