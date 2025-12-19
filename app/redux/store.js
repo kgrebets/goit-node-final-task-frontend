@@ -5,8 +5,8 @@ import testimonialsReducer from './slices/testimonials/testimonialsSlice';
 import categoriesReducer from './slices/categories/categoriesSlice.js';
 import recipesReducer from './slices/recipes/recipesSlice.js';
 import filtersReducer from './slices/filters/filtersSlice.js';
-import recipeDetailsReducer from './recipes/recipeDetailsSlice';
-import popularRecipesReducer from './recipes/popularRecipesSlice';
+import recipeDetailsReducer from './slices/recipes/recipeDetailsSlice.js';
+import popularRecipesReducer from './slices/recipes/popularRecipesSlice.js';
 
 const persistorConfig = {
   key: 'root',

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import RecipesApi from '../../../api-client/src/api/RecipesApi';
@@ -8,7 +8,7 @@ import {
   fetchSuccess,
   fetchError,
   clearRecipeDetails,
-} from '../../../redux/recipes/recipeDetailsSlice';
+} from '../../../redux/slices/recipes/recipeDetailsSlice';
 
 import RecipeInfo from './RecipeInfo';
 
@@ -29,6 +29,9 @@ export default function RecipeDetailsContainer({ requireAuth }) {
       dispatch(fetchStart());
       try {
         const recipe = await api.apiRecipesIdGet(id);
+        console.log('RES keys:', Object.keys(recipe));
+        console.log('RES.data keys:', Object.keys(recipe));
+        console.log('RES.data.time:', recipe.time);
         dispatch(fetchSuccess(recipe));
       } catch (e) {
         dispatch(fetchError(e?.message || 'No recipe found'));

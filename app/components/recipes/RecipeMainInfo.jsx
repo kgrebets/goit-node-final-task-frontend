@@ -3,7 +3,7 @@ import UserBadgeButton from './UserBadgeButton';
 export default function RecipeMainInfo({ recipe, requireAuth }) {
   if (!recipe) return null;
 
-  const { title, description, thumb, category, time, Creator } = recipe;
+  const { title, description, thumb, time, category, Creator } = recipe;
 
   return (
     <section className="w-full">

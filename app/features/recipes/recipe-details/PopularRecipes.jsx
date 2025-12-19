@@ -9,7 +9,7 @@ import {
   fetchSuccess,
   fetchError,
   clearPopularRecipes,
-} from '../../../redux/recipes/popularRecipesSlice';
+} from '../../../redux/slices/recipes/popularRecipesSlice';
 
 export default function PopularRecipes() {
   const dispatch = useDispatch();
