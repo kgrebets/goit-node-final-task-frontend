@@ -1,15 +1,17 @@
 /* Base styles for */
 @theme {
-    --color-primary: #050505;
-    --color-secondary: #1A1A1A;
-    --color-tertiary: #BFBEBE;
-    --color-error-primary: #AE0000;
+  --color-primary: #050505;
+  --color-secondary: #1a1a1a;
+  --color-tertiary: #bfbebe;
+  --color-error-primary: #ae0000;
 
-    --font-sans: 'Mulish', sans-serif;
+  --font-sans: 'Mulish', sans-serif;
 
-    --spacing-7_5: 1.875rem; /** 30px */
+  --spacing-7_5: 1.875rem; /** 30px */
 
-    --radius-7_5: 1.875rem; /** 30px */
+  --radius-7_5: 1.875rem; /** 30px */
 
-    --breakpoint-2xl: 87.5rem;
+  --radius-3_75: 0.9375rem; /* 15px */
+
+  --breakpoint-2xl: 87.5rem;
 }

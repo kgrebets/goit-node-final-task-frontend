@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import recipeDetailsReducer from './recipes/recipeDetailsSlice';
+import popularRecipesReducer from './recipes/popularRecipesSlice';
 
 const persistorConfig = {
   key: 'root',
@@ -11,6 +12,7 @@ const persistorConfig = {
 
 const rootReducer = combineReducers({
   recipeDetails: recipeDetailsReducer,
+  popularRecipes: popularRecipesReducer,
 });
 
 const persistedReducer = persistReducer(persistorConfig, rootReducer);
