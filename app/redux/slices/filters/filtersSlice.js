@@ -14,6 +14,9 @@ const filtersSlice = createSlice({
     saveFilter: (state, action) => {
       state.savedFilters = action.payload;
     },
+    unsetFilters: (state) => {
+      state.savedFilters = {};
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchFilters.pending, (state) => {
@@ -37,6 +40,6 @@ const filtersSlice = createSlice({
 
 export default filtersSlice.reducer;
 
-export const { saveFilter } = filtersSlice.actions;
+export const { saveFilter, unsetFilters } = filtersSlice.actions;
 
 export const selectFilters = (state) => state.filters.items;
