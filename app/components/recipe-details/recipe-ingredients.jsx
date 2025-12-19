@@ -1,4 +1,4 @@
-import IngredientCard from '../ingredient/IngredientCard';
+import IngredientCard from '../ingredient-card';
 
 export default function RecipeIngredients({ items = [] }) {
   if (!items.length) return null;

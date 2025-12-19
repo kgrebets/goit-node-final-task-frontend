@@ -1,6 +1,8 @@
-import RecipeMainInfo from '../../../components/recipe-details/RecipeMainInfo';
-import RecipeIngredients from '../../../components/recipe-details/RecipeIngredients';
-import RecipePreparation from '../../../components/recipe-details/RecipePreparation';
+import {
+  RecipeMainInfo,
+  RecipeIngredients,
+  RecipePreparation,
+} from '../../../components/recipe-details';
 
 export default function RecipeInfo({ recipe, isLoading, error, requireAuth }) {
   if (isLoading) {

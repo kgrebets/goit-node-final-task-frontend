@@ -1,4 +1,4 @@
-import UserBadgeButton from './UserBadgeButton';
+import UserBadgeButton from './user-badge-button';
 
 export default function RecipeMainInfo({ recipe, requireAuth }) {
   if (!recipe) return null;

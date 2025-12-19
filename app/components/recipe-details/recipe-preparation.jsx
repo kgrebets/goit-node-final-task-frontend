@@ -1,4 +1,4 @@
-import AddToFavoriteButton from './AddToFavoriteButton';
+import AddToFavoriteButton from './add-to-favorite-button';
 
 export default function RecipePreparation({ recipeId, text, isFavorite }) {
   return (
