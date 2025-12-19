@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] 
 **instructions** | **String** |  | [optional] 
 **thumb** | **String** |  | [optional] 
+**time** | **Number** |  | [optional] 
 **creator** | [**ApiRecipesIdGet200ResponseCreator**](ApiRecipesIdGet200ResponseCreator.md) |  | [optional] 
 **category** | [**ApiRecipesIdGet200ResponseCategory**](ApiRecipesIdGet200ResponseCategory.md) |  | [optional] 
 **area** | [**ApiRecipesIdGet200ResponseArea**](ApiRecipesIdGet200ResponseArea.md) |  | [optional] 
