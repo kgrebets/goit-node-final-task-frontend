@@ -2,12 +2,14 @@ import React from 'react';
 import Icon from '../../Icon';
 import { unselectCategory } from '../../../redux/slices/categories/categoriesSlice.js';
 import { useDispatch } from 'react-redux';
+import { unsetFilters } from '../../../redux/slices/filters/filtersSlice.js';
 
 const BackToCategories = () => {
   const dispatch = useDispatch();
 
   const onBackClick = () => {
     dispatch(unselectCategory());
+    dispatch(unsetFilters());
   };
 
   return (
