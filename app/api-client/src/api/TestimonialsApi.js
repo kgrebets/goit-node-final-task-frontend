@@ -13,6 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
+import ApiTestimonialsGet200Response from '../model/ApiTestimonialsGet200Response';
 
 /**
 * Testimonials service.
@@ -36,7 +37,7 @@ export default class TestimonialsApi {
 
     /**
      * Get all testimonials
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiTestimonialsGet200Response} and HTTP response
      */
     apiTestimonialsGetWithHttpInfo() {
       let postBody = null;
@@ -52,8 +53,8 @@ export default class TestimonialsApi {
 
       let authNames = [];
       let contentTypes = [];
-      let accepts = [];
-      let returnType = null;
+      let accepts = ['application/json'];
+      let returnType = ApiTestimonialsGet200Response;
       return this.apiClient.callApi(
         '/api/testimonials', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -63,7 +64,7 @@ export default class TestimonialsApi {
 
     /**
      * Get all testimonials
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiTestimonialsGet200Response}
      */
     apiTestimonialsGet() {
       return this.apiTestimonialsGetWithHttpInfo()

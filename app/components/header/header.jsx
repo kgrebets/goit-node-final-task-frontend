@@ -10,15 +10,24 @@ import SignInModal from '../auth/signin-modal';
 import SignUpModal from '../auth/signup-modal';
 import LogOutModal from '../auth/logout-modal';
 import Hamburger from '../icons/hamburger.jsx';
+import { twMerge } from 'tailwind-merge';
 
-export default function Header() {
-  const { token } = useAuth();
+export default function Header({ classNames, dark }) {
+  const {
+    token,
+    isSignInOpen,
+    isSignUpOpen,
+    isLogoutOpen,
+    openSignIn,
+    closeSignIn,
+    openSignUp,
+    closeSignUp,
+    openLogout,
+    closeLogout,
+  } = useAuth();
   const isAuthenticated = Boolean(token);
-  const { theme, setTheme } = useHeaderTheme();
+  const { theme } = useHeaderTheme();
 
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useCurrentUser();
@@ -37,24 +46,24 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   const closeAllModals = () => {
-    setIsSignInOpen(false);
-    setIsSignUpOpen(false);
-    setIsLogoutOpen(false);
+    closeSignIn();
+    closeSignUp();
+    closeLogout();
   };
 
   const handleOpenSignIn = () => {
     closeAllModals();
-    setIsSignInOpen(true);
+    openSignIn();
   };
 
   const handleOpenSignUp = () => {
     closeAllModals();
-    setIsSignUpOpen(true);
+    openSignUp();
   };
 
   const handleOpenLogout = () => {
     closeAllModals();
-    setIsLogoutOpen(true);
+    openLogout();
   };
 
   const handleCloseMobileMenu = () => {
@@ -82,11 +91,7 @@ export default function Header() {
     handleNavClick();
   };
 
-  const isDark = theme === 'dark';
-
-  const handleToggleTheme = () => {
-    setTheme(isDark ? 'light' : 'dark');
-  };
+  const isDark = dark || theme === 'dark';
 
   const desktopNavLinkClass = () =>
     clsx(
@@ -105,17 +110,17 @@ export default function Header() {
   return (
     <>
       <header
-        className={clsx(
-          'sticky top-0 left-0 right-0 z-40 w-full border-b border-black/5 backdrop-blur',
-          isDark ? 'bg-black/90 text-white' : 'bg-white/95 text-gray-900'
+        className={twMerge(
+          'sticky top-0 left-0 right-0 z-40 w-full',
+          isDark ? 'bg-black/90 text-white' : 'bg-white/95 text-gray-900',
+          classNames
         )}
       >
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-5 lg:px-6">
+        <div className="mx-auto flex h-16 w-full container items-center justify-between px-4 sm:px-5 lg:px-6">
           {/* Logo */}
           <Link
             to="/"
             className="flex items-center rounded-md text-xl font-extrabold lowercase tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
-            onClick={handleToggleTheme}
           >
             foodies
           </Link>
@@ -213,26 +218,23 @@ export default function Header() {
       {/* Auth modals */}
       <SignInModal
         isOpen={isSignInOpen}
-        onClose={() => setIsSignInOpen(false)}
+        onClose={closeSignIn}
         onSwitchToSignUp={() => {
-          setIsSignInOpen(false);
-          setIsSignUpOpen(true);
+          closeSignIn();
+          openSignUp();
         }}
       />
 
       <SignUpModal
         isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
+        onClose={closeSignUp}
         onSwitchToSignIn={() => {
-          setIsSignUpOpen(false);
-          setIsSignInOpen(true);
+          closeSignUp();
+          openSignIn();
         }}
       />
 
-      <LogOutModal
-        isOpen={isLogoutOpen}
-        onClose={() => setIsLogoutOpen(false)}
-      />
+      <LogOutModal isOpen={isLogoutOpen} onClose={closeLogout} />
     </>
   );
 }

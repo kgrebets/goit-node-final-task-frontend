@@ -8,10 +8,31 @@
   --font-sans: 'Mulish', sans-serif;
 
   --spacing-7_5: 1.875rem; /** 30px */
+  --z-index-1: 1;
+
+  --spacing-7_5: 1.875rem; /** 30px */
+  --spacing-21: 5.25rem; /** 84px */
+  --spacing-92_25: 23.063rem; /** 369px */
+  --spacing-133_75: 33.438rem; /** 535px */
 
   --radius-7_5: 1.875rem; /** 30px */
 
   --radius-3_75: 0.9375rem; /* 15px */
 
   --breakpoint-2xl: 87.5rem;
+
+  --text-2_75xl: 1.75rem;
+  --text-2_75xl--line-height: 2rem;
+
+  --text-4_25xl: 2.5rem;
+  --text-4_25xl--line-height: 2.5rem;
+
+  --text-6_75xl: 4.375rem;
+  --text-6_75xl--line-height: 4.375rem;
+
+  --text-7_75xl: 5.625rem;
+  --text-7_75xl--line-height: 5.625rem;
+
+  --breakpoint-xl: 68rem;
+  --breakpoint-2xl: 90rem;
 }

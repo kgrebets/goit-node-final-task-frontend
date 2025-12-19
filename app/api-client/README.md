@@ -179,6 +179,8 @@ Class | Method | HTTP request | Description
  - [FoodiesApi.ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient](docs/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient.md)
  - [FoodiesApi.ApiRecipesPostRequest](docs/ApiRecipesPostRequest.md)
  - [FoodiesApi.ApiRecipesPostRequestIngredientsInner](docs/ApiRecipesPostRequestIngredientsInner.md)
+ - [FoodiesApi.ApiTestimonialsGet200Response](docs/ApiTestimonialsGet200Response.md)
+ - [FoodiesApi.ApiTestimonialsGet200ResponseUser](docs/ApiTestimonialsGet200ResponseUser.md)
  - [FoodiesApi.ApiUsersFollowingGet200ResponseInner](docs/ApiUsersFollowingGet200ResponseInner.md)
  - [FoodiesApi.ApiUsersMeGet200Response](docs/ApiUsersMeGet200Response.md)
  - [FoodiesApi.ApiUsersRecipesGet200Response](docs/ApiUsersRecipesGet200Response.md)

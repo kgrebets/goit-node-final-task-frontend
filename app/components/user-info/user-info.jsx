@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import UsersApi from '../../api-client/src/api/UsersApi.js';
 import Icon from "../Icon";
+import getAvatarImageUrl from '../../helpers/getAvatarImageUrl.js';
 
 const usersApi = new UsersApi();
 
@@ -38,7 +39,7 @@ export default function UserInfo({ user, isOwnProfile = false }) {
       <div className="flex h-[80px] w-[80px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-200 text-2xl font-bold text-gray-700">
         {user?.avatar ? (
           <img
-            src={user.avatar}
+            src={getAvatarImageUrl(user.avatar)}
             alt={displayName}
             className="h-full w-full object-cover"
           />

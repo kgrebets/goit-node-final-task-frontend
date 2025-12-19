@@ -56,6 +56,9 @@ class ApiRecipesGet200ResponseResultsInner {
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
+            if (data.hasOwnProperty('time')) {
+                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
+            }
             if (data.hasOwnProperty('thumb')) {
                 obj['thumb'] = ApiClient.convertToType(data['thumb'], 'String');
             }
@@ -127,6 +130,12 @@ ApiRecipesGet200ResponseResultsInner.prototype['id'] = undefined;
  * @member {String} title
  */
 ApiRecipesGet200ResponseResultsInner.prototype['title'] = undefined;
+
+/**
+ * Cooking time in minutes
+ * @member {Number} time
+ */
+ApiRecipesGet200ResponseResultsInner.prototype['time'] = undefined;
 
 /**
  * @member {String} thumb

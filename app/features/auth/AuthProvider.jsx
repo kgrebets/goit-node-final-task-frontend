@@ -8,6 +8,9 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -37,6 +40,15 @@ export function AuthProvider({ children }) {
     () => ({
       user,
       token,
+      isSignInOpen,
+      isSignUpOpen,
+      isLogoutOpen,
+      openSignIn: () => setIsSignInOpen(true),
+      closeSignIn: () => setIsSignInOpen(false),
+      openSignUp: () => setIsSignUpOpen(true),
+      closeSignUp: () => setIsSignUpOpen(false),
+      openLogout: () => setIsLogoutOpen(true),
+      closeLogout: () => setIsLogoutOpen(false),
       setCredentials: ({ user: nextUser, token: nextToken }) => {
         setUser(nextUser || null);
         setToken(nextToken || null);
@@ -44,9 +56,12 @@ export function AuthProvider({ children }) {
       clearCredentials: () => {
         setUser(null);
         setToken(null);
+        setIsSignInOpen(false);
+        setIsSignUpOpen(false);
+        setIsLogoutOpen(false);
       },
     }),
-    [user, token]
+    [user, token, isSignInOpen, isSignUpOpen, isLogoutOpen]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
