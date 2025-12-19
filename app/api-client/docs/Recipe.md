@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **title** | **String** |  | [optional] 
+**time** | **Number** | Cooking time in minutes | [optional] 
 **description** | **String** |  | [optional] 
 **instructions** | **String** |  | [optional] 
 **thumb** | **String** |  | [optional] 

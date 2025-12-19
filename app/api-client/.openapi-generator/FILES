@@ -34,6 +34,8 @@ docs/ApiRecipesPost201ResponseRecipeIngredientsInner.md
 docs/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient.md
 docs/ApiRecipesPostRequest.md
 docs/ApiRecipesPostRequestIngredientsInner.md
+docs/ApiTestimonialsGet200Response.md
+docs/ApiTestimonialsGet200ResponseUser.md
 docs/ApiUsersFollowingGet200ResponseInner.md
 docs/ApiUsersMeGet200Response.md
 docs/ApiUsersRecipesGet200Response.md
@@ -97,6 +99,8 @@ src/model/ApiRecipesPost201ResponseRecipeIngredientsInner.js
 src/model/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient.js
 src/model/ApiRecipesPostRequest.js
 src/model/ApiRecipesPostRequestIngredientsInner.js
+src/model/ApiTestimonialsGet200Response.js
+src/model/ApiTestimonialsGet200ResponseUser.js
 src/model/ApiUsersFollowingGet200ResponseInner.js
 src/model/ApiUsersMeGet200Response.js
 src/model/ApiUsersRecipesGet200Response.js

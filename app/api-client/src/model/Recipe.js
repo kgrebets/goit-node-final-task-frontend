@@ -57,6 +57,9 @@ class Recipe {
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
+            if (data.hasOwnProperty('time')) {
+                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
+            }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
@@ -148,6 +151,12 @@ Recipe.prototype['id'] = undefined;
  * @member {String} title
  */
 Recipe.prototype['title'] = undefined;
+
+/**
+ * Cooking time in minutes
+ * @member {Number} time
+ */
+Recipe.prototype['time'] = undefined;
 
 /**
  * @member {String} description
