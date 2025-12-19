@@ -1,6 +1,7 @@
 @layer base {
-    button {
-        @apply border rounded-7.5 uppercase font-bold px-7.5 py-3.5 text-primary cursor-pointer disabled:bg-tertiary disabled:text-white disabled:hover:border-transparent hover:bg-primary hover:text-white hover:border-primary transition duration-300 ease-in-out flex gap-2;
+    button,
+    .btn {
+        @apply text-sm md:text-base border rounded-7.5 uppercase font-bold px-7.5 py-3 md:py-3.5 text-primary cursor-pointer disabled:bg-tertiary disabled:text-white disabled:hover:border-transparent hover:bg-primary hover:text-white hover:border-primary transition duration-300 ease-in-out flex gap-2;
     }
 }
 
