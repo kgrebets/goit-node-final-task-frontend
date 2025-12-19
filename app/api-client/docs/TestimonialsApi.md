@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## apiTestimonialsGet
 
-> apiTestimonialsGet()
+> ApiTestimonialsGet200Response apiTestimonialsGet()
 
 Get all testimonials
 
@@ -20,8 +20,8 @@ Get all testimonials
 import FoodiesApi from 'foodies_api';
 
 let apiInstance = new FoodiesApi.TestimonialsApi();
-apiInstance.apiTestimonialsGet().then(() => {
-  console.log('API called successfully.');
+apiInstance.apiTestimonialsGet().then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
 });
@@ -34,7 +34,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+[**ApiTestimonialsGet200Response**](ApiTestimonialsGet200Response.md)
 
 ### Authorization
 
@@ -43,5 +43,5 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
