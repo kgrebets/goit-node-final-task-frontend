@@ -25,7 +25,7 @@ export default function Header() {
     closeLogout,
   } = useAuth();
   const isAuthenticated = Boolean(token);
-  const { theme, setTheme } = useHeaderTheme();
+  const { theme } = useHeaderTheme();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -92,10 +92,6 @@ export default function Header() {
 
   const isDark = theme === 'dark';
 
-  const handleToggleTheme = () => {
-    setTheme(isDark ? 'light' : 'dark');
-  };
-
   const desktopNavLinkClass = () =>
     clsx(
       'inline-flex items-center justify-center rounded-full border border-transparent px-3 py-1 text-[12px] leading-[18px] font-bold tracking-[-0.02em] uppercase transition-colors',
@@ -123,7 +119,6 @@ export default function Header() {
           <Link
             to="/"
             className="flex items-center rounded-md text-xl font-extrabold lowercase tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
-            onClick={handleToggleTheme}
           >
             foodies
           </Link>
