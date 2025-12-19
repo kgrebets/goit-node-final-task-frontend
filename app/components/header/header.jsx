@@ -10,8 +10,9 @@ import SignInModal from '../auth/signin-modal';
 import SignUpModal from '../auth/signup-modal';
 import LogOutModal from '../auth/logout-modal';
 import Hamburger from '../icons/hamburger.jsx';
+import { twMerge } from 'tailwind-merge';
 
-export default function Header() {
+export default function Header({ classNames, dark }) {
   const {
     token,
     isSignInOpen,
@@ -90,7 +91,7 @@ export default function Header() {
     handleNavClick();
   };
 
-  const isDark = theme === 'dark';
+  const isDark = dark || theme === 'dark';
 
   const desktopNavLinkClass = () =>
     clsx(
@@ -109,12 +110,13 @@ export default function Header() {
   return (
     <>
       <header
-        className={clsx(
-          'sticky top-0 left-0 right-0 z-40 w-full border-b border-black/5 backdrop-blur',
-          isDark ? 'bg-black/90 text-white' : 'bg-white/95 text-gray-900'
+        className={twMerge(
+          'sticky top-0 left-0 right-0 z-40 w-full',
+          isDark ? 'bg-black/90 text-white' : 'bg-white/95 text-gray-900',
+          classNames
         )}
       >
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-5 lg:px-6">
+        <div className="mx-auto flex h-16 w-full container items-center justify-between px-4 sm:px-5 lg:px-6">
           {/* Logo */}
           <Link
             to="/"

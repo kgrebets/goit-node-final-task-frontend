@@ -50,5 +50,5 @@ html {
 }
 
 body {
-    @apply text-secondary leading-normal text-base tracking-normal;
+    @apply text-secondary leading-normal text-base tracking-normal font-medium;
 }

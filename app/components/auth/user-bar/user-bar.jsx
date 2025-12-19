@@ -5,6 +5,7 @@ import { useHeaderTheme } from '../../../features/header-theme.jsx';
 import ChevronDown from '../../icons/chevron-down.jsx';
 import ArrowUpRight from '../../icons/arrow-up-right.jsx';
 import clsx from 'clsx';
+import getAvatarImageUrl from '../../../helpers/getAvatarImageUrl.js';
 
 export default function UserBar({ onOpenLogout, className }) {
   const { user } = useAuth();
@@ -66,7 +67,7 @@ export default function UserBar({ onOpenLogout, className }) {
         <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-200 text-xs font-semibold text-gray-700">
           {user?.avatar ? (
             <img
-              src={user.avatar}
+              src={getAvatarImageUrl(user.avatar)}
               alt={displayName}
               className="h-full w-full object-cover"
             />
