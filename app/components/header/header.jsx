@@ -13,13 +13,21 @@ import Hamburger from '../icons/hamburger.jsx';
 import { twMerge } from 'tailwind-merge';
 
 export default function Header({ classNames, dark }) {
-  const { token } = useAuth();
+  const {
+    token,
+    isSignInOpen,
+    isSignUpOpen,
+    isLogoutOpen,
+    openSignIn,
+    closeSignIn,
+    openSignUp,
+    closeSignUp,
+    openLogout,
+    closeLogout,
+  } = useAuth();
   const isAuthenticated = Boolean(token);
-  const { theme, setTheme } = useHeaderTheme();
+  const { theme } = useHeaderTheme();
 
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useCurrentUser();
@@ -38,24 +46,24 @@ export default function Header({ classNames, dark }) {
   }, [isMobileMenuOpen]);
 
   const closeAllModals = () => {
-    setIsSignInOpen(false);
-    setIsSignUpOpen(false);
-    setIsLogoutOpen(false);
+    closeSignIn();
+    closeSignUp();
+    closeLogout();
   };
 
   const handleOpenSignIn = () => {
     closeAllModals();
-    setIsSignInOpen(true);
+    openSignIn();
   };
 
   const handleOpenSignUp = () => {
     closeAllModals();
-    setIsSignUpOpen(true);
+    openSignUp();
   };
 
   const handleOpenLogout = () => {
     closeAllModals();
-    setIsLogoutOpen(true);
+    openLogout();
   };
 
   const handleCloseMobileMenu = () => {
@@ -210,26 +218,23 @@ export default function Header({ classNames, dark }) {
       {/* Auth modals */}
       <SignInModal
         isOpen={isSignInOpen}
-        onClose={() => setIsSignInOpen(false)}
+        onClose={closeSignIn}
         onSwitchToSignUp={() => {
-          setIsSignInOpen(false);
-          setIsSignUpOpen(true);
+          closeSignIn();
+          openSignUp();
         }}
       />
 
       <SignUpModal
         isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
+        onClose={closeSignUp}
         onSwitchToSignIn={() => {
-          setIsSignUpOpen(false);
-          setIsSignInOpen(true);
+          closeSignUp();
+          openSignIn();
         }}
       />
 
-      <LogOutModal
-        isOpen={isLogoutOpen}
-        onClose={() => setIsLogoutOpen(false)}
-      />
+      <LogOutModal isOpen={isLogoutOpen} onClose={closeLogout} />
     </>
   );
 }
