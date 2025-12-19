@@ -2,11 +2,10 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
+  Outlet,
 } from 'react-router';
-import Header from './components/header';
 import './app.css';
 import Footer from './components/footer';
 import { HeaderThemeProvider } from './features/header-theme.jsx';
@@ -63,10 +62,7 @@ export function Layout({ children }) {
 export default function App() {
   return (
     <HeaderThemeProvider>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
     </HeaderThemeProvider>
   );

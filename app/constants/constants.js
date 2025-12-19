@@ -1,0 +1,1 @@
+export const CLOUDFRONT_PUBLIC_URL = 'https://d39z06q23dz2dg.cloudfront.net';
