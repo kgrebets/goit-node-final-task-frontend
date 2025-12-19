@@ -18,6 +18,7 @@ import ApiRecipesGet200Response from '../model/ApiRecipesGet200Response';
 import ApiRecipesIdFavoriteDelete200Response from '../model/ApiRecipesIdFavoriteDelete200Response';
 import ApiRecipesIdFavoritePost201Response from '../model/ApiRecipesIdFavoritePost201Response';
 import ApiRecipesIdGet200Response from '../model/ApiRecipesIdGet200Response';
+import ApiRecipesIdGet404Response from '../model/ApiRecipesIdGet404Response';
 import ApiRecipesPopularGet200ResponseInner from '../model/ApiRecipesPopularGet200ResponseInner';
 import ApiRecipesPost201Response from '../model/ApiRecipesPost201Response';
 import ApiRecipesPostRequest from '../model/ApiRecipesPostRequest';
@@ -95,11 +96,11 @@ export default class RecipesApi {
     /**
      * Get list of recipes
      * @param {Object} opts Optional parameters
-     * @param {Number} [page] 
-     * @param {Number} [limit] 
-     * @param {String} [categoryid] 
-     * @param {String} [areaid] 
-     * @param {String} [ingredient] 
+     * @param {Number} [page] Page number (starts from 1)
+     * @param {Number} [limit] Items per page
+     * @param {String} [categoryid] Category ID to filter recipes
+     * @param {String} [areaid] Area ID to filter recipes
+     * @param {String} [ingredientid] Ingredient ID to filter recipes
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesGet200Response} and HTTP response
      */
     apiRecipesGetWithHttpInfo(opts) {
@@ -113,7 +114,7 @@ export default class RecipesApi {
         'limit': opts['limit'],
         'categoryid': opts['categoryid'],
         'areaid': opts['areaid'],
-        'ingredient': opts['ingredient']
+        'ingredientid': opts['ingredientid']
       };
       let headerParams = {
       };
@@ -134,11 +135,11 @@ export default class RecipesApi {
     /**
      * Get list of recipes
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.page 
-     * @param {Number} opts.limit 
-     * @param {String} opts.categoryid 
-     * @param {String} opts.areaid 
-     * @param {String} opts.ingredient 
+     * @param {Number} opts.page Page number (starts from 1)
+     * @param {Number} opts.limit Items per page
+     * @param {String} opts.categoryid Category ID to filter recipes
+     * @param {String} opts.areaid Area ID to filter recipes
+     * @param {String} opts.ingredientid Ingredient ID to filter recipes
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesGet200Response}
      */
     apiRecipesGet(opts) {
@@ -293,7 +294,7 @@ export default class RecipesApi {
 
     /**
      * Get recipe by ID
-     * @param {String} id 
+     * @param {String} id Recipe ID
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesIdGet200Response} and HTTP response
      */
     apiRecipesIdGetWithHttpInfo(id) {
@@ -326,7 +327,7 @@ export default class RecipesApi {
 
     /**
      * Get recipe by ID
-     * @param {String} id 
+     * @param {String} id Recipe ID
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesIdGet200Response}
      */
     apiRecipesIdGet(id) {
@@ -338,10 +339,10 @@ export default class RecipesApi {
 
 
     /**
-     * Get popular recipes
+     * Get popular recipes (most favorited)
      * @param {Object} opts Optional parameters
-     * @param {Number} [page] 
-     * @param {Number} [limit] 
+     * @param {Number} [page] Page number (starts from 1)
+     * @param {Number} [limit] Items per page
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiRecipesPopularGet200ResponseInner>} and HTTP response
      */
     apiRecipesPopularGetWithHttpInfo(opts) {
@@ -371,10 +372,10 @@ export default class RecipesApi {
     }
 
     /**
-     * Get popular recipes
+     * Get popular recipes (most favorited)
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.page 
-     * @param {Number} opts.limit 
+     * @param {Number} opts.page Page number (starts from 1)
+     * @param {Number} opts.limit Items per page
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiRecipesPopularGet200ResponseInner>}
      */
     apiRecipesPopularGet(opts) {

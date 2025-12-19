@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**apiRecipesIdFavoriteDelete**](RecipesApi.md#apiRecipesIdFavoriteDelete) | **DELETE** /api/recipes/{id}/favorite | Remove recipe from favorites
 [**apiRecipesIdFavoritePost**](RecipesApi.md#apiRecipesIdFavoritePost) | **POST** /api/recipes/{id}/favorite | Add recipe to favorites
 [**apiRecipesIdGet**](RecipesApi.md#apiRecipesIdGet) | **GET** /api/recipes/{id} | Get recipe by ID
-[**apiRecipesPopularGet**](RecipesApi.md#apiRecipesPopularGet) | **GET** /api/recipes/popular | Get popular recipes
+[**apiRecipesPopularGet**](RecipesApi.md#apiRecipesPopularGet) | **GET** /api/recipes/popular | Get popular recipes (most favorited)
 [**apiRecipesPost**](RecipesApi.md#apiRecipesPost) | **POST** /api/recipes | Create a new recipe
 
 
@@ -80,11 +80,11 @@ import FoodiesApi from 'foodies_api';
 
 let apiInstance = new FoodiesApi.RecipesApi();
 let opts = {
-  'page': 1, // Number | 
-  'limit': 12, // Number | 
-  'categoryid': "6462a6cd4c3d0ddd28897f8d", // String | 
-  'areaid': "6462a6f04c3d0ddd28897f9b", // String | 
-  'ingredient': "640c2dd963a319ea671e367e" // String | 
+  'page': 1, // Number | Page number (starts from 1)
+  'limit': 12, // Number | Items per page
+  'categoryid': "6462a6cd4c3d0ddd28897f8d", // String | Category ID to filter recipes
+  'areaid': "6462a6f04c3d0ddd28897fa3", // String | Area ID to filter recipes
+  'ingredientid': "640c2dd963a319ea671e3664" // String | Ingredient ID to filter recipes
 };
 apiInstance.apiRecipesGet(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -99,11 +99,11 @@ apiInstance.apiRecipesGet(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Number**|  | [optional] 
- **limit** | **Number**|  | [optional] 
- **categoryid** | **String**|  | [optional] 
- **areaid** | **String**|  | [optional] 
- **ingredient** | **String**|  | [optional] 
+ **page** | **Number**| Page number (starts from 1) | [optional] 
+ **limit** | **Number**| Items per page | [optional] 
+ **categoryid** | **String**| Category ID to filter recipes | [optional] 
+ **areaid** | **String**| Area ID to filter recipes | [optional] 
+ **ingredientid** | **String**| Ingredient ID to filter recipes | [optional] 
 
 ### Return type
 
@@ -273,7 +273,7 @@ Get recipe by ID
 import FoodiesApi from 'foodies_api';
 
 let apiInstance = new FoodiesApi.RecipesApi();
-let id = "id_example"; // String | 
+let id = "6462a8f74c3d0ddd28897fe3"; // String | Recipe ID
 apiInstance.apiRecipesIdGet(id).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -287,7 +287,7 @@ apiInstance.apiRecipesIdGet(id).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  | 
+ **id** | **String**| Recipe ID | 
 
 ### Return type
 
@@ -307,7 +307,7 @@ No authorization required
 
 > [ApiRecipesPopularGet200ResponseInner] apiRecipesPopularGet(opts)
 
-Get popular recipes
+Get popular recipes (most favorited)
 
 ### Example
 
@@ -316,8 +316,8 @@ import FoodiesApi from 'foodies_api';
 
 let apiInstance = new FoodiesApi.RecipesApi();
 let opts = {
-  'page': 1, // Number | 
-  'limit': 4 // Number | 
+  'page': 1, // Number | Page number (starts from 1)
+  'limit': 4 // Number | Items per page
 };
 apiInstance.apiRecipesPopularGet(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -332,8 +332,8 @@ apiInstance.apiRecipesPopularGet(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Number**|  | [optional] 
- **limit** | **Number**|  | [optional] 
+ **page** | **Number**| Page number (starts from 1) | [optional] 
+ **limit** | **Number**| Items per page | [optional] 
 
 ### Return type
 
