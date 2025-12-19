@@ -10,7 +10,7 @@ import {
   clearRecipeDetails,
 } from '../../../redux/slices/recipes/recipeDetailsSlice';
 
-import RecipeInfo from './RecipeInfo';
+import RecipeInfo from '../ui/recipe-info';
 
 export default function RecipeDetailsContainer({ requireAuth }) {
   const { id } = useParams();

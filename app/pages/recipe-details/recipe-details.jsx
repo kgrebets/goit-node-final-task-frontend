@@ -2,11 +2,13 @@ import { useCallback, useState } from 'react';
 
 import { useAuth } from '../../features/auth/AuthProvider.jsx';
 
-import RecipeDetailsContainer from '../../features/recipes/recipe-details/RecipeDetailsContainer';
-import PopularRecipes from '../../features/recipes/recipe-details/PopularRecipes';
+import {
+  RecipeDetailsContainer,
+  PopularRecipesContainer,
+} from '../../features/recipe-details/index.js';
 
-import SignInModal from '../../components/auth/signin-modal';
-import SignUpModal from '../../components/auth/signup-modal';
+import SignInModal from '../../components/auth/signin-modal/index.js';
+import SignUpModal from '../../components/auth/signup-modal/index.js';
 
 export default function RecipeDetailsPage() {
   const { user, token } = useAuth();
@@ -44,7 +46,7 @@ export default function RecipeDetailsPage() {
   return (
     <>
       <RecipeDetailsContainer requireAuth={requireAuth} />
-      <PopularRecipes requireAuth={requireAuth} />
+      <PopularRecipesContainer requireAuth={requireAuth} />
 
       <SignInModal
         isOpen={isSignInOpen}
