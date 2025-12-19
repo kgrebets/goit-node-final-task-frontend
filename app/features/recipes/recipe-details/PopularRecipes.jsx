@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import RecipesApi from '../../../api-client/src/api/RecipesApi';
-import RecipeCard from '../../../components/recipes/RecipeCard';
+import RecipeCard from '../../../components/recipe-card/recipe-card';
 
 import {
   fetchStart,
@@ -17,12 +17,12 @@ export default function PopularRecipes() {
   const { data, isLoading, error } = useSelector(
     (state) => state.popularRecipes
   );
+
   const items = data ?? [];
 
   useEffect(() => {
     const load = async () => {
       const api = new RecipesApi();
-
       dispatch(fetchStart());
       try {
         const res = await api.apiRecipesPopularGet();
@@ -33,10 +33,7 @@ export default function PopularRecipes() {
     };
 
     load();
-
-    return () => {
-      dispatch(clearPopularRecipes());
-    };
+    return () => dispatch(clearPopularRecipes());
   }, [dispatch]);
 
   if (isLoading) return <div>Loading popular recipes...</div>;
@@ -45,24 +42,22 @@ export default function PopularRecipes() {
 
   return (
     <div className="mx-auto w-full max-w-screen-sm px-4 py-6">
-      <section className="">
-        <h2 className="text-xl">Popular recipes</h2>
+      <section>
+        <h2 className="text-xl mb-6">Popular recipes</h2>
 
-        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-4">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-x-5 md:gap-y-10">
           {items.map((recipe) => (
-            <div key={recipe.id} className="w-[152px] flex-none">
+            <li key={recipe.id}>
               <RecipeCard
                 id={recipe.id}
                 title={recipe.title}
                 description={recipe.description}
                 thumb={recipe.thumb}
-                authorName={recipe.Creator?.username}
-                avatar={recipe.Creator.avatar}
-                favoritesCount={recipe.favoritesCount}
+                Creator={recipe.Creator}
               />
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </div>
   );
