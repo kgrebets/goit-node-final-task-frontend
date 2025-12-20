@@ -7,14 +7,9 @@ export default function useUser(userId) {
     queryFn: async () => {
       const api = new UsersApi();
       
-      console.log('🔥 useUser - запрашиваем userId:', userId);
-      
       try {
         const response = await api.apiUsersUserIdGet(userId);
         const data = response?.data || response;
-        
-        console.log('🔥 useUser - данные:', data);
-        console.log('🔥 useUser - isFollowing:', data?.isFollowing);
         const userData = {
           id: data?.id,
           avatar: data?.avatar,
@@ -26,12 +21,10 @@ export default function useUser(userId) {
           favoritesCount: data?.favoritesCount || 0,
           followingCount: data?.followingCount || 0
         };
-        
-        console.log('🔥 useUser - возвращаем:', userData);
         return userData;
         
       } catch (error) {
-        console.error('🔥 useUser - ошибка:', error);
+        console.error('🔥 useUser:', error);
         throw error;
       }
     },
