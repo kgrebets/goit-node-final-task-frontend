@@ -1,15 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../../../features/auth/AuthProvider.jsx';
 import { useHeaderTheme } from '../../../features/header-theme.jsx';
 import ChevronDown from '../../icons/chevron-down.jsx';
 import ArrowUpRight from '../../icons/arrow-up-right.jsx';
 import clsx from 'clsx';
+import getAvatarImageUrl from '../../../helpers/getAvatarImageUrl.js';
 
 export default function UserBar({ onOpenLogout, className }) {
   const { user } = useAuth();
   const { theme } = useHeaderTheme();
   const isDark = theme === 'dark';
+  const navigate = useNavigate();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const containerRef = useRef(null);
@@ -65,7 +67,7 @@ export default function UserBar({ onOpenLogout, className }) {
         <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-200 text-xs font-semibold text-gray-700">
           {user?.avatar ? (
             <img
-              src={user.avatar}
+              src={getAvatarImageUrl(user.avatar)}
               alt={displayName}
               className="h-full w-full object-cover"
             />
@@ -88,7 +90,7 @@ export default function UserBar({ onOpenLogout, className }) {
             className="flex w-full items-center gap-1 border-0 bg-transparent px-0 py-0 text-white hover:text-white/80"
             onClick={() => {
               setIsMenuOpen(false);
-              // TODO: navigate to profile page when it exists
+              navigate('/user/me');
             }}
           >
             <span>Profile</span>
