@@ -66,8 +66,8 @@ class ApiRecipesIdGet200Response {
             if (data.hasOwnProperty('thumb')) {
                 obj['thumb'] = ApiClient.convertToType(data['thumb'], 'String');
             }
-            if (data.hasOwnProperty('time')) {
-                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
             }
             if (data.hasOwnProperty('Creator')) {
                 obj['Creator'] = ApiRecipesIdGet200ResponseCreator.constructFromObject(data['Creator']);
@@ -168,9 +168,9 @@ ApiRecipesIdGet200Response.prototype['instructions'] = undefined;
 ApiRecipesIdGet200Response.prototype['thumb'] = undefined;
 
 /**
- * @member {Number} time
+ * @member {Boolean} isFavorite
  */
-ApiRecipesIdGet200Response.prototype['time'] = undefined;
+ApiRecipesIdGet200Response.prototype['isFavorite'] = undefined;
 
 /**
  * @member {module:model/ApiRecipesIdGet200ResponseCreator} Creator

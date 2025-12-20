@@ -77,6 +77,10 @@ Get list of recipes
 
 ```javascript
 import FoodiesApi from 'foodies_api';
+let defaultClient = FoodiesApi.ApiClient.instance;
+// Configure Bearer (JWT) access token for authorization: bearerAuth
+let bearerAuth = defaultClient.authentications['bearerAuth'];
+bearerAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new FoodiesApi.RecipesApi();
 let opts = {
@@ -111,7 +115,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -271,6 +275,10 @@ Get recipe by ID
 
 ```javascript
 import FoodiesApi from 'foodies_api';
+let defaultClient = FoodiesApi.ApiClient.instance;
+// Configure Bearer (JWT) access token for authorization: bearerAuth
+let bearerAuth = defaultClient.authentications['bearerAuth'];
+bearerAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new FoodiesApi.RecipesApi();
 let id = "6462a8f74c3d0ddd28897fe3"; // String | Recipe ID
@@ -295,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

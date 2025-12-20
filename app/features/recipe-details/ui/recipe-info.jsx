@@ -59,7 +59,7 @@ export default function RecipeInfo({ recipe, isLoading, error, requireAuth }) {
             </div>
 
             <div className="mt-6">
-              <RecipePreparation text={recipe.instructions} />
+              <RecipePreparation text={recipe.instructions} recipeId={recipe.id} isFavorite={recipe.isFavorite}/>
             </div>
           </div>
         </div>
