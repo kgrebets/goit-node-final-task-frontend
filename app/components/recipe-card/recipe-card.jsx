@@ -3,22 +3,33 @@ import { Link } from 'react-router';
 import Icon from '../Icon/index.js';
 import { twMerge } from 'tailwind-merge';
 import { useDispatch } from 'react-redux';
-import { addRecipeToFavorite, removeRecipeFromFavorite } from '../../redux/slices/recipes/recipesOps.js';
+import {
+  addRecipeToFavorite,
+  removeRecipeFromFavorite,
+} from '../../redux/slices/recipes/recipesOps.js';
 import getAvatarImageUrl from '../../helpers/getAvatarImageUrl.js';
 import { useAuth } from '../../features/auth/AuthProvider.jsx';
 
-const RecipeCard = ({ Creator, thumb, title, description, id, isFavorite = false }) => {
+const RecipeCard = ({
+  Creator,
+  thumb,
+  title,
+  description,
+  id,
+  isFavorite = false,
+}) => {
   const dispatch = useDispatch();
   const { isLoggedIn, openSignIn } = useAuth();
-
 
   const handleWishlistClick = (isFavorite) => {
     if (!isLoggedIn) {
       return openSignIn();
     }
-    
-    isFavorite ? dispatch(removeRecipeFromFavorite(id)) : dispatch(addRecipeToFavorite(id));
-  }
+
+    isFavorite
+      ? dispatch(removeRecipeFromFavorite(id))
+      : dispatch(addRecipeToFavorite(id));
+  };
 
   return (
     <div>
@@ -35,8 +46,16 @@ const RecipeCard = ({ Creator, thumb, title, description, id, isFavorite = false
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           {Creator.avatar ? (
-            <img src={getAvatarImageUrl(Creator.avatar)} alt={Creator.username} className="w-10 h-10 object-cover rounded-full"/>
-          ) : null}
+            <img
+              src={getAvatarImageUrl(Creator.avatar)}
+              alt={Creator.username}
+              className="w-10 h-10 object-cover rounded-full"
+            />
+          ) : (
+            <span className="font-bold text-tertiary rounded-full border border-tertiary bg-white text-avatar-sm w-10 h-10 flex items-center justify-center">
+              {Creator.username.charAt(0)}
+            </span>
+          )}
           <strong>{Creator.username}</strong>
         </div>
         <div className="flex gap-1 items-center">
@@ -44,17 +63,24 @@ const RecipeCard = ({ Creator, thumb, title, description, id, isFavorite = false
             <button
               onClick={(e) => handleWishlistClick(isFavorite, e)}
               className={twMerge(
-              'p-2.5',
-              isFavorite
-                ? 'bg-primary border-primary group-hover:bg-white group-hover:border-tertiary'
-                : 'bg-white group-hover:bg-primary group-hover:border-primary'
-            )}>
-              <span className="sr-only">{isFavorite ? 'Remove' : 'Add'} {title} to wishlist</span>
-              <Icon name="heart" size={18} className={
+                'p-2.5',
                 isFavorite
-                ? 'text-white group-hover:text-primary'
-                : 'text-primary group-hover:text-white'
-              } />
+                  ? 'bg-primary border-primary group-hover:bg-white group-hover:border-tertiary'
+                  : 'bg-white group-hover:bg-primary group-hover:border-primary'
+              )}
+            >
+              <span className="sr-only">
+                {isFavorite ? 'Remove' : 'Add'} {title} to wishlist
+              </span>
+              <Icon
+                name="heart"
+                size={18}
+                className={
+                  isFavorite
+                    ? 'text-white group-hover:text-primary'
+                    : 'text-primary group-hover:text-white'
+                }
+              />
             </button>
           </div>
           <Link to={`/recipe/${id}`} className="btn p-2.5">
