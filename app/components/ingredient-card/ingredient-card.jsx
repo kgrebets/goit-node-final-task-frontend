@@ -17,6 +17,7 @@ export default function IngredientCard({ name, measure, img }) {
             src={img}
             alt={name}
             className="max-h-[55px] max-w-[55px] object-contain"
+            loading="lazy"
           />
         )}
       </div>
