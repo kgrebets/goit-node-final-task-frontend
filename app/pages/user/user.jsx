@@ -2,13 +2,18 @@ import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import UsersApi from '../../api-client/src/api/UsersApi.js';
 import UserInfo from '../../components/user-info';
+import TabsList from '../../components/tabs-list';
 
 const usersApi = new UsersApi();
 
 const User = () => {
   const { id } = useParams();
 
-  const { data: user, isLoading, error } = useQuery({
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['user', id ?? 'me'],
     queryFn: () => {
       if (id && id !== 'me') {
@@ -57,13 +62,25 @@ const User = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="mx-auto max-w-2xl">
-        <h1 className="mb-8 text-3xl font-bold tracking-tight">Profile</h1>
-        <UserInfo user={user} isOwnProfile={isOwnProfile} />
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10">
+          <h1 className="mb-5 text-3xl font-bold tracking-tight">Profile</h1>
+          <p className="max-w-md">
+            Reveal your culinary art, share your favorite recipe and create
+            gastronomic masterpieces with us.
+          </p>
+        </div>
+        <div className="flex flex-col lg:grid lg:grid-cols-[394px_1fr] gap-8 lg:gap-10">
+          <div className="w-full lg:w-[394px]">
+            <UserInfo user={user} isOwnProfile={isOwnProfile} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <TabsList userId={user?.id} />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default User;
-
