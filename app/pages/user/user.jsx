@@ -1,10 +1,11 @@
 import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import UsersApi from '../../api-client/src/api/UsersApi.js';
 import UserInfo from '../../components/user-info';
+import TabsList from '../../components/tabs-list';
 import { useFollow } from '../../features/users/useFollow.js';
 import LogOutModal from '../../components/auth/logout-modal/logout-modal.jsx';
-import { useState } from 'react';
 
 const usersApi = new UsersApi();
 
@@ -13,7 +14,11 @@ const User = () => {
   const followMutation = useFollow();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  const { data: user, isLoading, error } = useQuery({
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['user', id ?? 'me'],
     queryFn: () => {
       if (id && id !== 'me') {
@@ -62,63 +67,36 @@ const User = () => {
 
   const handleFollow = () => {
     if (!user?.id) return;
-    followMutation.mutate({ 
-      userId: user.id, 
-      action: user.isFollowing ? 'unfollow' : 'follow' 
+    followMutation.mutate({
+      userId: user.id,
+      action: user.isFollowing ? 'unfollow' : 'follow',
     });
   };
 
   return (
     <>
       <div className="container mx-auto px-4 py-12">
-        <div className="mx-auto max-w-2xl">
-          <h1 className="mb-8 text-3xl font-bold tracking-tight">Profile</h1>
-          
-          <UserInfo user={user} isOwnProfile={isOwnProfile} />
-          
-          <div className="mt-8 flex justify-center">
-            {isOwnProfile ? (
-              <button
-                onClick={() => setIsLogoutModalOpen(true)}
-                className="btn btn-primary"
-                style={{
-                  width: '394px',
-                  height: '56px',
-                  borderRadius: '30px',
-                  padding: '16px 162px',
-                  gap: '8px',
-                  background: '#1A1A1A',
-                  color: 'white',
-                  border: 'none'
-                }}
-              >
-                Log Out
-              </button>
-            ) : (
-              <button
-                onClick={handleFollow}
-                disabled={followMutation.isPending}
-                className="btn btn-primary disabled:opacity-50"
-                style={{
-                  width: '394px',
-                  height: '56px',
-                  borderRadius: '30px',
-                  padding: '16px 162px',
-                  gap: '8px',
-                  background: '#1A1A1A',
-                  color: 'white',
-                  border: 'none'
-                }}
-              >
-                {user?.isFollowing ? 'Unfollow' : 'Follow'}
-              </button>
-            )}
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-10">
+            <h1 className="mb-5 text-3xl font-bold tracking-tight">Profile</h1>
+            <p className="max-w-md">
+              Reveal your culinary art, share your favorite recipe and create
+              gastronomic masterpieces with us.
+            </p>
+          </div>
+          <div className="flex flex-col lg:grid lg:grid-cols-[394px_1fr] gap-8 lg:gap-10">
+            <div className="w-full lg:w-[394px]">
+              <UserInfo user={user} isOwnProfile={isOwnProfile} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <TabsList userId={user?.id} />
+            </div>
           </div>
         </div>
       </div>
-      
+
       {isOwnProfile && (
-        <LogOutModal 
+        <LogOutModal
           isOpen={isLogoutModalOpen}
           onClose={() => setIsLogoutModalOpen(false)}
         />
