@@ -4,7 +4,7 @@ import AuthApi from '../../api-client/src/api/AuthApi';
 import ApiClient from '../../api-client/src/ApiClient.js';
 
 const AUTH_QUERY_KEYS = {
-  current: ['auth', 'current'],
+  current: ['user'],
 };
 
 export function useLogin() {
@@ -45,19 +45,17 @@ export function useCurrentUser() {
 
   return useQuery({
     queryKey: AUTH_QUERY_KEYS.current,
-    queryFn: () => {
-      if (!token) return;
+    queryFn: async () => {
+      if (!token) throw new Error('No token');
       ApiClient.instance.authentications.bearerAuth.accessToken = token;
       const authApi = new AuthApi();
-      return authApi.apiAuthCurrentGet();
-    },
-    enabled: Boolean(token),
-    onSuccess: (data) => {
+      const data = await authApi.apiAuthCurrentGet();
       const { token: newToken, user } = data;
       setCredentials({
         token: newToken,
         user: user || null,
       });
+      return data;
     },
   });
 }
