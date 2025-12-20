@@ -1,13 +1,18 @@
 import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import UsersApi from '../../api-client/src/api/UsersApi.js';
 import UserInfo from '../../components/user-info';
 import TabsList from '../../components/tabs-list';
+import { useFollow } from '../../features/users/useFollow.js';
+import LogOutModal from '../../components/auth/logout-modal/logout-modal.jsx';
 
 const usersApi = new UsersApi();
 
 const User = () => {
   const { id } = useParams();
+  const followMutation = useFollow();
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const {
     data: user,
@@ -60,26 +65,43 @@ const User = () => {
 
   const isOwnProfile = !id || id === 'me';
 
+  const handleFollow = () => {
+    if (!user?.id) return;
+    followMutation.mutate({
+      userId: user.id,
+      action: user.isFollowing ? 'unfollow' : 'follow',
+    });
+  };
+
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10">
-          <h1 className="mb-5 text-3xl font-bold tracking-tight">Profile</h1>
-          <p className="max-w-md">
-            Reveal your culinary art, share your favorite recipe and create
-            gastronomic masterpieces with us.
-          </p>
-        </div>
-        <div className="flex flex-col lg:grid lg:grid-cols-[394px_1fr] gap-8 lg:gap-10">
-          <div className="w-full lg:w-[394px]">
-            <UserInfo user={user} isOwnProfile={isOwnProfile} />
+    <>
+      <div className="container mx-auto px-4 py-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-10">
+            <h1 className="mb-5 text-3xl font-bold tracking-tight">Profile</h1>
+            <p className="max-w-md">
+              Reveal your culinary art, share your favorite recipe and create
+              gastronomic masterpieces with us.
+            </p>
           </div>
-          <div className="flex-1 min-w-0">
-            <TabsList userId={user?.id} />
+          <div className="flex flex-col lg:grid lg:grid-cols-[394px_1fr] gap-8 lg:gap-10">
+            <div className="w-full lg:w-[394px]">
+              <UserInfo user={user} isOwnProfile={isOwnProfile} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <TabsList userId={user?.id} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {isOwnProfile && (
+        <LogOutModal
+          isOpen={isLogoutModalOpen}
+          onClose={() => setIsLogoutModalOpen(false)}
+        />
+      )}
+    </>
   );
 };
 

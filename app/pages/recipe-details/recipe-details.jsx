@@ -34,7 +34,6 @@ export default function RecipeDetailsPage() {
 
   const requireAuth = useCallback(
     (event) => {
-      console.log('requireAuth called. isAuthenticated=', isAuthenticated);
       if (isAuthenticated) return true;
       event?.preventDefault?.();
       openSignIn();

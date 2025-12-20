@@ -29,9 +29,6 @@ export default function RecipeDetailsContainer({ requireAuth }) {
       dispatch(fetchStart());
       try {
         const recipe = await api.apiRecipesIdGet(id);
-        console.log('RES keys:', Object.keys(recipe));
-        console.log('RES.data keys:', Object.keys(recipe));
-        console.log('RES.data.time:', recipe.time);
         dispatch(fetchSuccess(recipe));
       } catch (e) {
         dispatch(fetchError(e?.message || 'No recipe found'));

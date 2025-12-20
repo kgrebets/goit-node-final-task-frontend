@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useSearchParams, useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import UsersApi from '../../api-client/src/api/UsersApi.js';
 import RecipesApi from '../../api-client/src/api/RecipesApi.js';
@@ -41,11 +41,10 @@ const TABS = [
 
 const TabsList = ({ userId }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { id: urlUserId } = useParams();
   const activeTab = searchParams.get('tab') || 'my-recipes';
 
   // Determine userId: prop > URL param > 'me' for current user
-  const targetUserId = userId || urlUserId || 'me';
+  const targetUserId = userId || 'me';
 
   // Get page from URL or default to 1
   const myRecipesPage = parseInt(

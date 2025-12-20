@@ -10,4 +10,5 @@ export default [
     route('user/:id?', './pages/user/user.jsx'),
     route('recipe/:id', './pages/recipe-details/recipe-details.jsx'),
   ]),
+
 ];

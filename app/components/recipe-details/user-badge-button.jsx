@@ -21,7 +21,7 @@ export default function UserBadgeButton({
 
   const handleClick = (e) => {
     if (requireAuth && requireAuth(e) === false) return;
-    if (userId) navigate(`/users/${userId}`);
+    if (userId) navigate(`/user/${userId}`);
   };
 
   return (
