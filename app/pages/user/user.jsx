@@ -5,6 +5,8 @@ import UserInfo from '../../components/user-info';
 import { useFollow } from '../../features/users/useFollow.js';
 import LogOutModal from '../../components/auth/logout-modal/logout-modal.jsx';
 import { useState } from 'react';
+import MainTitle from '../../components/ui/main-title/main-title.jsx';
+import Subtitle from '../../components/ui/subtitle/Subtitle.jsx';
 
 const usersApi = new UsersApi();
 
@@ -13,7 +15,11 @@ const User = () => {
   const followMutation = useFollow();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  const { data: user, isLoading, error } = useQuery({
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['user', id ?? 'me'],
     queryFn: () => {
       if (id && id !== 'me') {
@@ -28,16 +34,16 @@ const User = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="mx-auto max-w-2xl">
           <div className="animate-pulse">
-            <div className="mb-8 h-9 w-32 rounded bg-white/10"></div>
+            <div className="mb-8 h-9 w-32 rounded bg-tertiary/20"></div>
             <div className="flex flex-col items-center rounded-[30px] border border-secondary px-[80px] py-[40px]">
-              <div className="h-[80px] w-[80px] rounded-full bg-white/10"></div>
-              <div className="mt-4 h-10 w-10 rounded-full bg-white/10"></div>
+              <div className="h-[80px] w-[80px] rounded-full bg-tertiary/20"></div>
+              <div className="mt-4 h-10 w-10 rounded-fullbg-tertiary/20"></div>
               <div className="mt-6 w-full space-y-2">
-                <div className="h-5 w-48 rounded bg-white/10"></div>
-                <div className="h-5 w-36 rounded bg-white/10"></div>
-                <div className="h-5 w-32 rounded bg-white/10"></div>
-                <div className="h-5 w-32 rounded bg-white/10"></div>
-                <div className="h-5 w-32 rounded bg-white/10"></div>
+                <div className="h-5 w-48 rounded bg-tertiary/20"></div>
+                <div className="h-5 w-36 rounded bg-tertiary/20"></div>
+                <div className="h-5 w-32 rounded bg-tertiary/20"></div>
+                <div className="h-5 w-32 rounded bg-tertiary/20"></div>
+                <div className="h-5 w-32 rounded bg-tertiary/20"></div>
               </div>
             </div>
           </div>
@@ -50,8 +56,8 @@ const User = () => {
     return (
       <div className="container mx-auto px-4 py-12">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[30px] border border-red-500/20 bg-red-500/10 p-8 text-center">
-            <p className="text-red-400">Failed to load user profile</p>
+          <div className="rounded-[30px] border border-error-primary/20 bg-error-primary/10 p-8 text-center">
+            <p className="text-error-primary">Failed to load user profile</p>
           </div>
         </div>
       </div>
@@ -62,9 +68,9 @@ const User = () => {
 
   const handleFollow = () => {
     if (!user?.id) return;
-    followMutation.mutate({ 
-      userId: user.id, 
-      action: user.isFollowing ? 'unfollow' : 'follow' 
+    followMutation.mutate({
+      userId: user.id,
+      action: user.isFollowing ? 'unfollow' : 'follow',
     });
   };
 
@@ -72,25 +78,22 @@ const User = () => {
     <>
       <div className="container mx-auto px-4 py-12">
         <div className="mx-auto max-w-2xl">
-          <h1 className="mb-8 text-3xl font-bold tracking-tight">Profile</h1>
-          
+          <div className="w-[443px] h-[112px] flex flex-col gap-[20px] opacity-100 mb-8">
+            <MainTitle>Profile</MainTitle>
+            <Subtitle>
+              Reveal your culinary art, share your favorite recipe and create
+              gastronomic masterpieces with us.
+            </Subtitle>
+          </div>
+
           <UserInfo user={user} isOwnProfile={isOwnProfile} />
-          
+
           <div className="mt-8 flex justify-center">
             {isOwnProfile ? (
               <button
                 onClick={() => setIsLogoutModalOpen(true)}
-                className="btn btn-primary"
-                style={{
-                  width: '394px',
-                  height: '56px',
-                  borderRadius: '30px',
-                  padding: '16px 162px',
-                  gap: '8px',
-                  background: '#1A1A1A',
-                  color: 'white',
-                  border: 'none'
-                }}
+                className="w-full h-[56px] rounded-[30px] bg-primary text-white border-0 text-base font-bold uppercase tracking-tight flex items-center justify-center disabled:opacity-50"
+                disabled={isLoading}
               >
                 Log Out
               </button>
@@ -98,17 +101,7 @@ const User = () => {
               <button
                 onClick={handleFollow}
                 disabled={followMutation.isPending}
-                className="btn btn-primary disabled:opacity-50"
-                style={{
-                  width: '394px',
-                  height: '56px',
-                  borderRadius: '30px',
-                  padding: '16px 162px',
-                  gap: '8px',
-                  background: '#1A1A1A',
-                  color: 'white',
-                  border: 'none'
-                }}
+                className="w-full h-[56px] rounded-[30px] bg-primary text-white border-0 text-base font-bold uppercase tracking-tight flex items-center justify-center disabled:opacity-50"
               >
                 {user?.isFollowing ? 'Unfollow' : 'Follow'}
               </button>
@@ -116,9 +109,9 @@ const User = () => {
           </div>
         </div>
       </div>
-      
+
       {isOwnProfile && (
-        <LogOutModal 
+        <LogOutModal
           isOpen={isLogoutModalOpen}
           onClose={() => setIsLogoutModalOpen(false)}
         />
