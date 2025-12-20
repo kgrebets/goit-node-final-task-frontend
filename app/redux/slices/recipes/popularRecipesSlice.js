@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchPopularRecipes } from './popularRecipesOps.js';
 
 const initialState = {
   data: null,
@@ -10,34 +11,33 @@ const popularRecipesSlice = createSlice({
   name: 'popularRecipes',
   initialState,
   reducers: {
-    fetchStart(state) {
-      state.isLoading = true;
-      state.error = null;
-    },
-    fetchSuccess(state, action) {
-      state.isLoading = false;
-      state.data = action.payload;
-    },
-    fetchError(state, action) {
-      state.isLoading = false;
-      state.error = action.payload || 'Failed to load popular recipes';
-    },
     clearPopularRecipes(state) {
       state.data = null;
       state.isLoading = false;
       state.error = null;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPopularRecipes.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchPopularRecipes.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchPopularRecipes.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || 'Failed to load popular recipes';
+      });
+  },
 });
 
-export const { fetchStart, fetchSuccess, fetchError, clearPopularRecipes } =
-  popularRecipesSlice.actions;
+export const { clearPopularRecipes } = popularRecipesSlice.actions;
 
-const popularRecipesReducer = popularRecipesSlice.reducer;
+export default popularRecipesSlice.reducer;
 
-export default popularRecipesReducer;
-
-// selectors
 export const selectPopularRecipes = (state) => state.popularRecipes.data;
 export const selectPopularRecipesLoading = (state) =>
   state.popularRecipes.isLoading;

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchRecipeDetails } from './recipeDetailsOps.js';
 
 const initialState = {
   data: null,
@@ -10,32 +11,32 @@ const recipeDetailsSlice = createSlice({
   name: 'recipeDetails',
   initialState,
   reducers: {
-    fetchStart(state) {
-      state.isLoading = true;
-      state.error = null;
-    },
-    fetchSuccess(state, action) {
-      state.isLoading = false;
-      state.data = action.payload;
-    },
-    fetchError(state, action) {
-      state.isLoading = false;
-      state.error = action.payload || 'Failed to load recipe details';
-    },
     clearRecipeDetails(state) {
       state.data = null;
       state.isLoading = false;
       state.error = null;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchRecipeDetails.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchRecipeDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchRecipeDetails.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || 'Failed to load recipe details';
+      });
+  },
 });
 
-export const { fetchStart, fetchSuccess, fetchError, clearRecipeDetails } =
-  recipeDetailsSlice.actions;
+export const { clearRecipeDetails } = recipeDetailsSlice.actions;
 
-const recipeDetailsReducer = recipeDetailsSlice.reducer;
-
-export default recipeDetailsReducer;
+export default recipeDetailsSlice.reducer;
 
 export const selectRecipeDetails = (state) => state.recipeDetails.data;
 export const selectRecipeDetailsLoading = (state) =>
