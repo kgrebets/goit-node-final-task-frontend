@@ -47,9 +47,11 @@ export default function UserBadgeButton({
 
       <div className="leading-tight">
         {label && (
-          <p className="text-[10px] text-tertiary normal-case">{label}</p>
+          <p className="text-sm md:text-base text-tertiary normal-case font-normal">
+            {label}
+          </p>
         )}
-        <p className="leading-tight font-bold text-tertiary normal-case">
+        <p className="text-sm md:text-base leading-5 font-bold text-tertiary md:text-primary normal-case">
           {username}
         </p>
       </div>

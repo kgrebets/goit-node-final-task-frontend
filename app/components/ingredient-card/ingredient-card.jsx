@@ -1,6 +1,6 @@
 export default function IngredientCard({ name, measure, img }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 w-[152px] md:w-[178px] min-w-0">
       {/* Icon */}
       <div
         className="
@@ -22,8 +22,8 @@ export default function IngredientCard({ name, measure, img }) {
       </div>
 
       {/* Text */}
-      <div className="leading-tight">
-        <p className="text-primary">{name}</p>
+      <div className="flex-1 min-w-0 leading-tight">
+        <p className="text-primary break-words line-clamp-2">{name}</p>
         {measure && <p className="mt-1 text-sm text-tertiary">{measure}</p>}
       </div>
     </div>

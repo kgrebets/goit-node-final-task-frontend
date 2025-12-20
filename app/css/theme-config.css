@@ -19,8 +19,6 @@
 
   --radius-3_75: 0.9375rem; /* 15px */
 
-  --breakpoint-2xl: 87.5rem;
-
   --text-2_75xl: 1.75rem;
   --text-2_75xl--line-height: 2rem;
 
@@ -33,6 +31,7 @@
   --text-7_75xl: 5.625rem;
   --text-7_75xl--line-height: 5.625rem;
 
-  --breakpoint-xl: 68rem;
-  --breakpoint-2xl: 90rem;
+  --breakpoint-xs: 23.4375rem; /* 375px — mobile adaptive */
+  --breakpoint-md: 48rem; /* 768px — tablet */
+  --breakpoint-desktop: 90rem; /* 1440px — desktop */
 }
