@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **time** | **Number** | Cooking time in minutes | [optional] 
 **thumb** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
+**isFavorite** | **Boolean** |  | [optional] 
 **creator** | [**ApiRecipesGet200ResponseResultsInnerCreator**](ApiRecipesGet200ResponseResultsInnerCreator.md) |  | [optional] 
 **category** | [**ApiRecipesGet200ResponseResultsInnerCategory**](ApiRecipesGet200ResponseResultsInnerCategory.md) |  | [optional] 
 **area** | [**ApiRecipesGet200ResponseResultsInnerArea**](ApiRecipesGet200ResponseResultsInnerArea.md) |  | [optional] 

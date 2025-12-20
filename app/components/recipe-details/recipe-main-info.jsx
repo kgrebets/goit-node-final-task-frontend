@@ -22,7 +22,7 @@ export default function RecipeMainInfo({ recipe, requireAuth }) {
         )}
       </div>
 
-      {description && <p className="mt-4 text-sm leading-6">{description}</p>}
+      {description && <p className="mt-4 text-sm leading-4.5">{description}</p>}
 
       {Creator && (
         <div className="mt-5">

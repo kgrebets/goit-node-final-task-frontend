@@ -40,6 +40,7 @@ export function AuthProvider({ children }) {
     () => ({
       user,
       token,
+      isLoggedIn: Boolean(user && token),
       isSignInOpen,
       isSignUpOpen,
       isLogoutOpen,

@@ -121,7 +121,7 @@ export default class RecipesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['bearerAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = ApiRecipesGet200Response;
@@ -314,7 +314,7 @@ export default class RecipesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['bearerAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = ApiRecipesIdGet200Response;

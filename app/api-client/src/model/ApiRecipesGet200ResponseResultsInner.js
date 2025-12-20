@@ -65,6 +65,9 @@ class ApiRecipesGet200ResponseResultsInner {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
+            }
             if (data.hasOwnProperty('Creator')) {
                 obj['Creator'] = ApiRecipesGet200ResponseResultsInnerCreator.constructFromObject(data['Creator']);
             }
@@ -146,6 +149,11 @@ ApiRecipesGet200ResponseResultsInner.prototype['thumb'] = undefined;
  * @member {String} description
  */
 ApiRecipesGet200ResponseResultsInner.prototype['description'] = undefined;
+
+/**
+ * @member {Boolean} isFavorite
+ */
+ApiRecipesGet200ResponseResultsInner.prototype['isFavorite'] = undefined;
 
 /**
  * @member {module:model/ApiRecipesGet200ResponseResultsInnerCreator} Creator
