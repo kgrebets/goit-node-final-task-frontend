@@ -30,7 +30,6 @@ const RecipeFilters = () => {
   }, [selectedFilters]);
 
   const onFilterChange = (name, value) => {
-    // Clear empty values to not be passed as empty query param to request
     setSelectedFilters((prevState) => {
       const nextState = { ...prevState };
 

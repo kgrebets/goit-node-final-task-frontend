@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router';
+import getAvatarImageUrl from '../../helpers/getAvatarImageUrl';
 
 export default function UserBadgeButton({
   userId,
@@ -35,7 +36,7 @@ export default function UserBadgeButton({
       >
         {avatar ? (
           <img
-            src={avatar}
+            src={getAvatarImageUrl(avatar)}
             alt={username}
             className="h-full w-full object-cover"
             loading="lazy"
