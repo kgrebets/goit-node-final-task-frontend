@@ -8,7 +8,7 @@ import PathInfo from '../../../components/path-info';
 import ErrorMessage from '../../../components/ui/error-message';
 import Loader from '../../../components/ui/loader';
 
-export default function RecipeInfo({ recipe, isLoading, error, requireAuth }) {
+export default function RecipeInfo({ recipe, isLoading, error }) {
   if (isLoading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -52,14 +52,18 @@ export default function RecipeInfo({ recipe, isLoading, error, requireAuth }) {
           )}
 
           <div className={recipe.thumb ? 'mt-8 md:mt-10 desktop:mt-0' : ''}>
-            <RecipeMainInfo recipe={recipe} requireAuth={requireAuth} />
+            <RecipeMainInfo recipe={recipe} />
 
             <div className="mt-6">
               <RecipeIngredients items={recipe.recipeIngredients || []} />
             </div>
 
             <div className="mt-6">
-              <RecipePreparation text={recipe.instructions} recipeId={recipe.id} isFavorite={recipe.isFavorite}/>
+              <RecipePreparation
+                text={recipe.instructions}
+                recipeId={recipe.id}
+                isFavorite={recipe.isFavorite}
+              />
             </div>
           </div>
         </div>

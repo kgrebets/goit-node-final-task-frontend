@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchPopularRecipes } from './popularRecipesOps.js';
+import { addRecipeToFavorite, removeRecipeFromFavorite } from './recipesOps.js';
 
 const initialState = {
   data: null,
@@ -30,6 +31,22 @@ const popularRecipesSlice = createSlice({
       .addCase(fetchPopularRecipes.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || 'Failed to load popular recipes';
+      })
+      .addCase(addRecipeToFavorite.fulfilled, (state, action) => {
+        const id = String(action.payload);
+        if (Array.isArray(state.data)) {
+          state.data = state.data.map((r) =>
+            String(r.id) === id ? { ...r, isFavorite: true } : r
+          );
+        }
+      })
+      .addCase(removeRecipeFromFavorite.fulfilled, (state, action) => {
+        const id = String(action.payload);
+        if (Array.isArray(state.data)) {
+          state.data = state.data.map((r) =>
+            String(r.id) === id ? { ...r, isFavorite: false } : r
+          );
+        }
       });
   },
 });

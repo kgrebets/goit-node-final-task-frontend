@@ -27,6 +27,7 @@ export default function PopularRecipes({ items, isLoading, error }) {
                 title={recipe.title}
                 description={recipe.description}
                 thumb={recipe.thumb}
+                isFavorite={recipe.isFavorite}
                 Creator={recipe.Creator}
               />
             </li>

@@ -1,24 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Icon from '../Icon/index.js';
-import { twMerge } from 'tailwind-merge';
 import { useDispatch } from 'react-redux';
-import { addRecipeToFavorite, removeRecipeFromFavorite } from '../../redux/slices/recipes/recipesOps.js';
+import { twMerge } from 'tailwind-merge';
+
+import Icon from '../Icon/index.js';
 import getAvatarImageUrl from '../../helpers/getAvatarImageUrl.js';
 import { useAuth } from '../../features/auth/AuthProvider.jsx';
+import {
+  addRecipeToFavorite,
+  removeRecipeFromFavorite,
+} from '../../redux/slices/recipes/recipesOps.js';
 
-const RecipeCard = ({ Creator, thumb, title, description, id, isFavorite = false }) => {
+const RecipeCard = ({
+  Creator,
+  thumb,
+  title,
+  description,
+  id,
+  isFavorite = false,
+}) => {
   const dispatch = useDispatch();
   const { isLoggedIn, openSignIn } = useAuth();
 
-
-  const handleWishlistClick = (isFavorite) => {
+  const handleWishlistClick = async () => {
     if (!isLoggedIn) {
-      return openSignIn();
+      openSignIn();
+      return;
     }
-    
-    isFavorite ? dispatch(removeRecipeFromFavorite(id)) : dispatch(addRecipeToFavorite(id));
-  }
+
+    if (isFavorite) {
+      await dispatch(removeRecipeFromFavorite(id));
+    } else {
+      await dispatch(addRecipeToFavorite(id));
+    }
+  };
 
   return (
     <div>
@@ -28,37 +43,64 @@ const RecipeCard = ({ Creator, thumb, title, description, id, isFavorite = false
         alt={title}
         loading="lazy"
       />
-      <h3 className="text-lg font-extrabold tracking-tight uppercase mb-2">
+
+      <h3 className="text-lg font-extrabold tracking-tight uppercase mb-2 line-clamp-1">
         {title}
       </h3>
+
       <p className="mb-2 line-clamp-2 min-h-12">{description}</p>
+
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <Link
+          to={`/user/${Creator.id}`}
+          className="flex items-center gap-2"
+          onClick={(e) => {
+            if (!isLoggedIn) {
+              e.preventDefault();
+              openSignIn();
+            }
+          }}
+        >
           {Creator.avatar ? (
-            <img src={getAvatarImageUrl(Creator.avatar)} alt={Creator.username} className="w-10 h-10 object-cover rounded-full"/>
-          ) : null}
+            <img
+              src={getAvatarImageUrl(Creator.avatar)}
+              alt={Creator.username}
+              className="w-10 h-10 object-cover rounded-full"
+            />
+          ) : (
+            <span className="font-bold text-tertiary rounded-full border border-tertiary bg-white text-avatar-sm w-10 h-10 flex items-center justify-center">
+              {Creator.username.charAt(0)}
+            </span>
+          )}
           <strong>{Creator.username}</strong>
-        </div>
+        </Link>
+
         <div className="flex gap-1 items-center">
           <div className="group">
             <button
-              onClick={(e) => handleWishlistClick(isFavorite, e)}
+              type="button"
+              onClick={handleWishlistClick}
               className={twMerge(
-              'p-2.5',
-              isFavorite
-                ? 'bg-primary border-primary group-hover:bg-white group-hover:border-tertiary'
-                : 'bg-white group-hover:bg-primary group-hover:border-primary'
-            )}>
-              <span className="sr-only">{isFavorite ? 'Remove' : 'Add'} {title} to wishlist</span>
-              <Icon name="heart" size={18} className={
+                'p-2.5',
                 isFavorite
-                ? 'text-white group-hover:text-primary'
-                : 'text-primary group-hover:text-white'
-              } />
+                  ? 'bg-primary border-tertiary'
+                  : 'bg-white border-tertiary'
+              )}
+            >
+              <span className="sr-only">
+                {isFavorite ? 'Remove' : 'Add'} {title} to wishlist
+              </span>
+
+              <Icon
+                name="heart"
+                size={18}
+                className={isFavorite ? 'text-white' : 'text-primary'}
+              />
             </button>
           </div>
+
           <Link to={`/recipe/${id}`} className="btn p-2.5">
-            <span className="sr-only">Open ${thumb}</span>
+            <span className="sr-only">Open {title}</span>
             <Icon name="arrow-up-right" size={18} />
           </Link>
         </div>

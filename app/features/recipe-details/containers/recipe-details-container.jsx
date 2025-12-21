@@ -13,7 +13,7 @@ import { fetchRecipeDetails } from '../../../redux/slices/recipes/recipeDetailsO
 
 import RecipeInfo from '../ui/recipe-info';
 
-export default function RecipeDetailsContainer({ requireAuth }) {
+export default function RecipeDetailsContainer() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -31,12 +31,5 @@ export default function RecipeDetailsContainer({ requireAuth }) {
     };
   }, [id, dispatch]);
 
-  return (
-    <RecipeInfo
-      recipe={data}
-      requireAuth={requireAuth}
-      isLoading={isLoading}
-      error={error}
-    />
-  );
+  return <RecipeInfo recipe={data} isLoading={isLoading} error={error} />;
 }
