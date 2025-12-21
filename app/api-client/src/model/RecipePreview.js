@@ -12,9 +12,9 @@
  */
 
 import ApiClient from '../ApiClient';
-import ApiRecipesGet200ResponseResultsInnerArea from './ApiRecipesGet200ResponseResultsInnerArea';
 import ApiRecipesGet200ResponseResultsInnerCategory from './ApiRecipesGet200ResponseResultsInnerCategory';
-import ApiRecipesGet200ResponseResultsInnerCreator from './ApiRecipesGet200ResponseResultsInnerCreator';
+import ApiRecipesPopularGet200ResponseInnerCreator from './ApiRecipesPopularGet200ResponseInnerCreator';
+import RecipePreviewArea from './RecipePreviewArea';
 
 /**
  * The RecipePreview model module.
@@ -62,14 +62,17 @@ class RecipePreview {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
+            }
             if (data.hasOwnProperty('Creator')) {
-                obj['Creator'] = ApiRecipesGet200ResponseResultsInnerCreator.constructFromObject(data['Creator']);
+                obj['Creator'] = ApiRecipesPopularGet200ResponseInnerCreator.constructFromObject(data['Creator']);
             }
             if (data.hasOwnProperty('category')) {
                 obj['category'] = ApiRecipesGet200ResponseResultsInnerCategory.constructFromObject(data['category']);
             }
             if (data.hasOwnProperty('area')) {
-                obj['area'] = ApiRecipesGet200ResponseResultsInnerArea.constructFromObject(data['area']);
+                obj['area'] = RecipePreviewArea.constructFromObject(data['area']);
             }
         }
         return obj;
@@ -99,7 +102,7 @@ class RecipePreview {
         }
         // validate the optional field `Creator`
         if (data['Creator']) { // data not null
-          ApiRecipesGet200ResponseResultsInnerCreator.validateJSON(data['Creator']);
+          ApiRecipesPopularGet200ResponseInnerCreator.validateJSON(data['Creator']);
         }
         // validate the optional field `category`
         if (data['category']) { // data not null
@@ -107,7 +110,7 @@ class RecipePreview {
         }
         // validate the optional field `area`
         if (data['area']) { // data not null
-          ApiRecipesGet200ResponseResultsInnerArea.validateJSON(data['area']);
+          RecipePreviewArea.validateJSON(data['area']);
         }
 
         return true;
@@ -139,7 +142,13 @@ RecipePreview.prototype['thumb'] = undefined;
 RecipePreview.prototype['description'] = undefined;
 
 /**
- * @member {module:model/ApiRecipesGet200ResponseResultsInnerCreator} Creator
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
+ * @member {Boolean} isFavorite
+ */
+RecipePreview.prototype['isFavorite'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesPopularGet200ResponseInnerCreator} Creator
  */
 RecipePreview.prototype['Creator'] = undefined;
 
@@ -149,7 +158,7 @@ RecipePreview.prototype['Creator'] = undefined;
 RecipePreview.prototype['category'] = undefined;
 
 /**
- * @member {module:model/ApiRecipesGet200ResponseResultsInnerArea} area
+ * @member {module:model/RecipePreviewArea} area
  */
 RecipePreview.prototype['area'] = undefined;
 

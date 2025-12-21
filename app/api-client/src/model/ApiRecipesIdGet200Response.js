@@ -14,8 +14,8 @@
 import ApiClient from '../ApiClient';
 import ApiRecipesIdGet200ResponseArea from './ApiRecipesIdGet200ResponseArea';
 import ApiRecipesIdGet200ResponseCategory from './ApiRecipesIdGet200ResponseCategory';
-import ApiRecipesIdGet200ResponseCreator from './ApiRecipesIdGet200ResponseCreator';
 import ApiRecipesIdGet200ResponseRecipeIngredientsInner from './ApiRecipesIdGet200ResponseRecipeIngredientsInner';
+import ApiRecipesPopularGet200ResponseInnerCreator from './ApiRecipesPopularGet200ResponseInnerCreator';
 
 /**
  * The ApiRecipesIdGet200Response model module.
@@ -57,6 +57,9 @@ class ApiRecipesIdGet200Response {
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
+            if (data.hasOwnProperty('time')) {
+                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
+            }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
@@ -70,7 +73,7 @@ class ApiRecipesIdGet200Response {
                 obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
             }
             if (data.hasOwnProperty('Creator')) {
-                obj['Creator'] = ApiRecipesIdGet200ResponseCreator.constructFromObject(data['Creator']);
+                obj['Creator'] = ApiRecipesPopularGet200ResponseInnerCreator.constructFromObject(data['Creator']);
             }
             if (data.hasOwnProperty('category')) {
                 obj['category'] = ApiRecipesIdGet200ResponseCategory.constructFromObject(data['category']);
@@ -113,7 +116,7 @@ class ApiRecipesIdGet200Response {
         }
         // validate the optional field `Creator`
         if (data['Creator']) { // data not null
-          ApiRecipesIdGet200ResponseCreator.validateJSON(data['Creator']);
+          ApiRecipesPopularGet200ResponseInnerCreator.validateJSON(data['Creator']);
         }
         // validate the optional field `category`
         if (data['category']) { // data not null
@@ -153,6 +156,11 @@ ApiRecipesIdGet200Response.prototype['id'] = undefined;
 ApiRecipesIdGet200Response.prototype['title'] = undefined;
 
 /**
+ * @member {Number} time
+ */
+ApiRecipesIdGet200Response.prototype['time'] = undefined;
+
+/**
  * @member {String} description
  */
 ApiRecipesIdGet200Response.prototype['description'] = undefined;
@@ -168,12 +176,13 @@ ApiRecipesIdGet200Response.prototype['instructions'] = undefined;
 ApiRecipesIdGet200Response.prototype['thumb'] = undefined;
 
 /**
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
  * @member {Boolean} isFavorite
  */
 ApiRecipesIdGet200Response.prototype['isFavorite'] = undefined;
 
 /**
- * @member {module:model/ApiRecipesIdGet200ResponseCreator} Creator
+ * @member {module:model/ApiRecipesPopularGet200ResponseInnerCreator} Creator
  */
 ApiRecipesIdGet200Response.prototype['Creator'] = undefined;
 

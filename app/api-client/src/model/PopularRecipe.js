@@ -12,7 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
-import ApiRecipesGet200ResponseResultsInnerCreator from './ApiRecipesGet200ResponseResultsInnerCreator';
+import ApiRecipesPopularGet200ResponseInnerCreator from './ApiRecipesPopularGet200ResponseInnerCreator';
 
 /**
  * The PopularRecipe model module.
@@ -60,8 +60,11 @@ class PopularRecipe {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
+            }
             if (data.hasOwnProperty('Creator')) {
-                obj['Creator'] = ApiRecipesGet200ResponseResultsInnerCreator.constructFromObject(data['Creator']);
+                obj['Creator'] = ApiRecipesPopularGet200ResponseInnerCreator.constructFromObject(data['Creator']);
             }
             if (data.hasOwnProperty('favoritesCount')) {
                 obj['favoritesCount'] = ApiClient.convertToType(data['favoritesCount'], 'Number');
@@ -94,7 +97,7 @@ class PopularRecipe {
         }
         // validate the optional field `Creator`
         if (data['Creator']) { // data not null
-          ApiRecipesGet200ResponseResultsInnerCreator.validateJSON(data['Creator']);
+          ApiRecipesPopularGet200ResponseInnerCreator.validateJSON(data['Creator']);
         }
 
         return true;
@@ -126,7 +129,13 @@ PopularRecipe.prototype['thumb'] = undefined;
 PopularRecipe.prototype['description'] = undefined;
 
 /**
- * @member {module:model/ApiRecipesGet200ResponseResultsInnerCreator} Creator
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
+ * @member {Boolean} isFavorite
+ */
+PopularRecipe.prototype['isFavorite'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesPopularGet200ResponseInnerCreator} Creator
  */
 PopularRecipe.prototype['Creator'] = undefined;
 
