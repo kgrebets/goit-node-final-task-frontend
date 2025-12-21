@@ -2,11 +2,10 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
+  Outlet,
 } from 'react-router';
-import Header from './components/header';
 import './app.css';
 import Footer from './components/footer';
 import { HeaderThemeProvider } from './features/header-theme.jsx';
@@ -14,28 +13,28 @@ import { HeaderThemeProvider } from './features/header-theme.jsx';
 export const links = () => [
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-400-normal.woff2',
+    href: '/app/fonts/mulish-latin-400-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-500-normal.woff2',
+    href: '/app/fonts/mulish-latin-500-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-700-normal.woff2',
+    href: '/app/fonts/mulish-latin-700-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
   },
   {
     rel: 'preload',
-    href: 'app/fonts/mulish-latin-800-normal.woff2',
+    href: '/app/fonts/mulish-latin-800-normal.woff2',
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous',
@@ -63,10 +62,7 @@ export function Layout({ children }) {
 export default function App() {
   return (
     <HeaderThemeProvider>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
     </HeaderThemeProvider>
   );

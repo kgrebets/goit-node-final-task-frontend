@@ -12,7 +12,10 @@
  */
 
 import ApiClient from '../ApiClient';
+import ApiRecipesIdGet200ResponseArea from './ApiRecipesIdGet200ResponseArea';
+import ApiRecipesIdGet200ResponseCategory from './ApiRecipesIdGet200ResponseCategory';
 import ApiRecipesIdGet200ResponseRecipeIngredientsInner from './ApiRecipesIdGet200ResponseRecipeIngredientsInner';
+import ApiRecipesPopularGet200ResponseInnerCreator from './ApiRecipesPopularGet200ResponseInnerCreator';
 
 /**
  * The ApiRecipesIdGet200Response model module.
@@ -54,26 +57,29 @@ class ApiRecipesIdGet200Response {
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
-            if (data.hasOwnProperty('categoryid')) {
-                obj['categoryid'] = ApiClient.convertToType(data['categoryid'], 'String');
-            }
-            if (data.hasOwnProperty('userid')) {
-                obj['userid'] = ApiClient.convertToType(data['userid'], 'String');
-            }
-            if (data.hasOwnProperty('areaid')) {
-                obj['areaid'] = ApiClient.convertToType(data['areaid'], 'String');
-            }
-            if (data.hasOwnProperty('instructions')) {
-                obj['instructions'] = ApiClient.convertToType(data['instructions'], 'String');
+            if (data.hasOwnProperty('time')) {
+                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
             }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
+            if (data.hasOwnProperty('instructions')) {
+                obj['instructions'] = ApiClient.convertToType(data['instructions'], 'String');
+            }
             if (data.hasOwnProperty('thumb')) {
                 obj['thumb'] = ApiClient.convertToType(data['thumb'], 'String');
             }
-            if (data.hasOwnProperty('time')) {
-                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
+            }
+            if (data.hasOwnProperty('Creator')) {
+                obj['Creator'] = ApiRecipesPopularGet200ResponseInnerCreator.constructFromObject(data['Creator']);
+            }
+            if (data.hasOwnProperty('category')) {
+                obj['category'] = ApiRecipesIdGet200ResponseCategory.constructFromObject(data['category']);
+            }
+            if (data.hasOwnProperty('area')) {
+                obj['area'] = ApiRecipesIdGet200ResponseArea.constructFromObject(data['area']);
             }
             if (data.hasOwnProperty('recipeIngredients')) {
                 obj['recipeIngredients'] = ApiClient.convertToType(data['recipeIngredients'], [ApiRecipesIdGet200ResponseRecipeIngredientsInner]);
@@ -97,28 +103,28 @@ class ApiRecipesIdGet200Response {
             throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
         }
         // ensure the json data is a string
-        if (data['categoryid'] && !(typeof data['categoryid'] === 'string' || data['categoryid'] instanceof String)) {
-            throw new Error("Expected the field `categoryid` to be a primitive type in the JSON string but got " + data['categoryid']);
-        }
-        // ensure the json data is a string
-        if (data['userid'] && !(typeof data['userid'] === 'string' || data['userid'] instanceof String)) {
-            throw new Error("Expected the field `userid` to be a primitive type in the JSON string but got " + data['userid']);
-        }
-        // ensure the json data is a string
-        if (data['areaid'] && !(typeof data['areaid'] === 'string' || data['areaid'] instanceof String)) {
-            throw new Error("Expected the field `areaid` to be a primitive type in the JSON string but got " + data['areaid']);
+        if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
+            throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
         }
         // ensure the json data is a string
         if (data['instructions'] && !(typeof data['instructions'] === 'string' || data['instructions'] instanceof String)) {
             throw new Error("Expected the field `instructions` to be a primitive type in the JSON string but got " + data['instructions']);
         }
         // ensure the json data is a string
-        if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
-            throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
-        }
-        // ensure the json data is a string
         if (data['thumb'] && !(typeof data['thumb'] === 'string' || data['thumb'] instanceof String)) {
             throw new Error("Expected the field `thumb` to be a primitive type in the JSON string but got " + data['thumb']);
+        }
+        // validate the optional field `Creator`
+        if (data['Creator']) { // data not null
+          ApiRecipesPopularGet200ResponseInnerCreator.validateJSON(data['Creator']);
+        }
+        // validate the optional field `category`
+        if (data['category']) { // data not null
+          ApiRecipesIdGet200ResponseCategory.validateJSON(data['category']);
+        }
+        // validate the optional field `area`
+        if (data['area']) { // data not null
+          ApiRecipesIdGet200ResponseArea.validateJSON(data['area']);
         }
         if (data['recipeIngredients']) { // data not null
             // ensure the json data is an array
@@ -150,24 +156,9 @@ ApiRecipesIdGet200Response.prototype['id'] = undefined;
 ApiRecipesIdGet200Response.prototype['title'] = undefined;
 
 /**
- * @member {String} categoryid
+ * @member {Number} time
  */
-ApiRecipesIdGet200Response.prototype['categoryid'] = undefined;
-
-/**
- * @member {String} userid
- */
-ApiRecipesIdGet200Response.prototype['userid'] = undefined;
-
-/**
- * @member {String} areaid
- */
-ApiRecipesIdGet200Response.prototype['areaid'] = undefined;
-
-/**
- * @member {String} instructions
- */
-ApiRecipesIdGet200Response.prototype['instructions'] = undefined;
+ApiRecipesIdGet200Response.prototype['time'] = undefined;
 
 /**
  * @member {String} description
@@ -175,14 +166,35 @@ ApiRecipesIdGet200Response.prototype['instructions'] = undefined;
 ApiRecipesIdGet200Response.prototype['description'] = undefined;
 
 /**
+ * @member {String} instructions
+ */
+ApiRecipesIdGet200Response.prototype['instructions'] = undefined;
+
+/**
  * @member {String} thumb
  */
 ApiRecipesIdGet200Response.prototype['thumb'] = undefined;
 
 /**
- * @member {Number} time
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
+ * @member {Boolean} isFavorite
  */
-ApiRecipesIdGet200Response.prototype['time'] = undefined;
+ApiRecipesIdGet200Response.prototype['isFavorite'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesPopularGet200ResponseInnerCreator} Creator
+ */
+ApiRecipesIdGet200Response.prototype['Creator'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesIdGet200ResponseCategory} category
+ */
+ApiRecipesIdGet200Response.prototype['category'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesIdGet200ResponseArea} area
+ */
+ApiRecipesIdGet200Response.prototype['area'] = undefined;
 
 /**
  * @member {Array.<module:model/ApiRecipesIdGet200ResponseRecipeIngredientsInner>} recipeIngredients

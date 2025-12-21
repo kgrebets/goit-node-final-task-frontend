@@ -12,6 +12,9 @@
  */
 
 import ApiClient from '../ApiClient';
+import RecipeArea from './RecipeArea';
+import RecipeCategory from './RecipeCategory';
+import RecipeCreator from './RecipeCreator';
 import RecipeIngredientItem from './RecipeIngredientItem';
 
 /**
@@ -54,32 +57,29 @@ class Recipe {
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
-            if (data.hasOwnProperty('category')) {
-                obj['category'] = ApiClient.convertToType(data['category'], 'String');
-            }
-            if (data.hasOwnProperty('categoryid')) {
-                obj['categoryid'] = ApiClient.convertToType(data['categoryid'], 'String');
-            }
-            if (data.hasOwnProperty('userid')) {
-                obj['userid'] = ApiClient.convertToType(data['userid'], 'String');
-            }
-            if (data.hasOwnProperty('area')) {
-                obj['area'] = ApiClient.convertToType(data['area'], 'String');
-            }
-            if (data.hasOwnProperty('areaid')) {
-                obj['areaid'] = ApiClient.convertToType(data['areaid'], 'String');
-            }
-            if (data.hasOwnProperty('instructions')) {
-                obj['instructions'] = ApiClient.convertToType(data['instructions'], 'String');
+            if (data.hasOwnProperty('time')) {
+                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
             }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
+            if (data.hasOwnProperty('instructions')) {
+                obj['instructions'] = ApiClient.convertToType(data['instructions'], 'String');
+            }
             if (data.hasOwnProperty('thumb')) {
                 obj['thumb'] = ApiClient.convertToType(data['thumb'], 'String');
             }
-            if (data.hasOwnProperty('time')) {
-                obj['time'] = ApiClient.convertToType(data['time'], 'Number');
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
+            }
+            if (data.hasOwnProperty('Creator')) {
+                obj['Creator'] = RecipeCreator.constructFromObject(data['Creator']);
+            }
+            if (data.hasOwnProperty('category')) {
+                obj['category'] = RecipeCategory.constructFromObject(data['category']);
+            }
+            if (data.hasOwnProperty('area')) {
+                obj['area'] = RecipeArea.constructFromObject(data['area']);
             }
             if (data.hasOwnProperty('recipeIngredients')) {
                 obj['recipeIngredients'] = ApiClient.convertToType(data['recipeIngredients'], [RecipeIngredientItem]);
@@ -103,36 +103,28 @@ class Recipe {
             throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
         }
         // ensure the json data is a string
-        if (data['category'] && !(typeof data['category'] === 'string' || data['category'] instanceof String)) {
-            throw new Error("Expected the field `category` to be a primitive type in the JSON string but got " + data['category']);
-        }
-        // ensure the json data is a string
-        if (data['categoryid'] && !(typeof data['categoryid'] === 'string' || data['categoryid'] instanceof String)) {
-            throw new Error("Expected the field `categoryid` to be a primitive type in the JSON string but got " + data['categoryid']);
-        }
-        // ensure the json data is a string
-        if (data['userid'] && !(typeof data['userid'] === 'string' || data['userid'] instanceof String)) {
-            throw new Error("Expected the field `userid` to be a primitive type in the JSON string but got " + data['userid']);
-        }
-        // ensure the json data is a string
-        if (data['area'] && !(typeof data['area'] === 'string' || data['area'] instanceof String)) {
-            throw new Error("Expected the field `area` to be a primitive type in the JSON string but got " + data['area']);
-        }
-        // ensure the json data is a string
-        if (data['areaid'] && !(typeof data['areaid'] === 'string' || data['areaid'] instanceof String)) {
-            throw new Error("Expected the field `areaid` to be a primitive type in the JSON string but got " + data['areaid']);
+        if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
+            throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
         }
         // ensure the json data is a string
         if (data['instructions'] && !(typeof data['instructions'] === 'string' || data['instructions'] instanceof String)) {
             throw new Error("Expected the field `instructions` to be a primitive type in the JSON string but got " + data['instructions']);
         }
         // ensure the json data is a string
-        if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
-            throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
-        }
-        // ensure the json data is a string
         if (data['thumb'] && !(typeof data['thumb'] === 'string' || data['thumb'] instanceof String)) {
             throw new Error("Expected the field `thumb` to be a primitive type in the JSON string but got " + data['thumb']);
+        }
+        // validate the optional field `Creator`
+        if (data['Creator']) { // data not null
+          RecipeCreator.validateJSON(data['Creator']);
+        }
+        // validate the optional field `category`
+        if (data['category']) { // data not null
+          RecipeCategory.validateJSON(data['category']);
+        }
+        // validate the optional field `area`
+        if (data['area']) { // data not null
+          RecipeArea.validateJSON(data['area']);
         }
         if (data['recipeIngredients']) { // data not null
             // ensure the json data is an array
@@ -164,34 +156,10 @@ Recipe.prototype['id'] = undefined;
 Recipe.prototype['title'] = undefined;
 
 /**
- * @member {String} category
+ * Cooking time in minutes
+ * @member {Number} time
  */
-Recipe.prototype['category'] = undefined;
-
-/**
- * @member {String} categoryid
- */
-Recipe.prototype['categoryid'] = undefined;
-
-/**
- * @member {String} userid
- */
-Recipe.prototype['userid'] = undefined;
-
-/**
- * @member {String} area
- */
-Recipe.prototype['area'] = undefined;
-
-/**
- * @member {String} areaid
- */
-Recipe.prototype['areaid'] = undefined;
-
-/**
- * @member {String} instructions
- */
-Recipe.prototype['instructions'] = undefined;
+Recipe.prototype['time'] = undefined;
 
 /**
  * @member {String} description
@@ -199,14 +167,35 @@ Recipe.prototype['instructions'] = undefined;
 Recipe.prototype['description'] = undefined;
 
 /**
+ * @member {String} instructions
+ */
+Recipe.prototype['instructions'] = undefined;
+
+/**
  * @member {String} thumb
  */
 Recipe.prototype['thumb'] = undefined;
 
 /**
- * @member {Number} time
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
+ * @member {Boolean} isFavorite
  */
-Recipe.prototype['time'] = undefined;
+Recipe.prototype['isFavorite'] = undefined;
+
+/**
+ * @member {module:model/RecipeCreator} Creator
+ */
+Recipe.prototype['Creator'] = undefined;
+
+/**
+ * @member {module:model/RecipeCategory} category
+ */
+Recipe.prototype['category'] = undefined;
+
+/**
+ * @member {module:model/RecipeArea} area
+ */
+Recipe.prototype['area'] = undefined;
 
 /**
  * @member {Array.<module:model/RecipeIngredientItem>} recipeIngredients

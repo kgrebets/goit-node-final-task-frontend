@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import ApiRecipesPopularGet200ResponseInnerCreator from './ApiRecipesPopularGet200ResponseInnerCreator';
 
 /**
  * The ApiRecipesPopularGet200ResponseInner model module.
@@ -50,9 +51,6 @@ class ApiRecipesPopularGet200ResponseInner {
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('userid')) {
-                obj['userid'] = ApiClient.convertToType(data['userid'], 'String');
-            }
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
             }
@@ -61,6 +59,12 @@ class ApiRecipesPopularGet200ResponseInner {
             }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
+            }
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
+            }
+            if (data.hasOwnProperty('Creator')) {
+                obj['Creator'] = ApiRecipesPopularGet200ResponseInnerCreator.constructFromObject(data['Creator']);
             }
             if (data.hasOwnProperty('favoritesCount')) {
                 obj['favoritesCount'] = ApiClient.convertToType(data['favoritesCount'], 'Number');
@@ -80,10 +84,6 @@ class ApiRecipesPopularGet200ResponseInner {
             throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
         }
         // ensure the json data is a string
-        if (data['userid'] && !(typeof data['userid'] === 'string' || data['userid'] instanceof String)) {
-            throw new Error("Expected the field `userid` to be a primitive type in the JSON string but got " + data['userid']);
-        }
-        // ensure the json data is a string
         if (data['title'] && !(typeof data['title'] === 'string' || data['title'] instanceof String)) {
             throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
         }
@@ -94,6 +94,10 @@ class ApiRecipesPopularGet200ResponseInner {
         // ensure the json data is a string
         if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
             throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
+        }
+        // validate the optional field `Creator`
+        if (data['Creator']) { // data not null
+          ApiRecipesPopularGet200ResponseInnerCreator.validateJSON(data['Creator']);
         }
 
         return true;
@@ -110,11 +114,6 @@ class ApiRecipesPopularGet200ResponseInner {
 ApiRecipesPopularGet200ResponseInner.prototype['id'] = undefined;
 
 /**
- * @member {String} userid
- */
-ApiRecipesPopularGet200ResponseInner.prototype['userid'] = undefined;
-
-/**
  * @member {String} title
  */
 ApiRecipesPopularGet200ResponseInner.prototype['title'] = undefined;
@@ -128,6 +127,17 @@ ApiRecipesPopularGet200ResponseInner.prototype['thumb'] = undefined;
  * @member {String} description
  */
 ApiRecipesPopularGet200ResponseInner.prototype['description'] = undefined;
+
+/**
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
+ * @member {Boolean} isFavorite
+ */
+ApiRecipesPopularGet200ResponseInner.prototype['isFavorite'] = undefined;
+
+/**
+ * @member {module:model/ApiRecipesPopularGet200ResponseInnerCreator} Creator
+ */
+ApiRecipesPopularGet200ResponseInner.prototype['Creator'] = undefined;
 
 /**
  * @member {Number} favoritesCount

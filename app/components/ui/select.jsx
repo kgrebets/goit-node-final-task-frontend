@@ -16,8 +16,6 @@ const Select = ({
   const [selectValue, setSelectValue] = useState(value);
   const isPlaceholder = selectValue === '' || selectValue == null;
 
-  // TODO: Rotate icon
-
   return (
     <div className={clsx('relative', wrapperClassName)}>
       <select
@@ -36,13 +34,13 @@ const Select = ({
           className
         )}
       >
-        <option value="" disabled hidden>
+        <option value=""  >
           {optionPlaceholderText}
         </option>
 
         {options.map((opt) => (
-          <option key={opt.value} value={opt.value} disabled={opt.disabled}>
-            {opt.label}
+          <option key={opt.id} value={opt.id} disabled={opt.disabled}>
+            {opt.name}
           </option>
         ))}
       </select>

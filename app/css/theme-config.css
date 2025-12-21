@@ -1,15 +1,39 @@
 /* Base styles for */
 @theme {
-    --color-primary: #050505;
-    --color-secondary: #1A1A1A;
-    --color-tertiary: #BFBEBE;
-    --color-error-primary: #AE0000;
+  --color-primary: #050505;
+  --color-secondary: #1a1a1a;
+  --color-tertiary: #bfbebe;
+  --color-error-primary: #ae0000;
 
-    --font-sans: 'Mulish', sans-serif;
+  --font-sans: 'Mulish', sans-serif;
 
-    --spacing-7_5: 1.875rem; /** 30px */
+  --spacing-7_5: 1.875rem; /** 30px */
+  --z-index-1: 1;
 
-    --radius-7_5: 1.875rem; /** 30px */
+  --spacing-7_5: 1.875rem; /** 30px */
+  --spacing-21: 5.25rem; /** 84px */
+  --spacing-92_25: 23.063rem; /** 369px */
+  --spacing-133_75: 33.438rem; /** 535px */
 
-    --breakpoint-2xl: 87.5rem;
+  --radius-7_5: 1.875rem; /** 30px */
+
+  --radius-3_75: 0.9375rem; /* 15px */
+
+  --text-avatar-sm: 0.875rem;
+
+  --text-2_75xl: 1.75rem;
+  --text-2_75xl--line-height: 2rem;
+
+  --text-4_25xl: 2.5rem;
+  --text-4_25xl--line-height: 2.5rem;
+
+  --text-6_75xl: 4.375rem;
+  --text-6_75xl--line-height: 4.375rem;
+
+  --text-7_75xl: 5.625rem;
+  --text-7_75xl--line-height: 5.625rem;
+
+  --breakpoint-xs: 23.4375rem; /* 375px — mobile adaptive */
+  --breakpoint-md: 48rem; /* 768px — tablet */
+  --breakpoint-desktop: 90rem; /* 1440px — desktop */
 }

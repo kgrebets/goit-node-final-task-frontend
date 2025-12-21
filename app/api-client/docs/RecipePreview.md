@@ -5,13 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**userid** | **String** |  | [optional] 
 **title** | **String** |  | [optional] 
 **thumb** | **String** |  | [optional] 
-**area** | **String** |  | [optional] 
-**areaid** | **String** |  | [optional] 
-**category** | **String** |  | [optional] 
-**categoryid** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
+**isFavorite** | **Boolean** | Flag whether recipe is in the user&#39;s favorites. Appears only for authenticated users. | [optional] 
+**creator** | [**ApiRecipesPopularGet200ResponseInnerCreator**](ApiRecipesPopularGet200ResponseInnerCreator.md) |  | [optional] 
+**category** | [**ApiRecipesGet200ResponseResultsInnerCategory**](ApiRecipesGet200ResponseResultsInnerCategory.md) |  | [optional] 
+**area** | [**RecipePreviewArea**](RecipePreviewArea.md) |  | [optional] 
 
 
