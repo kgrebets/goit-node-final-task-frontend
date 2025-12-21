@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **time** | **Number** | Cooking time in minutes | [optional] 
 **thumb** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
-**isFavorite** | **Boolean** |  | [optional] 
+**isFavorite** | **Boolean** | Flag whether recipe is in the user&#39;s favorites. Appears only for authenticated users. | [optional] 
 **creator** | [**ApiRecipesGet200ResponseResultsInnerCreator**](ApiRecipesGet200ResponseResultsInnerCreator.md) |  | [optional] 
 **category** | [**ApiRecipesGet200ResponseResultsInnerCategory**](ApiRecipesGet200ResponseResultsInnerCategory.md) |  | [optional] 
 **area** | [**ApiRecipesGet200ResponseResultsInnerArea**](ApiRecipesGet200ResponseResultsInnerArea.md) |  | [optional] 

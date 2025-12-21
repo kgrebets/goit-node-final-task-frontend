@@ -12,9 +12,9 @@
  */
 
 import ApiClient from '../ApiClient';
-import ApiRecipesIdGet200ResponseArea from './ApiRecipesIdGet200ResponseArea';
-import ApiRecipesIdGet200ResponseCategory from './ApiRecipesIdGet200ResponseCategory';
-import ApiRecipesIdGet200ResponseCreator from './ApiRecipesIdGet200ResponseCreator';
+import RecipeArea from './RecipeArea';
+import RecipeCategory from './RecipeCategory';
+import RecipeCreator from './RecipeCreator';
 import RecipeIngredientItem from './RecipeIngredientItem';
 
 /**
@@ -69,14 +69,17 @@ class Recipe {
             if (data.hasOwnProperty('thumb')) {
                 obj['thumb'] = ApiClient.convertToType(data['thumb'], 'String');
             }
+            if (data.hasOwnProperty('isFavorite')) {
+                obj['isFavorite'] = ApiClient.convertToType(data['isFavorite'], 'Boolean');
+            }
             if (data.hasOwnProperty('Creator')) {
-                obj['Creator'] = ApiRecipesIdGet200ResponseCreator.constructFromObject(data['Creator']);
+                obj['Creator'] = RecipeCreator.constructFromObject(data['Creator']);
             }
             if (data.hasOwnProperty('category')) {
-                obj['category'] = ApiRecipesIdGet200ResponseCategory.constructFromObject(data['category']);
+                obj['category'] = RecipeCategory.constructFromObject(data['category']);
             }
             if (data.hasOwnProperty('area')) {
-                obj['area'] = ApiRecipesIdGet200ResponseArea.constructFromObject(data['area']);
+                obj['area'] = RecipeArea.constructFromObject(data['area']);
             }
             if (data.hasOwnProperty('recipeIngredients')) {
                 obj['recipeIngredients'] = ApiClient.convertToType(data['recipeIngredients'], [RecipeIngredientItem]);
@@ -113,15 +116,15 @@ class Recipe {
         }
         // validate the optional field `Creator`
         if (data['Creator']) { // data not null
-          ApiRecipesIdGet200ResponseCreator.validateJSON(data['Creator']);
+          RecipeCreator.validateJSON(data['Creator']);
         }
         // validate the optional field `category`
         if (data['category']) { // data not null
-          ApiRecipesIdGet200ResponseCategory.validateJSON(data['category']);
+          RecipeCategory.validateJSON(data['category']);
         }
         // validate the optional field `area`
         if (data['area']) { // data not null
-          ApiRecipesIdGet200ResponseArea.validateJSON(data['area']);
+          RecipeArea.validateJSON(data['area']);
         }
         if (data['recipeIngredients']) { // data not null
             // ensure the json data is an array
@@ -174,17 +177,23 @@ Recipe.prototype['instructions'] = undefined;
 Recipe.prototype['thumb'] = undefined;
 
 /**
- * @member {module:model/ApiRecipesIdGet200ResponseCreator} Creator
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
+ * @member {Boolean} isFavorite
+ */
+Recipe.prototype['isFavorite'] = undefined;
+
+/**
+ * @member {module:model/RecipeCreator} Creator
  */
 Recipe.prototype['Creator'] = undefined;
 
 /**
- * @member {module:model/ApiRecipesIdGet200ResponseCategory} category
+ * @member {module:model/RecipeCategory} category
  */
 Recipe.prototype['category'] = undefined;
 
 /**
- * @member {module:model/ApiRecipesIdGet200ResponseArea} area
+ * @member {module:model/RecipeArea} area
  */
 Recipe.prototype['area'] = undefined;
 

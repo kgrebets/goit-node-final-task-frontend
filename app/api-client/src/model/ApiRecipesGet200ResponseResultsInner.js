@@ -151,6 +151,7 @@ ApiRecipesGet200ResponseResultsInner.prototype['thumb'] = undefined;
 ApiRecipesGet200ResponseResultsInner.prototype['description'] = undefined;
 
 /**
+ * Flag whether recipe is in the user's favorites. Appears only for authenticated users.
  * @member {Boolean} isFavorite
  */
 ApiRecipesGet200ResponseResultsInner.prototype['isFavorite'] = undefined;

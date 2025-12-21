@@ -8,8 +8,9 @@ Name | Type | Description | Notes
 **title** | **String** |  | [optional] 
 **thumb** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
-**creator** | [**ApiRecipesGet200ResponseResultsInnerCreator**](ApiRecipesGet200ResponseResultsInnerCreator.md) |  | [optional] 
+**isFavorite** | **Boolean** | Flag whether recipe is in the user&#39;s favorites. Appears only for authenticated users. | [optional] 
+**creator** | [**ApiRecipesPopularGet200ResponseInnerCreator**](ApiRecipesPopularGet200ResponseInnerCreator.md) |  | [optional] 
 **category** | [**ApiRecipesGet200ResponseResultsInnerCategory**](ApiRecipesGet200ResponseResultsInnerCategory.md) |  | [optional] 
-**area** | [**ApiRecipesGet200ResponseResultsInnerArea**](ApiRecipesGet200ResponseResultsInnerArea.md) |  | [optional] 
+**area** | [**RecipePreviewArea**](RecipePreviewArea.md) |  | [optional] 
 
 

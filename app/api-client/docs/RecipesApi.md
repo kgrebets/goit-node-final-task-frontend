@@ -281,7 +281,7 @@ let bearerAuth = defaultClient.authentications['bearerAuth'];
 bearerAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new FoodiesApi.RecipesApi();
-let id = "6462a8f74c3d0ddd28897fe3"; // String | Recipe ID
+let id = "6462a8f74c3d0ddd288980d1"; // String | Recipe ID
 apiInstance.apiRecipesIdGet(id).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -321,6 +321,10 @@ Get popular recipes (most favorited)
 
 ```javascript
 import FoodiesApi from 'foodies_api';
+let defaultClient = FoodiesApi.ApiClient.instance;
+// Configure Bearer (JWT) access token for authorization: bearerAuth
+let bearerAuth = defaultClient.authentications['bearerAuth'];
+bearerAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new FoodiesApi.RecipesApi();
 let opts = {
@@ -349,7 +353,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

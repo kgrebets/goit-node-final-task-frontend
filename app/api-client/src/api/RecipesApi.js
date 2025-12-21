@@ -360,7 +360,7 @@ export default class RecipesApi {
       let formParams = {
       };
 
-      let authNames = [];
+      let authNames = ['bearerAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = [ApiRecipesPopularGet200ResponseInner];

@@ -22,12 +22,12 @@ export const addRecipeToFavorite = createAsyncThunk(
 
       await recipesApi.apiRecipesIdFavoritePost(payload);
 
-      return payload
+      return payload;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
-)
+);
 
 export const removeRecipeFromFavorite = createAsyncThunk(
   'recipes/removeFromFavorite',
@@ -42,4 +42,4 @@ export const removeRecipeFromFavorite = createAsyncThunk(
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
-)
+);

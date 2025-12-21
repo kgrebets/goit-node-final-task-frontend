@@ -10,9 +10,10 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] 
 **instructions** | **String** |  | [optional] 
 **thumb** | **String** |  | [optional] 
-**creator** | [**ApiRecipesIdGet200ResponseCreator**](ApiRecipesIdGet200ResponseCreator.md) |  | [optional] 
-**category** | [**ApiRecipesIdGet200ResponseCategory**](ApiRecipesIdGet200ResponseCategory.md) |  | [optional] 
-**area** | [**ApiRecipesIdGet200ResponseArea**](ApiRecipesIdGet200ResponseArea.md) |  | [optional] 
+**isFavorite** | **Boolean** | Flag whether recipe is in the user&#39;s favorites. Appears only for authenticated users. | [optional] 
+**creator** | [**RecipeCreator**](RecipeCreator.md) |  | [optional] 
+**category** | [**RecipeCategory**](RecipeCategory.md) |  | [optional] 
+**area** | [**RecipeArea**](RecipeArea.md) |  | [optional] 
 **recipeIngredients** | [**[RecipeIngredientItem]**](RecipeIngredientItem.md) |  | [optional] 
 
 
