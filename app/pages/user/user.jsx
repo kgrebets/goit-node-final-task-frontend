@@ -87,6 +87,24 @@ const User = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-[394px_1fr] gap-8 lg:gap-10">
             <div className="w-full lg:w-[394px]">
               <UserInfo user={user} isOwnProfile={isOwnProfile} />
+              <div className="mt-8 flex justify-center">
+                {isOwnProfile ? (
+                  <button
+                    onClick={() => setIsLogoutModalOpen(true)}
+                    className="w-[394px] h-14 rounded-[30px] bg-gray-900 text-white border-none px-16 py-4 hover:bg-gray-800 transition-colors flex justify-center items-center"
+                  >
+                    Log Out
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleFollow}
+                    disabled={followMutation.isPending}
+                    className="w-[394px] h-14 rounded-[30px] bg-gray-900 text-white border-none px-16 py-4 hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center"
+                  >
+                    {user?.isFollowing ? 'Unfollow' : 'Follow'}
+                  </button>
+                )}
+              </div>
             </div>
             <div className="flex-1 min-w-0">
               <TabsList userId={user?.id} />
