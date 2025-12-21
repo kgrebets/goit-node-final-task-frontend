@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchRecipeDetails } from './recipeDetailsOps.js';
+import { addRecipeToFavorite, removeRecipeFromFavorite } from './recipesOps.js';
 
 const initialState = {
   data: null,
@@ -30,6 +31,19 @@ const recipeDetailsSlice = createSlice({
       .addCase(fetchRecipeDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || 'Failed to load recipe details';
+      })
+
+      .addCase(addRecipeToFavorite.fulfilled, (state, action) => {
+        const id = String(action.payload);
+        if (String(state.data?.id) === id) {
+          state.data = { ...state.data, isFavorite: true };
+        }
+      })
+      .addCase(removeRecipeFromFavorite.fulfilled, (state, action) => {
+        const id = String(action.payload);
+        if (String(state.data?.id) === id) {
+          state.data = { ...state.data, isFavorite: false };
+        }
       });
   },
 });

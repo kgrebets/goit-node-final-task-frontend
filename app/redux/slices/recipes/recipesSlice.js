@@ -8,7 +8,7 @@ import {
 const recipesSlice = createSlice({
   name: 'recipes',
   initialState: {
-    items: [],
+    items: { results: [], total: 0, page: 1, totalPages: 1 },
     isLoading: false,
     isError: false,
     errorMessage: '',
@@ -41,12 +41,13 @@ const recipesSlice = createSlice({
       state.isLoading = false;
 
       const recipeId = String(action.payload);
+      const currentResults = state.items?.results ?? [];
 
-      const results = state.items.results.map((r) =>
+      const results = currentResults.map((r) =>
         String(r.id) === recipeId ? { ...r, isFavorite: true } : r
       );
 
-      state.items = { ...state.items, results };
+      state.items = { ...(state.items || {}), results };
     });
 
     builder.addCase(addRecipeToFavorite.rejected, (state, action) => {
@@ -65,12 +66,13 @@ const recipesSlice = createSlice({
       state.isLoading = false;
 
       const recipeId = String(action.payload);
+      const currentResults = state.items?.results ?? [];
 
-      const results = state.items.results.map((r) =>
+      const results = currentResults.map((r) =>
         String(r.id) === recipeId ? { ...r, isFavorite: false } : r
       );
 
-      state.items = { ...state.items, results };
+      state.items = { ...(state.items || {}), results };
     });
 
     builder.addCase(removeRecipeFromFavorite.rejected, (state, action) => {

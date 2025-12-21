@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
+import { useAuth } from '../../features/auth/AuthProvider.jsx';
 import getAvatarImageUrl from '../../helpers/getAvatarImageUrl';
 
 export default function UserBadgeButton({
@@ -6,21 +7,20 @@ export default function UserBadgeButton({
   username,
   avatar,
   label = 'Created by:',
-  size = 'md',
-  requireAuth,
 }) {
-  const navigate = useNavigate();
-
-  if (!username) return null;
+  const { isLoggedIn, openSignIn } = useAuth();
+  if (!username || !userId) return null;
 
   const handleClick = (e) => {
-    if (requireAuth && requireAuth(e) === false) return;
-    if (userId) navigate(`/user/${userId}`);
+    if (!isLoggedIn) {
+      e.preventDefault();
+      return openSignIn();
+    }
   };
 
   return (
-    <button
-      type="button"
+    <Link
+      to={`/user/${userId}`}
       onClick={handleClick}
       className="relative z-10 pointer-events-auto flex items-center gap-3 text-left hover:opacity-80
              !border-0 !bg-transparent !p-0 !rounded-none normal-case"
@@ -50,6 +50,6 @@ export default function UserBadgeButton({
           {username}
         </p>
       </div>
-    </button>
+    </Link>
   );
 }

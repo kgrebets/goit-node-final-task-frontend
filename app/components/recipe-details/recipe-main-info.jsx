@@ -1,6 +1,6 @@
 import UserBadgeButton from './user-badge-button';
 
-export default function RecipeMainInfo({ recipe, requireAuth }) {
+export default function RecipeMainInfo({ recipe }) {
   if (!recipe) return null;
 
   const { title, description, time, category, Creator } = recipe;
@@ -30,7 +30,6 @@ export default function RecipeMainInfo({ recipe, requireAuth }) {
             userId={Creator.id}
             username={Creator.username}
             avatar={Creator.avatar}
-            requireAuth={requireAuth}
           />
         </div>
       )}
