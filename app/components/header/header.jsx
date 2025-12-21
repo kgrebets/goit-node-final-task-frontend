@@ -131,7 +131,7 @@ export default function Header({ classNames, dark }) {
               Home
             </NavLink>
             <NavLink
-              to="/add"
+              to="recipe/add"
               className={desktopNavLinkClass}
               onClick={handleAddClick}
             >
@@ -204,7 +204,7 @@ export default function Header({ classNames, dark }) {
                 Home
               </NavLink>
               <NavLink
-                to="/add"
+                to="recipe/add"
                 className={mobileNavLinkClass}
                 onClick={handleMobileAddClick}
               >
