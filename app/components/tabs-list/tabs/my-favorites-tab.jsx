@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import RecipesApi from '../../../api-client/src/api/RecipesApi.js';
 import TabContent from '../ui/tab-content';
 import RecipeItem from '../ui/recipe-item';
@@ -12,6 +12,7 @@ const PAGE_PARAM = 'favoritesPage';
 
 const MyFavoritesTab = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryClient = useQueryClient();
   const page = parseInt(searchParams.get(PAGE_PARAM) || '1', 10);
 
   const {
@@ -38,6 +39,17 @@ const MyFavoritesTab = () => {
     setSearchParams(newParams);
   };
 
+  const handleRemoveFromFavorites = async (id) => {
+    try {
+      await recipesApi.apiRecipesIdFavoriteDelete(id);
+      queryClient.invalidateQueries(['my-favorites']);
+      queryClient.invalidateQueries(['recipes']);
+    } catch (error) {
+      console.error('Failed to remove from favorites:', error);
+      alert('Failed to remove from favorites. Please try again.');
+    }
+  };
+
   return (
     <>
       <TabContent
@@ -52,6 +64,7 @@ const MyFavoritesTab = () => {
             thumb={recipe.thumb}
             title={recipe.title}
             description={recipe.description}
+            onDelete={handleRemoveFromFavorites}
           />
         )}
       />

@@ -1,17 +1,20 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import UsersApi from '../../../api-client/src/api/UsersApi.js';
+import RecipesApi from '../../../api-client/src/api/RecipesApi.js';
 import TabContent from '../ui/tab-content';
 import RecipeItem from '../ui/recipe-item';
 import Pagination from '../ui/pagination';
 
 const usersApi = new UsersApi();
+const recipesApi = new RecipesApi();
 
 const PAGE_PARAM = 'recipesPage';
 
 const MyRecipesTab = ({ userId, isCurrentUser = false }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryClient = useQueryClient();
   const page = parseInt(searchParams.get(PAGE_PARAM) || '1', 10);
   const targetUserId = userId || 'me';
 
@@ -44,6 +47,21 @@ const MyRecipesTab = ({ userId, isCurrentUser = false }) => {
     setSearchParams(newParams);
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this recipe?')) {
+      return;
+    }
+
+    try {
+      await recipesApi.apiRecipesIdDelete(id);
+      queryClient.invalidateQueries(['user-recipes', targetUserId]);
+      queryClient.invalidateQueries(['user-recipes']);
+    } catch (error) {
+      console.error('Failed to delete recipe:', error);
+      alert('Failed to delete recipe. Please try again.');
+    }
+  };
+
   return (
     <>
       <TabContent
@@ -58,14 +76,7 @@ const MyRecipesTab = ({ userId, isCurrentUser = false }) => {
             thumb={recipe.thumb}
             title={recipe.title}
             description={recipe.description}
-            onDelete={
-              isCurrentUser
-                ? (id) => {
-                    // TODO: Add delete functionality
-                    console.log('Delete recipe:', id);
-                  }
-                : undefined
-            }
+            onDelete={isCurrentUser ? handleDelete : undefined}
           />
         )}
       />

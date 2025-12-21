@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import UsersApi from '../../../api-client/src/api/UsersApi.js';
+import { useFollow } from '../../../features/users/useFollow.js';
 import TabContent from '../ui/tab-content';
 import FollowerItem from '../ui/follower-item';
 import Pagination from '../ui/pagination';
@@ -13,6 +14,8 @@ const ITEMS_PER_PAGE = 5;
 
 const FollowingTab = ({ userId, isCurrentUser = false }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryClient = useQueryClient();
+  const followMutation = useFollow();
   const page = parseInt(searchParams.get(PAGE_PARAM) || '1', 10);
   const targetUserId = userId || 'me';
 
@@ -47,6 +50,18 @@ const FollowingTab = ({ userId, isCurrentUser = false }) => {
     setSearchParams(newParams);
   };
 
+  const handleUnfollow = (id) => {
+    followMutation.mutate(
+      { userId: id, action: 'unfollow' },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(['following', targetUserId]);
+          queryClient.invalidateQueries(['user', id]);
+        },
+      }
+    );
+  };
+
   return (
     <>
       <TabContent
@@ -63,10 +78,7 @@ const FollowingTab = ({ userId, isCurrentUser = false }) => {
             username={user.username}
             recipesCount={user.recipesCount || 0}
             recipes={user.recipes || []}
-            onFollow={(id) => {
-              // TODO: Add unfollow functionality
-              console.log('Unfollow user:', id);
-            }}
+            onFollow={handleUnfollow}
             isFollowing={true}
           />
         )}
