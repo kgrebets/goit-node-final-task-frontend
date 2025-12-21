@@ -47,6 +47,9 @@ class ApiUsersUserIdGet200Response {
         if (data) {
             obj = obj || new ApiUsersUserIdGet200Response();
 
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+            }
             if (data.hasOwnProperty('avatar')) {
                 obj['avatar'] = ApiClient.convertToType(data['avatar'], 'String');
             }
@@ -62,6 +65,15 @@ class ApiUsersUserIdGet200Response {
             if (data.hasOwnProperty('followersCount')) {
                 obj['followersCount'] = ApiClient.convertToType(data['followersCount'], 'Number');
             }
+            if (data.hasOwnProperty('followingCount')) {
+                obj['followingCount'] = ApiClient.convertToType(data['followingCount'], 'Number');
+            }
+            if (data.hasOwnProperty('favoritesCount')) {
+                obj['favoritesCount'] = ApiClient.convertToType(data['favoritesCount'], 'Number');
+            }
+            if (data.hasOwnProperty('isFollowing')) {
+                obj['isFollowing'] = ApiClient.convertToType(data['isFollowing'], 'Boolean');
+            }
         }
         return obj;
     }
@@ -72,6 +84,10 @@ class ApiUsersUserIdGet200Response {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiUsersUserIdGet200Response</code>.
      */
     static validateJSON(data) {
+        // ensure the json data is a string
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+        }
         // ensure the json data is a string
         if (data['avatar'] && !(typeof data['avatar'] === 'string' || data['avatar'] instanceof String)) {
             throw new Error("Expected the field `avatar` to be a primitive type in the JSON string but got " + data['avatar']);
@@ -92,6 +108,11 @@ class ApiUsersUserIdGet200Response {
 }
 
 
+
+/**
+ * @member {String} id
+ */
+ApiUsersUserIdGet200Response.prototype['id'] = undefined;
 
 /**
  * @member {String} avatar
@@ -117,6 +138,21 @@ ApiUsersUserIdGet200Response.prototype['recipesCount'] = undefined;
  * @member {Number} followersCount
  */
 ApiUsersUserIdGet200Response.prototype['followersCount'] = undefined;
+
+/**
+ * @member {Number} followingCount
+ */
+ApiUsersUserIdGet200Response.prototype['followingCount'] = undefined;
+
+/**
+ * @member {Number} favoritesCount
+ */
+ApiUsersUserIdGet200Response.prototype['favoritesCount'] = undefined;
+
+/**
+ * @member {Boolean} isFollowing
+ */
+ApiUsersUserIdGet200Response.prototype['isFollowing'] = undefined;
 
 
 

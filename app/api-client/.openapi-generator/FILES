@@ -121,8 +121,3 @@ src/model/RecipeIngredientItem.js
 src/model/RecipePreview.js
 src/model/RecipePreviewArea.js
 src/model/RecipesListResponse.js
-test/model/ApiRecipesPopularGet200ResponseInnerCreator.spec.js
-test/model/RecipeArea.spec.js
-test/model/RecipeCategory.spec.js
-test/model/RecipeCreator.spec.js
-test/model/RecipePreviewArea.spec.js
