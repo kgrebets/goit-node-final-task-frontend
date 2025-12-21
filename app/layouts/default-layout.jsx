@@ -1,11 +1,22 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import Header from '../components/header';
 import mainBannerImage from '../assets/home/main-banner-image.png';
 import Testimonials from '../components/home/testimonials';
+import { useAuth } from '../features/auth/AuthProvider';
 
 const DefaultLayout = () => {
-  // TODO: NEED TO HANDLE ADD RECIPE BUTTON TO OPEN AUTH MODAL IF NOT AUTHENTICATED
+  const navigate = useNavigate();
+  const { isLoggedIn, openSignIn } = useAuth();
+
+  const handleAddRecipeClick = () => {
+    if (!isLoggedIn) {
+      openSignIn();
+      return;
+    }
+
+    navigate('/recipe/add');
+  };
   return (
     <>
       <div className="bg-primary rounded-7.5 m-2 md:m-4 lg:m-5 mb-16 md:mb-24 lg:mb-32">
@@ -20,7 +31,10 @@ const DefaultLayout = () => {
             you in the aromas and tastes of various cuisines.
           </p>
 
-          <button className="text-white hover:bg-white hover:text-primary">
+          <button
+            className="text-white hover:bg-white hover:text-primary"
+            onClick={handleAddRecipeClick}
+          >
             Add Recipe
           </button>
 
