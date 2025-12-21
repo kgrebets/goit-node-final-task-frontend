@@ -7,6 +7,7 @@ import ApiClient from '../../api-client/src/ApiClient';
 import AreasApi from '../../api-client/src/api/AreasApi';
 import CategoriesApi from '../../api-client/src/api/CategoriesApi';
 import IngredientsApi from '../../api-client/src/api/IngredientsApi';
+import Loader from '../ui/loader';
 
 import { useAuth } from '../../features/auth/AuthProvider';
 
@@ -150,7 +151,9 @@ export default function AddRecipeForm() {
       if (!res.ok) {
         const body = await res.json().catch(() => null);
         console.error('Create recipe error', body);
-        alert(body?.message || `Failed to create recipe (status ${res.status})`);
+        alert(
+          body?.message || `Failed to create recipe (status ${res.status})`
+        );
         return;
       }
 
@@ -173,7 +176,7 @@ export default function AddRecipeForm() {
   };
 
   if (loadingOptions) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   return (
@@ -277,7 +280,9 @@ export default function AddRecipeForm() {
                     name="categoryId"
                     className="field-select"
                     value={values.categoryId}
-                    onChange={(e) => setFieldValue('categoryId', e.target.value)}
+                    onChange={(e) =>
+                      setFieldValue('categoryId', e.target.value)
+                    }
                   >
                     <option value="">Select a category</option>
                     {categories.map((cat, index) => (

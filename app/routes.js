@@ -8,7 +8,7 @@ export default [
   layout('./layouts/base-layout.jsx', [
     route('style-guide', './pages/style-guide/style-guide.jsx'),
     route('user/:id?', './pages/user/user.jsx'),
-    route('add', './pages/add/add-recipe.jsx'),
+    route('recipe/add', './pages/add-recipe/add-recipe.jsx'),
     route('recipe/:id', './pages/recipe-details/recipe-details.jsx'),
   ]),
 ];
