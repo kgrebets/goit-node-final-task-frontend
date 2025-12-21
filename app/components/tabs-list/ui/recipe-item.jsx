@@ -31,7 +31,7 @@ export default function RecipeItem({
           </p>
         </Link>
       </div>
-      <div className="flex flex-col items-center gap-2 flex-shrink-0">
+      <div className="flex flex-row items-center gap-2 flex-shrink-0">
         <Link
           to={`/recipe/${id}`}
           className="w-10 h-10 flex items-center justify-center rounded-full border border-tertiary hover:bg-primary/10 transition-colors"
@@ -47,10 +47,10 @@ export default function RecipeItem({
               e.stopPropagation();
               onDelete(id);
             }}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-tertiary hover:bg-red-500/10 transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-tertiary hover:bg-primary/10 transition-colors p-0"
             aria-label={`Delete ${title}`}
           >
-            <Icon name="trash" size={18} className="text-red-500" />
+            <Icon name="trash" size={18} className="text-primary" />
           </button>
         )}
       </div>
