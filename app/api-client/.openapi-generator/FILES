@@ -131,7 +131,3 @@ src/model/RecipeIngredientItem.js
 src/model/RecipePreview.js
 src/model/RecipePreviewArea.js
 src/model/RecipesListResponse.js
-test/model/ApiTestimonialsGet200ResponseInner.spec.js
-test/model/ApiTestimonialsGet200ResponseInnerUser.spec.js
-test/model/ApiUsersFollowingGet200ResponseInnerUserFollow.spec.js
-test/model/ApiUsersUserIdFollowersGet200ResponseInnerUserFollow.spec.js
