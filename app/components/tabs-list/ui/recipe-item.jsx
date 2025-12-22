@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import Icon from '../../Icon';
+import getCloudImage from '../../../helpers/getRecipeImage.js';
 
 export default function RecipeItem({
   id,
@@ -15,7 +16,7 @@ export default function RecipeItem({
         className="flex-shrink-0 w-25 h-25 rounded-lg overflow-hidden"
       >
         <img
-          src={thumb}
+          src={getCloudImage(thumb)}
           alt={title}
           className="w-full h-full object-cover"
           loading="lazy"

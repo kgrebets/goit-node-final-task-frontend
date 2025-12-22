@@ -7,6 +7,8 @@ import {
 import PathInfo from '../../../components/path-info';
 import ErrorMessage from '../../../components/ui/error-message';
 import Loader from '../../../components/ui/loader';
+import getCategoryImageUrl from '../../../helpers/getCategoryImageUrl.js';
+import getCloudImage from '../../../helpers/getRecipeImage.js';
 
 export default function RecipeInfo({ recipe, isLoading, error }) {
   if (isLoading) {
@@ -42,7 +44,7 @@ export default function RecipeInfo({ recipe, isLoading, error }) {
             <div className="desktop:sticky desktop:top-20">
               <div className="overflow-hidden rounded-7.5">
                 <img
-                  src={recipe.thumb}
+                  src={getCloudImage(recipe.thumb)}
                   alt={recipe.title}
                   className="h-[318px] md:h-[400px] w-full object-cover"
                   loading="lazy"

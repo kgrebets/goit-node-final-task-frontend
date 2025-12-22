@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import Icon from '../../Icon';
 import getAvatarImageUrl from '../../../helpers/getAvatarImageUrl';
+import getCloudImage from '../../../helpers/getRecipeImage.js';
 
 export default function FollowerItem({
   id,
@@ -70,7 +71,7 @@ export default function FollowerItem({
               className="w-12 h-12 md:w-16 md:h-16 rounded-lg overflow-hidden"
             >
               <img
-                src={recipe.thumb}
+                src={getCloudImage(recipe.thumb)}
                 alt={recipe.title || `Recipe ${index + 1}`}
                 className="w-full h-full object-cover"
                 loading="lazy"

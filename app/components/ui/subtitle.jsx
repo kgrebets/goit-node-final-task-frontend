@@ -1,3 +1,3 @@
 export default function Subtitle({ children }) {
-    return <h2 className="subtitle">{children}</h2>;
+    return <p className="text-sm mt-4 md:mt-5">{children}</p>;
 }

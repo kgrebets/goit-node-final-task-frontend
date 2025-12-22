@@ -7,6 +7,8 @@ import recipesReducer from './slices/recipes/recipesSlice.js';
 import filtersReducer from './slices/filters/filtersSlice.js';
 import recipeDetailsReducer from './slices/recipes/recipeDetailsSlice.js';
 import popularRecipesReducer from './slices/recipes/popularRecipesSlice.js';
+import { optionsApi } from './slices/optionsApiSlice/optionsApiSlice.js';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
 const persistorConfig = {
   key: 'root',
@@ -21,6 +23,7 @@ const rootReducer = combineReducers({
   filters: filtersReducer,
   recipeDetails: recipeDetailsReducer,
   popularRecipes: popularRecipesReducer,
+  [optionsApi.reducerPath]: optionsApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistorConfig, rootReducer);
@@ -30,9 +33,11 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(optionsApi.middleware),
 });
 
 const persistor = persistStore(store);
+
+setupListeners(store.dispatch);
 
 export { store, persistor };

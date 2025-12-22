@@ -9,6 +9,7 @@ import {
 import './app.css';
 import Footer from './components/footer';
 import { HeaderThemeProvider } from './features/header-theme.jsx';
+import { Toaster } from 'react-hot-toast';
 
 export const links = () => [
   {
@@ -54,6 +55,7 @@ export function Layout({ children }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <Toaster/>
       </body>
     </html>
   );

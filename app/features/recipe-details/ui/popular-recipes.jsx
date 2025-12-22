@@ -12,7 +12,7 @@ export default function PopularRecipes({ items, isLoading, error }) {
   if (!items.length) return null;
 
   return (
-    <div className="mx-auto w-full px-4 md:px-8 desktop:px-20 mt-16 md:mt-[100px] desktop:mt-[120px] mb-16 md:mb-[100px] desktop:mb-[120px]">
+    <div className="container my-16 md:my-24 2xl:my-32">
       <section>
         <h2 className="text-xl mb-6">Popular recipes</h2>
 

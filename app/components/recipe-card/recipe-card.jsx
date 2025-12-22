@@ -10,6 +10,7 @@ import {
   addRecipeToFavorite,
   removeRecipeFromFavorite,
 } from '../../redux/slices/recipes/recipesOps.js';
+import getCloudImage from '../../helpers/getRecipeImage.js';
 
 const RecipeCard = ({
   Creator,
@@ -38,7 +39,7 @@ const RecipeCard = ({
   return (
     <div>
       <img
-        src={thumb}
+        src={getCloudImage(thumb)}
         className="w-full h-64 object-cover rounded-7.5 mb-4"
         alt={title}
         loading="lazy"

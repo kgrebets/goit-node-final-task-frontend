@@ -9,6 +9,7 @@ const InputAdvanced = ({
   mainWrapperClasses,
   showMinMaxChars,
   maxChars,
+  counterClasses,
   ...props
 }) => {
   const [minChars, setMinChars] = useState(0);
@@ -51,7 +52,7 @@ const InputAdvanced = ({
           ) : null}
         </div>
         {showMinMaxChars ? (
-          <div className="absolute inset-y-2.5 end-0 flex items-start pointer-events-none pe-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none invalid:text-error-primary">
+          <div className={twMerge('absolute inset-y-2.5 end-0 flex items-start pointer-events-none pe-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none invalid:text-error-primary', counterClasses)}>
             {minChars}<span className="text-tertiary invalid:text-error-primary">/{maxChars}</span>
           </div>
         ) : null}
