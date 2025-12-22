@@ -46,8 +46,10 @@ const initialValues = {
   areaId: '',
   categoryId: '',
   cookingTime: 10,
+
   ingredientId: '',
   ingredientQuantity: '',
+
   ingredients: [],
   instructions: '',
 };
@@ -72,11 +74,17 @@ export default function AddRecipeForm() {
 
     do {
       const resp = await ingredientsApi.apiIngredientsGet({ page, limit });
-      const pageData = resp?.data || resp || {};
-      const { results = [], totalPages: respTotalPages = 1 } = pageData;
+
+      const data = resp?.data ?? resp ?? {};
+
+      const results = Array.isArray(data?.results) ? data.results : [];
+      const tp =
+        typeof data?.totalPages === 'number' && data.totalPages > 0
+          ? data.totalPages
+          : 1;
 
       all.push(...results);
-      totalPages = respTotalPages || 1;
+      totalPages = tp;
       page += 1;
     } while (page <= totalPages);
 
@@ -96,7 +104,7 @@ export default function AddRecipeForm() {
         const categoriesApi = new CategoriesApi();
         const ingredientsApi = new IngredientsApi();
 
-        const [areasData, categoriesData, ingredientsArray] = await Promise.all(
+        const [areasResp, categoriesResp, ingredientsArray] = await Promise.all(
           [
             areasApi.apiAreasGet(),
             categoriesApi.apiCategoriesGet(),
@@ -104,8 +112,24 @@ export default function AddRecipeForm() {
           ]
         );
 
-        setAreas(Array.isArray(areasData) ? areasData : []);
-        setCategories(Array.isArray(categoriesData) ? categoriesData : []);
+        const areasData = Array.isArray(areasResp?.data?.results)
+          ? areasResp.data.results
+          : Array.isArray(areasResp?.results)
+            ? areasResp.results
+            : Array.isArray(areasResp)
+              ? areasResp
+              : [];
+
+        const categoriesData = Array.isArray(categoriesResp?.data?.results)
+          ? categoriesResp.data.results
+          : Array.isArray(categoriesResp?.results)
+            ? categoriesResp.results
+            : Array.isArray(categoriesResp)
+              ? categoriesResp
+              : [];
+
+        setAreas(areasData);
+        setCategories(categoriesData);
         setAllIngredients(
           Array.isArray(ingredientsArray) ? ingredientsArray : []
         );
@@ -118,27 +142,36 @@ export default function AddRecipeForm() {
     }
 
     setupAndLoad();
-  }, [token]);
+  }, []);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const formData = new FormData();
-      formData.append('title', values.title);
-      formData.append('description', values.description);
-      formData.append('category', values.categoryId);
-      formData.append('area', values.areaId);
-      formData.append('time', String(values.cookingTime));
-      formData.append('instructions', values.instructions);
-
-      if (values.photo) {
-        formData.append('image', values.photo);
+      const hasMissingIngredientIds = (values.ingredients || []).some(
+        (x) => !x?.id || x.id === 'undefined'
+      );
+      if (hasMissingIngredientIds) {
+        alert('Some ingredients have missing id. Please re-add ingredients.');
+        return;
       }
 
-      const ingredientsPayload = values.ingredients.map((item) => ({
-        ingredientsId: item.id,
+      const formData = new FormData();
+
+      formData.append('title', values.title);
+      formData.append('description', values.description);
+      formData.append('instructions', values.instructions);
+      formData.append('time', String(values.cookingTime));
+      formData.append('categoryid', values.categoryId);
+      formData.append('areaid', values.areaId);
+
+      const ingredientsPayload = (values.ingredients || []).map((item) => ({
+        id: item.id,
         measure: item.quantity,
       }));
       formData.append('ingredients', JSON.stringify(ingredientsPayload));
+
+      if (values.photo) {
+        formData.append('thumb', values.photo);
+      }
 
       const res = await fetch(`${API_BASE_URL}/api/recipes`, {
         method: 'POST',
@@ -161,14 +194,14 @@ export default function AddRecipeForm() {
       const newId = data?.id || data?._id;
 
       if (newId) {
-        navigate(`/recipes/${newId}`);
+        navigate(`/recipe/${newId}`);
       } else {
         alert('Recipe created, but no id in response');
         resetForm();
         setPhotoPreview(null);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
       alert('Failed to create recipe');
     } finally {
       setSubmitting(false);
@@ -184,10 +217,18 @@ export default function AddRecipeForm() {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      enableReinitialize={false}
       validateOnBlur={true}
       validateOnChange={false}
     >
-      {({ values, setFieldValue, isSubmitting, resetForm }) => (
+      {({
+        values,
+        errors,
+        setFieldValue,
+        isSubmitting,
+        resetForm,
+        submitCount,
+      }) => (
         <Form className="add-recipe-form">
           <div className="add-recipe-form-left">
             <div
@@ -227,7 +268,6 @@ export default function AddRecipeForm() {
                 }}
               />
             </div>
-
             <ErrorMessage
               name="photo"
               component="div"
@@ -287,8 +327,8 @@ export default function AddRecipeForm() {
                     <option value="">Select a category</option>
                     {categories.map((cat, index) => (
                       <option
-                        key={`${cat.id || cat.name}-${index}`}
-                        value={cat.name}
+                        key={`${cat.id || cat._id || cat.name}-${index}`}
+                        value={String(cat.id || cat._id)}
                       >
                         {cat.name}
                       </option>
@@ -361,8 +401,8 @@ export default function AddRecipeForm() {
                   <option value="">Area</option>
                   {areas.map((area, index) => (
                     <option
-                      key={`${area.id || area.name}-${index}`}
-                      value={area.name}
+                      key={`${area.id || area._id || area.name}-${index}`}
+                      value={String(area.id || area._id)}
                     >
                       {area.name}
                     </option>
@@ -391,7 +431,10 @@ export default function AddRecipeForm() {
                   >
                     <option value="">Add the ingredient</option>
                     {allIngredients.map((ing, index) => (
-                      <option key={`${ing.id}-${index}`} value={index}>
+                      <option
+                        key={`${ing.id || ing._id || ing.name}-${index}`}
+                        value={String(ing.id || ing._id)}
+                      >
                         {ing.name}
                       </option>
                     ))}
@@ -404,6 +447,7 @@ export default function AddRecipeForm() {
                     className="field-input enter-quantity"
                   />
                 </div>
+
                 <button
                   type="button"
                   className="btn-secondary"
@@ -413,15 +457,26 @@ export default function AddRecipeForm() {
                       return;
                     }
 
-                    const idx = Number(values.ingredientId);
-                    const ing = allIngredients[idx];
+                    const ing = allIngredients.find(
+                      (x) =>
+                        String(x.id || x._id) === String(values.ingredientId)
+                    );
 
-                    if (!ing) return;
+                    if (!ing) {
+                      alert('Ingredient not found');
+                      return;
+                    }
+
+                    const ingId = String(ing.id || ing._id);
+                    if (!ingId) {
+                      alert('Ingredient id is missing');
+                      return;
+                    }
 
                     const nextList = [
                       ...(values.ingredients || []),
                       {
-                        id: ing.id,
+                        id: ingId,
                         name: ing.name,
                         image: ing.img || ing.image,
                         quantity: values.ingredientQuantity,
@@ -440,7 +495,7 @@ export default function AddRecipeForm() {
               {values.ingredients.length > 0 && (
                 <ul className="list-of-ingredients">
                   {values.ingredients.map((item, index) => (
-                    <li key={index}>
+                    <li key={`${item.id}-${index}`}>
                       {item.image && (
                         <div className="photo-of-ingredients">
                           <img src={item.image} alt={item.name} />
@@ -471,11 +526,9 @@ export default function AddRecipeForm() {
                 </ul>
               )}
 
-              <ErrorMessage
-                name="ingredients"
-                component="div"
-                className="field-error"
-              />
+              {typeof errors.ingredients === 'string' && (
+                <div className="field-error">{errors.ingredients}</div>
+              )}
             </div>
 
             <div className="field-group recipe-preparation">
@@ -498,6 +551,12 @@ export default function AddRecipeForm() {
                 className="field-error"
               />
             </div>
+
+            {submitCount > 0 && (
+              <pre className="field-error">
+                {JSON.stringify(errors, null, 2)}
+              </pre>
+            )}
 
             <div className="form-actions">
               <button

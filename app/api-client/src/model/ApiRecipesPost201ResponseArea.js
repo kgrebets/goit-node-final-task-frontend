@@ -14,20 +14,20 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The ApiAreasGet200ResponseInner model module.
- * @module model/ApiAreasGet200ResponseInner
+ * The ApiRecipesPost201ResponseArea model module.
+ * @module model/ApiRecipesPost201ResponseArea
  * @version 1.0.0
  */
-class ApiAreasGet200ResponseInner {
+class ApiRecipesPost201ResponseArea {
     /**
-     * Constructs a new <code>ApiAreasGet200ResponseInner</code>.
-     * @alias module:model/ApiAreasGet200ResponseInner
-     * @param id {String} Area unique identifier (ObjectId-like)
+     * Constructs a new <code>ApiRecipesPost201ResponseArea</code>.
+     * @alias module:model/ApiRecipesPost201ResponseArea
+     * @param id {String} 
      * @param name {String} 
      */
     constructor(id, name) { 
         
-        ApiAreasGet200ResponseInner.initialize(this, id, name);
+        ApiRecipesPost201ResponseArea.initialize(this, id, name);
     }
 
     /**
@@ -41,15 +41,15 @@ class ApiAreasGet200ResponseInner {
     }
 
     /**
-     * Constructs a <code>ApiAreasGet200ResponseInner</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ApiRecipesPost201ResponseArea</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ApiAreasGet200ResponseInner} obj Optional instance to populate.
-     * @return {module:model/ApiAreasGet200ResponseInner} The populated <code>ApiAreasGet200ResponseInner</code> instance.
+     * @param {module:model/ApiRecipesPost201ResponseArea} obj Optional instance to populate.
+     * @return {module:model/ApiRecipesPost201ResponseArea} The populated <code>ApiRecipesPost201ResponseArea</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new ApiAreasGet200ResponseInner();
+            obj = obj || new ApiRecipesPost201ResponseArea();
 
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
@@ -62,13 +62,13 @@ class ApiAreasGet200ResponseInner {
     }
 
     /**
-     * Validates the JSON data with respect to <code>ApiAreasGet200ResponseInner</code>.
+     * Validates the JSON data with respect to <code>ApiRecipesPost201ResponseArea</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiAreasGet200ResponseInner</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiRecipesPost201ResponseArea</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of ApiAreasGet200ResponseInner.RequiredProperties) {
+        for (const property of ApiRecipesPost201ResponseArea.RequiredProperties) {
             if (!data.hasOwnProperty(property)) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
@@ -88,23 +88,22 @@ class ApiAreasGet200ResponseInner {
 
 }
 
-ApiAreasGet200ResponseInner.RequiredProperties = ["id", "name"];
+ApiRecipesPost201ResponseArea.RequiredProperties = ["id", "name"];
 
 /**
- * Area unique identifier (ObjectId-like)
  * @member {String} id
  */
-ApiAreasGet200ResponseInner.prototype['id'] = undefined;
+ApiRecipesPost201ResponseArea.prototype['id'] = undefined;
 
 /**
  * @member {String} name
  */
-ApiAreasGet200ResponseInner.prototype['name'] = undefined;
+ApiRecipesPost201ResponseArea.prototype['name'] = undefined;
 
 
 
 
 
 
-export default ApiAreasGet200ResponseInner;
+export default ApiRecipesPost201ResponseArea;
 

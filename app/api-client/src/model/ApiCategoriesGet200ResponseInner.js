@@ -22,10 +22,12 @@ class ApiCategoriesGet200ResponseInner {
     /**
      * Constructs a new <code>ApiCategoriesGet200ResponseInner</code>.
      * @alias module:model/ApiCategoriesGet200ResponseInner
+     * @param id {String} Category unique identifier (ObjectId-like)
+     * @param name {String} 
      */
-    constructor() { 
+    constructor(id, name) { 
         
-        ApiCategoriesGet200ResponseInner.initialize(this);
+        ApiCategoriesGet200ResponseInner.initialize(this, id, name);
     }
 
     /**
@@ -33,7 +35,9 @@ class ApiCategoriesGet200ResponseInner {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, id, name) { 
+        obj['id'] = id;
+        obj['name'] = name;
     }
 
     /**
@@ -48,10 +52,13 @@ class ApiCategoriesGet200ResponseInner {
             obj = obj || new ApiCategoriesGet200ResponseInner();
 
             if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            }
+            if (data.hasOwnProperty('description')) {
+                obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
         }
         return obj;
@@ -63,9 +70,23 @@ class ApiCategoriesGet200ResponseInner {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiCategoriesGet200ResponseInner</code>.
      */
     static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of ApiCategoriesGet200ResponseInner.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
+        // ensure the json data is a string
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+        }
         // ensure the json data is a string
         if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
             throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
+        }
+        // ensure the json data is a string
+        if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
+            throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
         }
 
         return true;
@@ -74,10 +95,11 @@ class ApiCategoriesGet200ResponseInner {
 
 }
 
-
+ApiCategoriesGet200ResponseInner.RequiredProperties = ["id", "name"];
 
 /**
- * @member {Number} id
+ * Category unique identifier (ObjectId-like)
+ * @member {String} id
  */
 ApiCategoriesGet200ResponseInner.prototype['id'] = undefined;
 
@@ -85,6 +107,11 @@ ApiCategoriesGet200ResponseInner.prototype['id'] = undefined;
  * @member {String} name
  */
 ApiCategoriesGet200ResponseInner.prototype['name'] = undefined;
+
+/**
+ * @member {String} description
+ */
+ApiCategoriesGet200ResponseInner.prototype['description'] = undefined;
 
 
 

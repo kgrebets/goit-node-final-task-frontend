@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Number** |  | [optional] 
-**name** | **String** |  | [optional] 
+**id** | **String** | Area unique identifier (ObjectId-like) | 
+**name** | **String** |  | 
 
 

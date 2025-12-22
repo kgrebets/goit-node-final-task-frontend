@@ -41,10 +41,12 @@ import ApiRecipesIdGet404Response from './model/ApiRecipesIdGet404Response';
 import ApiRecipesPopularGet200ResponseInner from './model/ApiRecipesPopularGet200ResponseInner';
 import ApiRecipesPopularGet200ResponseInnerCreator from './model/ApiRecipesPopularGet200ResponseInnerCreator';
 import ApiRecipesPost201Response from './model/ApiRecipesPost201Response';
+import ApiRecipesPost201ResponseArea from './model/ApiRecipesPost201ResponseArea';
+import ApiRecipesPost201ResponseCategory from './model/ApiRecipesPost201ResponseCategory';
+import ApiRecipesPost201ResponseCreator from './model/ApiRecipesPost201ResponseCreator';
 import ApiRecipesPost201ResponseRecipeIngredientsInner from './model/ApiRecipesPost201ResponseRecipeIngredientsInner';
 import ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient from './model/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient';
-import ApiRecipesPostRequest from './model/ApiRecipesPostRequest';
-import ApiRecipesPostRequestIngredientsInner from './model/ApiRecipesPostRequestIngredientsInner';
+import ApiRecipesPostRequestTime from './model/ApiRecipesPostRequestTime';
 import ApiTestimonialsGet200Response from './model/ApiTestimonialsGet200Response';
 import ApiTestimonialsGet200ResponseUser from './model/ApiTestimonialsGet200ResponseUser';
 import ApiUsersFollowingGet200ResponseInner from './model/ApiUsersFollowingGet200ResponseInner';
@@ -279,6 +281,24 @@ export {
     ApiRecipesPost201Response,
 
     /**
+     * The ApiRecipesPost201ResponseArea model constructor.
+     * @property {module:model/ApiRecipesPost201ResponseArea}
+     */
+    ApiRecipesPost201ResponseArea,
+
+    /**
+     * The ApiRecipesPost201ResponseCategory model constructor.
+     * @property {module:model/ApiRecipesPost201ResponseCategory}
+     */
+    ApiRecipesPost201ResponseCategory,
+
+    /**
+     * The ApiRecipesPost201ResponseCreator model constructor.
+     * @property {module:model/ApiRecipesPost201ResponseCreator}
+     */
+    ApiRecipesPost201ResponseCreator,
+
+    /**
      * The ApiRecipesPost201ResponseRecipeIngredientsInner model constructor.
      * @property {module:model/ApiRecipesPost201ResponseRecipeIngredientsInner}
      */
@@ -291,16 +311,10 @@ export {
     ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient,
 
     /**
-     * The ApiRecipesPostRequest model constructor.
-     * @property {module:model/ApiRecipesPostRequest}
+     * The ApiRecipesPostRequestTime model constructor.
+     * @property {module:model/ApiRecipesPostRequestTime}
      */
-    ApiRecipesPostRequest,
-
-    /**
-     * The ApiRecipesPostRequestIngredientsInner model constructor.
-     * @property {module:model/ApiRecipesPostRequestIngredientsInner}
-     */
-    ApiRecipesPostRequestIngredientsInner,
+    ApiRecipesPostRequestTime,
 
     /**
      * The ApiTestimonialsGet200Response model constructor.

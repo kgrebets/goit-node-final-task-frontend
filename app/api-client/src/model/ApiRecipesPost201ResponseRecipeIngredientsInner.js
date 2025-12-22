@@ -23,10 +23,12 @@ class ApiRecipesPost201ResponseRecipeIngredientsInner {
     /**
      * Constructs a new <code>ApiRecipesPost201ResponseRecipeIngredientsInner</code>.
      * @alias module:model/ApiRecipesPost201ResponseRecipeIngredientsInner
+     * @param measure {String} 
+     * @param ingredient {module:model/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient} 
      */
-    constructor() { 
+    constructor(measure, ingredient) { 
         
-        ApiRecipesPost201ResponseRecipeIngredientsInner.initialize(this);
+        ApiRecipesPost201ResponseRecipeIngredientsInner.initialize(this, measure, ingredient);
     }
 
     /**
@@ -34,7 +36,9 @@ class ApiRecipesPost201ResponseRecipeIngredientsInner {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, measure, ingredient) { 
+        obj['measure'] = measure;
+        obj['ingredient'] = ingredient;
     }
 
     /**
@@ -64,6 +68,12 @@ class ApiRecipesPost201ResponseRecipeIngredientsInner {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiRecipesPost201ResponseRecipeIngredientsInner</code>.
      */
     static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of ApiRecipesPost201ResponseRecipeIngredientsInner.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
         // ensure the json data is a string
         if (data['measure'] && !(typeof data['measure'] === 'string' || data['measure'] instanceof String)) {
             throw new Error("Expected the field `measure` to be a primitive type in the JSON string but got " + data['measure']);
@@ -79,7 +89,7 @@ class ApiRecipesPost201ResponseRecipeIngredientsInner {
 
 }
 
-
+ApiRecipesPost201ResponseRecipeIngredientsInner.RequiredProperties = ["measure", "ingredient"];
 
 /**
  * @member {String} measure

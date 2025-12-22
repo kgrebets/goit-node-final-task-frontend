@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
-**title** | **String** |  | [optional] 
-**categoryid** | **String** |  | [optional] 
-**userid** | **String** |  | [optional] 
-**areaid** | **String** |  | [optional] 
-**instructions** | **String** |  | [optional] 
-**description** | **String** |  | [optional] 
-**thumb** | **String** |  | [optional] 
-**time** | **Number** |  | [optional] 
-**recipeIngredients** | [**[ApiRecipesPost201ResponseRecipeIngredientsInner]**](ApiRecipesPost201ResponseRecipeIngredientsInner.md) |  | [optional] 
+**id** | **String** |  | 
+**title** | **String** |  | 
+**time** | **Number** |  | 
+**description** | **String** |  | 
+**instructions** | **String** |  | 
+**thumb** | **String** |  | 
+**isFavorite** | **Boolean** |  | 
+**creator** | [**ApiRecipesPost201ResponseCreator**](ApiRecipesPost201ResponseCreator.md) |  | 
+**category** | [**ApiRecipesPost201ResponseCategory**](ApiRecipesPost201ResponseCategory.md) |  | 
+**area** | [**ApiRecipesPost201ResponseArea**](ApiRecipesPost201ResponseArea.md) |  | 
+**recipeIngredients** | [**[ApiRecipesPost201ResponseRecipeIngredientsInner]**](ApiRecipesPost201ResponseRecipeIngredientsInner.md) |  | 
 
 

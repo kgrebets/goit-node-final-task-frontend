@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ## apiRecipesPost
 
-> ApiRecipesPost201Response apiRecipesPost(apiRecipesPostRequest)
+> ApiRecipesPost201Response apiRecipesPost(title, categoryid, areaid, instructions, description, time, ingredients, thumb)
 
 Create a new recipe
 
@@ -377,8 +377,15 @@ let bearerAuth = defaultClient.authentications['bearerAuth'];
 bearerAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new FoodiesApi.RecipesApi();
-let apiRecipesPostRequest = new FoodiesApi.ApiRecipesPostRequest(); // ApiRecipesPostRequest | 
-apiInstance.apiRecipesPost(apiRecipesPostRequest).then((data) => {
+let title = "title_example"; // String | 
+let categoryid = "categoryid_example"; // String | Category id
+let areaid = "areaid_example"; // String | Area id
+let instructions = "instructions_example"; // String | 
+let description = "description_example"; // String | 
+let time = new FoodiesApi.ApiRecipesPostRequestTime(); // ApiRecipesPostRequestTime | 
+let ingredients = "ingredients_example"; // String | JSON string of ingredients array (because multipart/form-data)
+let thumb = "/path/to/file"; // File | Recipe image file
+apiInstance.apiRecipesPost(title, categoryid, areaid, instructions, description, time, ingredients, thumb).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -391,7 +398,14 @@ apiInstance.apiRecipesPost(apiRecipesPostRequest).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiRecipesPostRequest** | [**ApiRecipesPostRequest**](ApiRecipesPostRequest.md)|  | 
+ **title** | **String**|  | 
+ **categoryid** | **String**| Category id | 
+ **areaid** | **String**| Area id | 
+ **instructions** | **String**|  | 
+ **description** | **String**|  | 
+ **time** | [**ApiRecipesPostRequestTime**](ApiRecipesPostRequestTime.md)|  | 
+ **ingredients** | **String**| JSON string of ingredients array (because multipart/form-data) | 
+ **thumb** | **File**| Recipe image file | 
 
 ### Return type
 
@@ -403,6 +417,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 

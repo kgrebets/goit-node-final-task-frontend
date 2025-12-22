@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Number** |  | [optional] 
-**name** | **String** |  | [optional] 
+**id** | **String** | Category unique identifier (ObjectId-like) | 
+**name** | **String** |  | 
+**description** | **String** |  | [optional] 
 
 

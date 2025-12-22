@@ -22,10 +22,14 @@ class ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient {
     /**
      * Constructs a new <code>ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient</code>.
      * @alias module:model/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient
+     * @param id {String} 
+     * @param name {String} 
+     * @param img {String} 
+     * @param description {String} 
      */
-    constructor() { 
+    constructor(id, name, img, description) { 
         
-        ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient.initialize(this);
+        ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient.initialize(this, id, name, img, description);
     }
 
     /**
@@ -33,7 +37,11 @@ class ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, id, name, img, description) { 
+        obj['id'] = id;
+        obj['name'] = name;
+        obj['img'] = img;
+        obj['description'] = description;
     }
 
     /**
@@ -69,6 +77,12 @@ class ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient</code>.
      */
     static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
         // ensure the json data is a string
         if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
             throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
@@ -92,7 +106,7 @@ class ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient {
 
 }
 
-
+ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient.RequiredProperties = ["id", "name", "img", "description"];
 
 /**
  * @member {String} id
