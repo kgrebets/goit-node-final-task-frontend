@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import ApiUsersUserIdFollowersGet200ResponseInnerUserFollow from './ApiUsersUserIdFollowersGet200ResponseInnerUserFollow';
 
 /**
  * The ApiUsersUserIdFollowersGet200ResponseInner model module.
@@ -59,6 +60,12 @@ class ApiUsersUserIdFollowersGet200ResponseInner {
             if (data.hasOwnProperty('avatar')) {
                 obj['avatar'] = ApiClient.convertToType(data['avatar'], 'String');
             }
+            if (data.hasOwnProperty('totalRecipes')) {
+                obj['totalRecipes'] = ApiClient.convertToType(data['totalRecipes'], 'Number');
+            }
+            if (data.hasOwnProperty('user_follow')) {
+                obj['user_follow'] = ApiUsersUserIdFollowersGet200ResponseInnerUserFollow.constructFromObject(data['user_follow']);
+            }
         }
         return obj;
     }
@@ -84,6 +91,10 @@ class ApiUsersUserIdFollowersGet200ResponseInner {
         // ensure the json data is a string
         if (data['avatar'] && !(typeof data['avatar'] === 'string' || data['avatar'] instanceof String)) {
             throw new Error("Expected the field `avatar` to be a primitive type in the JSON string but got " + data['avatar']);
+        }
+        // validate the optional field `user_follow`
+        if (data['user_follow']) { // data not null
+          ApiUsersUserIdFollowersGet200ResponseInnerUserFollow.validateJSON(data['user_follow']);
         }
 
         return true;
@@ -113,6 +124,16 @@ ApiUsersUserIdFollowersGet200ResponseInner.prototype['username'] = undefined;
  * @member {String} avatar
  */
 ApiUsersUserIdFollowersGet200ResponseInner.prototype['avatar'] = undefined;
+
+/**
+ * @member {Number} totalRecipes
+ */
+ApiUsersUserIdFollowersGet200ResponseInner.prototype['totalRecipes'] = undefined;
+
+/**
+ * @member {module:model/ApiUsersUserIdFollowersGet200ResponseInnerUserFollow} user_follow
+ */
+ApiUsersUserIdFollowersGet200ResponseInner.prototype['user_follow'] = undefined;
 
 
 

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## apiTestimonialsGet
 
-> ApiTestimonialsGet200Response apiTestimonialsGet()
+> [ApiTestimonialsGet200ResponseInner] apiTestimonialsGet()
 
 Get all testimonials
 
@@ -34,7 +34,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ApiTestimonialsGet200Response**](ApiTestimonialsGet200Response.md)
+[**[ApiTestimonialsGet200ResponseInner]**](ApiTestimonialsGet200ResponseInner.md)
 
 ### Authorization
 

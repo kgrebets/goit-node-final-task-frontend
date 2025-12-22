@@ -8,5 +8,7 @@ Name | Type | Description | Notes
 **email** | **String** |  | [optional] 
 **username** | **String** |  | [optional] 
 **avatar** | **String** |  | [optional] 
+**totalRecipes** | **Number** |  | [optional] 
+**userFollow** | [**ApiUsersFollowingGet200ResponseInnerUserFollow**](ApiUsersFollowingGet200ResponseInnerUserFollow.md) |  | [optional] 
 
 

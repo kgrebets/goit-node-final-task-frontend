@@ -16,6 +16,7 @@ import ApiClient from "../ApiClient";
 import ApiUsersFollowingGet200ResponseInner from '../model/ApiUsersFollowingGet200ResponseInner';
 import ApiUsersMeGet200Response from '../model/ApiUsersMeGet200Response';
 import ApiUsersRecipesGet200Response from '../model/ApiUsersRecipesGet200Response';
+import ApiUsersUserIdFollowersGet200ResponseInner from '../model/ApiUsersUserIdFollowersGet200ResponseInner';
 import ApiUsersUserIdGet200Response from '../model/ApiUsersUserIdGet200Response';
 import ApiUsersUserIdRecipesGet200Response from '../model/ApiUsersUserIdRecipesGet200Response';
 
@@ -41,18 +42,13 @@ export default class UsersApi {
 
     /**
      * Get users that the current user is following
-     * @param {String} userId ID of the user whose followers are requested
+     * Returns a list of users the authenticated user follows, including total recipes count for each user
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>} and HTTP response
      */
-    apiUsersFollowingGetWithHttpInfo(userId) {
+    apiUsersFollowingGetWithHttpInfo() {
       let postBody = null;
-      // verify the required parameter 'userId' is set
-      if (userId === undefined || userId === null) {
-        throw new Error("Missing the required parameter 'userId' when calling apiUsersFollowingGet");
-      }
 
       let pathParams = {
-        'userId': userId
       };
       let queryParams = {
       };
@@ -74,11 +70,11 @@ export default class UsersApi {
 
     /**
      * Get users that the current user is following
-     * @param {String} userId ID of the user whose followers are requested
+     * Returns a list of users the authenticated user follows, including total recipes count for each user
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>}
      */
-    apiUsersFollowingGet(userId) {
-      return this.apiUsersFollowingGetWithHttpInfo(userId)
+    apiUsersFollowingGet() {
+      return this.apiUsersFollowingGetWithHttpInfo()
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -270,8 +266,9 @@ export default class UsersApi {
 
     /**
      * Get followers of a user
+     * Returns a list of users who follow the specified user, including total recipes count for each follower
      * @param {String} userId ID of the user whose followers are requested
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ApiUsersUserIdFollowersGet200ResponseInner>} and HTTP response
      */
     apiUsersUserIdFollowersGetWithHttpInfo(userId) {
       let postBody = null;
@@ -293,7 +290,7 @@ export default class UsersApi {
       let authNames = ['bearerAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [ApiUsersFollowingGet200ResponseInner];
+      let returnType = [ApiUsersUserIdFollowersGet200ResponseInner];
       return this.apiClient.callApi(
         '/api/users/{userId}/followers', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -303,8 +300,9 @@ export default class UsersApi {
 
     /**
      * Get followers of a user
+     * Returns a list of users who follow the specified user, including total recipes count for each follower
      * @param {String} userId ID of the user whose followers are requested
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiUsersFollowingGet200ResponseInner>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ApiUsersUserIdFollowersGet200ResponseInner>}
      */
     apiUsersUserIdFollowersGet(userId) {
       return this.apiUsersUserIdFollowersGetWithHttpInfo(userId)
