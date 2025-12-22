@@ -3,6 +3,9 @@ import AreasApi from '../../../api-client/src/api/AreasApi';
 import CategoriesApi from '../../../api-client/src/api/CategoriesApi';
 import IngredientsApi from '../../../api-client/src/api/IngredientsApi';
 import ApiClient from '../../../api-client/src/ApiClient';
+
+ApiClient.instance.basePath = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
 const ingredientsApi = new IngredientsApi();
 const areasApi = new AreasApi();
 const categoriesApi = new CategoriesApi();
