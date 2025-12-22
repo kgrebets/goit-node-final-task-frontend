@@ -11,6 +11,7 @@ import SignUpModal from '../auth/signup-modal';
 import LogOutModal from '../auth/logout-modal';
 import Hamburger from '../icons/hamburger.jsx';
 import { twMerge } from 'tailwind-merge';
+import mainBannerImage from '../../assets/home/main-banner-image.png';
 
 export default function Header({ classNames, dark }) {
   const {
@@ -173,7 +174,7 @@ export default function Header({ classNames, dark }) {
           onClick={handleCloseMobileMenu}
         >
           <div
-            className="absolute inset-x-0 top-0 h-1/2 flex flex-col bg-zinc-950 px-4 py-4 text-white"
+            className="absolute inset-0 flex flex-col bg-zinc-950 px-4 py-4 text-white"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between">
@@ -193,24 +194,36 @@ export default function Header({ classNames, dark }) {
                 ×
               </button>
             </div>
-
-            <nav className="mt-auto mb-4 flex flex-col items-center gap-3">
-              <NavLink
-                to="/"
-                className={mobileNavLinkClass}
-                end
-                onClick={handleNavClick}
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to="recipe/add"
-                className={mobileNavLinkClass}
-                onClick={handleMobileAddClick}
-              >
-                Add recipe
-              </NavLink>
-            </nav>
+            <div className="flex flex-1 pb-20">
+              <div className="flex-1 flex flex-col">
+                <div className="flex-1 flex items-center justify-center">
+                  <nav className="flex flex-col items-center justify-center gap-3">
+                    <NavLink
+                      to="/"
+                      className={mobileNavLinkClass}
+                      end
+                      onClick={handleNavClick}
+                    >
+                      Home
+                    </NavLink>
+                    <NavLink
+                      to="recipe/add"
+                      className={mobileNavLinkClass}
+                      onClick={handleMobileAddClick}
+                    >
+                      Add recipe
+                    </NavLink>
+                  </nav>
+                </div>
+                <div className="w-full max-w-sm mx-auto mt-4">
+                  <img
+                    src={mainBannerImage}
+                    alt="Featured dish"
+                    className="w-full h-auto rounded-3xl object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -6,6 +6,8 @@ import Modal from '../../modal';
 import { useLogin } from '../../../features/auth/hooks.js';
 import EyeIcon from '../../icons/eye.jsx';
 import EyeOffIcon from '../../icons/eye-off.jsx';
+import { getApiErrorMessage } from '../../../helpers/get-api-error-message.js';
+import toast from 'react-hot-toast';
 
 const signInSchema = Yup.object({
   email: Yup.string()
@@ -15,7 +17,6 @@ const signInSchema = Yup.object({
 });
 
 export default function SignInModal({ isOpen, onClose, onSwitchToSignUp }) {
-  const [localError, setLocalError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const loginMutation = useLogin();
 
@@ -26,12 +27,12 @@ export default function SignInModal({ isOpen, onClose, onSwitchToSignUp }) {
     },
     validationSchema: signInSchema,
     onSubmit: async (values, { setSubmitting }) => {
-      setLocalError('');
       try {
         await loginMutation.mutateAsync(values);
         onClose?.();
       } catch (error) {
-        setLocalError(error?.message || 'Failed to sign in.');
+        const message = getApiErrorMessage(error, 'Failed to sign in.');
+        toast.error(message);
       } finally {
         setSubmitting(false);
       }
@@ -112,10 +113,6 @@ export default function SignInModal({ isOpen, onClose, onSwitchToSignUp }) {
               ? 'Signing in...'
               : 'Sign in'}
           </button>
-
-          {localError && (
-            <p className="text-xs text-red-500 text-center">{localError}</p>
-          )}
         </form>
 
         <p className="w-full text-center text-[12px] leading-[18px] text-gray-500">
