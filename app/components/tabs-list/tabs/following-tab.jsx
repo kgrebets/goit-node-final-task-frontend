@@ -76,6 +76,7 @@ const FollowingTab = ({ userId, isCurrentUser = false }) => {
             avatar={user.avatar}
             name={user.name}
             username={user.username}
+            email={user.email}
             recipesCount={user.recipesCount || 0}
             recipes={user.recipes || []}
             onFollow={handleUnfollow}

@@ -75,6 +75,7 @@ const FollowersTab = ({ userId, isCurrentUser = false }) => {
             id={follower.id}
             avatar={follower.avatar}
             name={follower.name}
+            email={follower.email}
             username={follower.username}
             recipesCount={follower.recipesCount || 0}
             recipes={follower.recipes || []}

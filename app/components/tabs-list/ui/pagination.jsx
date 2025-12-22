@@ -19,8 +19,8 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
               className={twMerge(
                 'py-2 px-4 border-0 text-sm md:text-base',
                 item === page
-                  ? 'border border-primary text-primary font-bold'
-                  : 'text-tertiary hover:text-primary'
+                  ? 'border border-primary text-primary hover:text-white font-bold'
+                  : 'text-tertiary hover:text-white'
               )}
             >
               {item}

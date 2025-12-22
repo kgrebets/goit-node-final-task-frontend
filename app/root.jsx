@@ -55,7 +55,7 @@ export function Layout({ children }) {
         {children}
         <ScrollRestoration />
         <Scripts />
-        <Toaster/>
+        <Toaster position="top-right"/>
       </body>
     </html>
   );

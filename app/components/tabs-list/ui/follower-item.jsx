@@ -2,11 +2,13 @@ import { Link, useNavigate } from 'react-router';
 import Icon from '../../Icon';
 import getAvatarImageUrl from '../../../helpers/getAvatarImageUrl';
 import getCloudImage from '../../../helpers/getRecipeImage.js';
+import { useAuth } from '../../../features/auth/AuthProvider.jsx';
 
 export default function FollowerItem({
   id,
   avatar,
   name,
+  email,
   username,
   recipesCount = 0,
   recipes = [],
@@ -16,6 +18,7 @@ export default function FollowerItem({
   const navigate = useNavigate();
   const displayName = name || username || 'User';
   const initial = displayName.charAt(0).toUpperCase();
+  const auth = useAuth();
 
   const handleViewProfile = (e) => {
     e.preventDefault();
@@ -47,7 +50,7 @@ export default function FollowerItem({
         <p className="text-sm md:text-base text-tertiary mb-2">
           Own recipes: {recipesCount}
         </p>
-        {onFollow && (
+        {onFollow && auth.user && auth.user.email !== email && (
           <button
             type="button"
             onClick={(e) => {
