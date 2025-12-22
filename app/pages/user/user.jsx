@@ -15,18 +15,27 @@ const User = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const {
-    data: user,
-    isLoading,
+    data: currentUser,
+    isLoading: isLoadingCurrentUser,
+  } = useQuery({
+    queryKey: ['user', 'me'],
+    queryFn: () => usersApi.apiUsersMeGet(),
+  });
+
+  const isOwnProfile = !id || id === 'me' || id === currentUser?.id;
+
+  const {
+    data: otherUser,
+    isLoading: isLoadingOtherUser,
     error,
   } = useQuery({
-    queryKey: ['user', id ?? 'me'],
-    queryFn: () => {
-      if (id && id !== 'me') {
-        return usersApi.apiUsersUserIdGet(id);
-      }
-      return usersApi.apiUsersMeGet();
-    },
+    queryKey: ['user', id],
+    queryFn: () => usersApi.apiUsersUserIdGet(id),
+    enabled: !!id && id !== 'me' && !!currentUser && id !== currentUser.id,
   });
+
+  const user = isOwnProfile ? currentUser : otherUser;
+  const isLoading = isLoadingCurrentUser || (!isOwnProfile && isLoadingOtherUser);
 
   if (isLoading) {
     return (
@@ -62,8 +71,6 @@ const User = () => {
       </div>
     );
   }
-
-  const isOwnProfile = !id || id === 'me';
 
   const handleFollow = () => {
     if (!user?.id) return;
