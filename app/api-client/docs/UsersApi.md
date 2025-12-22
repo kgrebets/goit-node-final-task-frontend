@@ -18,9 +18,11 @@ Method | HTTP request | Description
 
 ## apiUsersFollowingGet
 
-> [ApiUsersFollowingGet200ResponseInner] apiUsersFollowingGet(userId)
+> [ApiUsersFollowingGet200ResponseInner] apiUsersFollowingGet()
 
 Get users that the current user is following
+
+Returns a list of users the authenticated user follows, including total recipes count for each user
 
 ### Example
 
@@ -32,8 +34,7 @@ let bearerAuth = defaultClient.authentications['bearerAuth'];
 bearerAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new FoodiesApi.UsersApi();
-let userId = "userId_example"; // String | ID of the user whose followers are requested
-apiInstance.apiUsersFollowingGet(userId).then((data) => {
+apiInstance.apiUsersFollowingGet().then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -43,10 +44,7 @@ apiInstance.apiUsersFollowingGet(userId).then((data) => {
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **String**| ID of the user whose followers are requested | 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -252,9 +250,11 @@ null (empty response body)
 
 ## apiUsersUserIdFollowersGet
 
-> [ApiUsersFollowingGet200ResponseInner] apiUsersUserIdFollowersGet(userId)
+> [ApiUsersUserIdFollowersGet200ResponseInner] apiUsersUserIdFollowersGet(userId)
 
 Get followers of a user
+
+Returns a list of users who follow the specified user, including total recipes count for each follower
 
 ### Example
 
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[ApiUsersFollowingGet200ResponseInner]**](ApiUsersFollowingGet200ResponseInner.md)
+[**[ApiUsersUserIdFollowersGet200ResponseInner]**](ApiUsersUserIdFollowersGet200ResponseInner.md)
 
 ### Authorization
 

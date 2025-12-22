@@ -47,11 +47,14 @@ import ApiRecipesPost201ResponseCreator from './model/ApiRecipesPost201ResponseC
 import ApiRecipesPost201ResponseRecipeIngredientsInner from './model/ApiRecipesPost201ResponseRecipeIngredientsInner';
 import ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient from './model/ApiRecipesPost201ResponseRecipeIngredientsInnerIngredient';
 import ApiRecipesPostRequestTime from './model/ApiRecipesPostRequestTime';
-import ApiTestimonialsGet200Response from './model/ApiTestimonialsGet200Response';
-import ApiTestimonialsGet200ResponseUser from './model/ApiTestimonialsGet200ResponseUser';
+import ApiTestimonialsGet200ResponseInner from './model/ApiTestimonialsGet200ResponseInner';
+import ApiTestimonialsGet200ResponseInnerUser from './model/ApiTestimonialsGet200ResponseInnerUser';
 import ApiUsersFollowingGet200ResponseInner from './model/ApiUsersFollowingGet200ResponseInner';
+import ApiUsersFollowingGet200ResponseInnerUserFollow from './model/ApiUsersFollowingGet200ResponseInnerUserFollow';
 import ApiUsersMeGet200Response from './model/ApiUsersMeGet200Response';
 import ApiUsersRecipesGet200Response from './model/ApiUsersRecipesGet200Response';
+import ApiUsersUserIdFollowersGet200ResponseInner from './model/ApiUsersUserIdFollowersGet200ResponseInner';
+import ApiUsersUserIdFollowersGet200ResponseInnerUserFollow from './model/ApiUsersUserIdFollowersGet200ResponseInnerUserFollow';
 import ApiUsersUserIdGet200Response from './model/ApiUsersUserIdGet200Response';
 import ApiUsersUserIdRecipesGet200Response from './model/ApiUsersUserIdRecipesGet200Response';
 import ApiUsersUserIdRecipesGet200ResponseResultsInner from './model/ApiUsersUserIdRecipesGet200ResponseResultsInner';
@@ -317,22 +320,28 @@ export {
     ApiRecipesPostRequestTime,
 
     /**
-     * The ApiTestimonialsGet200Response model constructor.
-     * @property {module:model/ApiTestimonialsGet200Response}
+     * The ApiTestimonialsGet200ResponseInner model constructor.
+     * @property {module:model/ApiTestimonialsGet200ResponseInner}
      */
-    ApiTestimonialsGet200Response,
+    ApiTestimonialsGet200ResponseInner,
 
     /**
-     * The ApiTestimonialsGet200ResponseUser model constructor.
-     * @property {module:model/ApiTestimonialsGet200ResponseUser}
+     * The ApiTestimonialsGet200ResponseInnerUser model constructor.
+     * @property {module:model/ApiTestimonialsGet200ResponseInnerUser}
      */
-    ApiTestimonialsGet200ResponseUser,
+    ApiTestimonialsGet200ResponseInnerUser,
 
     /**
      * The ApiUsersFollowingGet200ResponseInner model constructor.
      * @property {module:model/ApiUsersFollowingGet200ResponseInner}
      */
     ApiUsersFollowingGet200ResponseInner,
+
+    /**
+     * The ApiUsersFollowingGet200ResponseInnerUserFollow model constructor.
+     * @property {module:model/ApiUsersFollowingGet200ResponseInnerUserFollow}
+     */
+    ApiUsersFollowingGet200ResponseInnerUserFollow,
 
     /**
      * The ApiUsersMeGet200Response model constructor.
@@ -345,6 +354,18 @@ export {
      * @property {module:model/ApiUsersRecipesGet200Response}
      */
     ApiUsersRecipesGet200Response,
+
+    /**
+     * The ApiUsersUserIdFollowersGet200ResponseInner model constructor.
+     * @property {module:model/ApiUsersUserIdFollowersGet200ResponseInner}
+     */
+    ApiUsersUserIdFollowersGet200ResponseInner,
+
+    /**
+     * The ApiUsersUserIdFollowersGet200ResponseInnerUserFollow model constructor.
+     * @property {module:model/ApiUsersUserIdFollowersGet200ResponseInnerUserFollow}
+     */
+    ApiUsersUserIdFollowersGet200ResponseInnerUserFollow,
 
     /**
      * The ApiUsersUserIdGet200Response model constructor.
