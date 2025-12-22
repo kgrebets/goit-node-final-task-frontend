@@ -23,7 +23,6 @@ const Select = ({
         value={selectValue}
         onChange={(e) => {
           setSelectValue(e.target.value);
-          console.log(e.target.value);
           props.onChange?.(e);
         }}
         onFocus={() => setFocused(true)}
@@ -34,9 +33,7 @@ const Select = ({
           className
         )}
       >
-        <option value=""  >
-          {optionPlaceholderText}
-        </option>
+        <option value="">{optionPlaceholderText}</option>
 
         {options.map((opt) => (
           <option key={opt.id} value={opt.id} disabled={opt.disabled}>

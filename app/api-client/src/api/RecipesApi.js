@@ -21,7 +21,7 @@ import ApiRecipesIdGet200Response from '../model/ApiRecipesIdGet200Response';
 import ApiRecipesIdGet404Response from '../model/ApiRecipesIdGet404Response';
 import ApiRecipesPopularGet200ResponseInner from '../model/ApiRecipesPopularGet200ResponseInner';
 import ApiRecipesPost201Response from '../model/ApiRecipesPost201Response';
-import ApiRecipesPostRequest from '../model/ApiRecipesPostRequest';
+import ApiRecipesPostRequestTime from '../model/ApiRecipesPostRequestTime';
 
 /**
 * Recipes service.
@@ -388,14 +388,49 @@ export default class RecipesApi {
 
     /**
      * Create a new recipe
-     * @param {module:model/ApiRecipesPostRequest} apiRecipesPostRequest 
+     * @param {String} title 
+     * @param {String} categoryid Category id
+     * @param {String} areaid Area id
+     * @param {String} instructions 
+     * @param {String} description 
+     * @param {module:model/ApiRecipesPostRequestTime} time 
+     * @param {String} ingredients JSON string of ingredients array (because multipart/form-data)
+     * @param {File} thumb Recipe image file
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiRecipesPost201Response} and HTTP response
      */
-    apiRecipesPostWithHttpInfo(apiRecipesPostRequest) {
-      let postBody = apiRecipesPostRequest;
-      // verify the required parameter 'apiRecipesPostRequest' is set
-      if (apiRecipesPostRequest === undefined || apiRecipesPostRequest === null) {
-        throw new Error("Missing the required parameter 'apiRecipesPostRequest' when calling apiRecipesPost");
+    apiRecipesPostWithHttpInfo(title, categoryid, areaid, instructions, description, time, ingredients, thumb) {
+      let postBody = null;
+      // verify the required parameter 'title' is set
+      if (title === undefined || title === null) {
+        throw new Error("Missing the required parameter 'title' when calling apiRecipesPost");
+      }
+      // verify the required parameter 'categoryid' is set
+      if (categoryid === undefined || categoryid === null) {
+        throw new Error("Missing the required parameter 'categoryid' when calling apiRecipesPost");
+      }
+      // verify the required parameter 'areaid' is set
+      if (areaid === undefined || areaid === null) {
+        throw new Error("Missing the required parameter 'areaid' when calling apiRecipesPost");
+      }
+      // verify the required parameter 'instructions' is set
+      if (instructions === undefined || instructions === null) {
+        throw new Error("Missing the required parameter 'instructions' when calling apiRecipesPost");
+      }
+      // verify the required parameter 'description' is set
+      if (description === undefined || description === null) {
+        throw new Error("Missing the required parameter 'description' when calling apiRecipesPost");
+      }
+      // verify the required parameter 'time' is set
+      if (time === undefined || time === null) {
+        throw new Error("Missing the required parameter 'time' when calling apiRecipesPost");
+      }
+      // verify the required parameter 'ingredients' is set
+      if (ingredients === undefined || ingredients === null) {
+        throw new Error("Missing the required parameter 'ingredients' when calling apiRecipesPost");
+      }
+      // verify the required parameter 'thumb' is set
+      if (thumb === undefined || thumb === null) {
+        throw new Error("Missing the required parameter 'thumb' when calling apiRecipesPost");
       }
 
       let pathParams = {
@@ -405,10 +440,18 @@ export default class RecipesApi {
       let headerParams = {
       };
       let formParams = {
+        'title': title,
+        'categoryid': categoryid,
+        'areaid': areaid,
+        'instructions': instructions,
+        'description': description,
+        'time': time,
+        'ingredients': ingredients,
+        'thumb': thumb
       };
 
       let authNames = ['bearerAuth'];
-      let contentTypes = ['application/json'];
+      let contentTypes = ['multipart/form-data'];
       let accepts = ['application/json'];
       let returnType = ApiRecipesPost201Response;
       return this.apiClient.callApi(
@@ -420,11 +463,18 @@ export default class RecipesApi {
 
     /**
      * Create a new recipe
-     * @param {module:model/ApiRecipesPostRequest} apiRecipesPostRequest 
+     * @param {String} title 
+     * @param {String} categoryid Category id
+     * @param {String} areaid Area id
+     * @param {String} instructions 
+     * @param {String} description 
+     * @param {module:model/ApiRecipesPostRequestTime} time 
+     * @param {String} ingredients JSON string of ingredients array (because multipart/form-data)
+     * @param {File} thumb Recipe image file
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiRecipesPost201Response}
      */
-    apiRecipesPost(apiRecipesPostRequest) {
-      return this.apiRecipesPostWithHttpInfo(apiRecipesPostRequest)
+    apiRecipesPost(title, categoryid, areaid, instructions, description, time, ingredients, thumb) {
+      return this.apiRecipesPostWithHttpInfo(title, categoryid, areaid, instructions, description, time, ingredients, thumb)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

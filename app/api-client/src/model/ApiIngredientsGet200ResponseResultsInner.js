@@ -22,10 +22,13 @@ class ApiIngredientsGet200ResponseResultsInner {
     /**
      * Constructs a new <code>ApiIngredientsGet200ResponseResultsInner</code>.
      * @alias module:model/ApiIngredientsGet200ResponseResultsInner
+     * @param id {String} 
+     * @param name {String} 
+     * @param img {String} 
      */
-    constructor() { 
+    constructor(id, name, img) { 
         
-        ApiIngredientsGet200ResponseResultsInner.initialize(this);
+        ApiIngredientsGet200ResponseResultsInner.initialize(this, id, name, img);
     }
 
     /**
@@ -33,7 +36,10 @@ class ApiIngredientsGet200ResponseResultsInner {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, id, name, img) { 
+        obj['id'] = id;
+        obj['name'] = name;
+        obj['img'] = img;
     }
 
     /**
@@ -47,14 +53,14 @@ class ApiIngredientsGet200ResponseResultsInner {
         if (data) {
             obj = obj || new ApiIngredientsGet200ResponseResultsInner();
 
-            if (data.hasOwnProperty('_id')) {
-                obj['_id'] = ApiClient.convertToType(data['_id'], 'String');
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
             }
-            if (data.hasOwnProperty('desc')) {
-                obj['desc'] = ApiClient.convertToType(data['desc'], 'String');
+            if (data.hasOwnProperty('description')) {
+                obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
             if (data.hasOwnProperty('img')) {
                 obj['img'] = ApiClient.convertToType(data['img'], 'String');
@@ -69,17 +75,23 @@ class ApiIngredientsGet200ResponseResultsInner {
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ApiIngredientsGet200ResponseResultsInner</code>.
      */
     static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of ApiIngredientsGet200ResponseResultsInner.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
         // ensure the json data is a string
-        if (data['_id'] && !(typeof data['_id'] === 'string' || data['_id'] instanceof String)) {
-            throw new Error("Expected the field `_id` to be a primitive type in the JSON string but got " + data['_id']);
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
         }
         // ensure the json data is a string
         if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
             throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
         }
         // ensure the json data is a string
-        if (data['desc'] && !(typeof data['desc'] === 'string' || data['desc'] instanceof String)) {
-            throw new Error("Expected the field `desc` to be a primitive type in the JSON string but got " + data['desc']);
+        if (data['description'] && !(typeof data['description'] === 'string' || data['description'] instanceof String)) {
+            throw new Error("Expected the field `description` to be a primitive type in the JSON string but got " + data['description']);
         }
         // ensure the json data is a string
         if (data['img'] && !(typeof data['img'] === 'string' || data['img'] instanceof String)) {
@@ -92,12 +104,12 @@ class ApiIngredientsGet200ResponseResultsInner {
 
 }
 
-
+ApiIngredientsGet200ResponseResultsInner.RequiredProperties = ["id", "name", "img"];
 
 /**
- * @member {String} _id
+ * @member {String} id
  */
-ApiIngredientsGet200ResponseResultsInner.prototype['_id'] = undefined;
+ApiIngredientsGet200ResponseResultsInner.prototype['id'] = undefined;
 
 /**
  * @member {String} name
@@ -105,9 +117,9 @@ ApiIngredientsGet200ResponseResultsInner.prototype['_id'] = undefined;
 ApiIngredientsGet200ResponseResultsInner.prototype['name'] = undefined;
 
 /**
- * @member {String} desc
+ * @member {String} description
  */
-ApiIngredientsGet200ResponseResultsInner.prototype['desc'] = undefined;
+ApiIngredientsGet200ResponseResultsInner.prototype['description'] = undefined;
 
 /**
  * @member {String} img
