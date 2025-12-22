@@ -77,7 +77,7 @@ const FollowersTab = ({ userId, isCurrentUser = false }) => {
             name={follower.name}
             email={follower.email}
             username={follower.username}
-            recipesCount={follower.recipesCount || 0}
+            recipesCount={follower.totalRecipes || 0}
             recipes={follower.recipes || []}
             onFollow={handleFollow}
           />
