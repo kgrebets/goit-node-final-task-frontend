@@ -35,7 +35,7 @@
         @apply text-xl font-extrabold;
 
         span {
-            @apply block;
+            @apply block mb-2;
         }
     }
 }

@@ -1,16 +1,15 @@
 import MainTitle from '../../components/ui/main-title';
 import Subtitle from '../../components/ui/subtitle';
-import PathInfo from '../../components/ui/path-info';
 import RecipeForm from '../../components/add-recipe/add-recipe-form.jsx';
-import '../../css/add-recipe.css';
+import PathInfo from '../../components/path-info/index.js';
 
 export default function AddRecipePage() {
   return (
-    <section className="add-recipe-page">
-      <div className="add-recipe-page-container">
+    <section className="container">
+      <div className="">
         <PathInfo current="Add Recipe" />
-        <div className="add-recipe-page-content">
-          <div className="add-recipe-left-side">
+        <div className="mt-8">
+          <div className="">
             <MainTitle>Add Recipe</MainTitle>
 
             <Subtitle>
@@ -19,7 +18,7 @@ export default function AddRecipePage() {
             </Subtitle>
           </div>
 
-          <div className="add-recipe-right-side">
+          <div className="mt-8 md:mt-10">
             <RecipeForm />
           </div>
         </div>

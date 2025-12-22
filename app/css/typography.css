@@ -52,3 +52,7 @@ html {
 body {
     @apply text-secondary leading-normal text-base tracking-normal font-medium;
 }
+
+.field-error {
+    @apply text-error-primary text-sm mt-1.5;
+}

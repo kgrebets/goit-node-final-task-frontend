@@ -8,6 +8,7 @@ const TextareaAdvanced = ({
   mainWrapperClasses,
   showMinMaxChars,
   maxChars,
+  counterClasses,
   ...props
 }) => {
   const [minChars, setMinChars] = useState(0);
@@ -36,6 +37,7 @@ const TextareaAdvanced = ({
             'invalid:border-b-error-primary invalid:text-error-primary',
             'focus:outline-0 focus:ring-0',
             'disabled:opacity-50 disabled:pointer-events-none',
+            'field-sizing-content resize-none',
             Icon && 'ps-8',
             showMinMaxChars && 'pe-24',
             inputClasses,
@@ -49,7 +51,7 @@ const TextareaAdvanced = ({
           ) : null}
         </div>
         {showMinMaxChars ? (
-          <div className="absolute inset-y-2.5 end-0 flex items-start pointer-events-none pe-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none invalid:text-error-primary">
+          <div className={twMerge('absolute inset-y-2.5 end-0 flex items-start pointer-events-none pe-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none invalid:text-error-primary', counterClasses)}>
             {minChars}<span className="text-tertiary invalid:text-error-primary">/{maxChars}</span>
           </div>
         ) : null}

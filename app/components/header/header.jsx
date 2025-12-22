@@ -116,7 +116,7 @@ export default function Header({ classNames, dark }) {
           classNames
         )}
       >
-        <div className="mx-auto flex h-16 w-full container items-center justify-between px-4 sm:px-5 lg:px-6">
+        <div className="mx-auto flex h-16 w-full container items-center justify-between px-4 sm:px-5 md:px-8 lg:px-20">
           {/* Logo */}
           <Link
             to="/"
