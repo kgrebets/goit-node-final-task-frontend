@@ -1,23 +1,23 @@
-import { useState } from 'react';
 import Modal from '../../modal';
+import toast from 'react-hot-toast';
 import { useLogout } from '../../../features/auth/hooks.js';
+import { getApiErrorMessage } from '../../../helpers/get-api-error-message.js';
 
 export default function LogOutModal({ isOpen, onClose }) {
   const logoutMutation = useLogout();
-  const [localError, setLocalError] = useState('');
 
   const handleCancel = () => {
     onClose?.();
   };
 
   const handleConfirm = async () => {
-    setLocalError('');
     try {
       await logoutMutation.mutateAsync();
       onClose?.();
       window.location.assign('/');
     } catch (error) {
-      setLocalError(error?.message || 'Failed to log out.');
+      const message = getApiErrorMessage(error, 'Failed to log out.');
+      toast.error(message);
     }
   };
 
@@ -51,10 +51,6 @@ export default function LogOutModal({ isOpen, onClose }) {
           >
             Cancel
           </button>
-
-          {localError && (
-            <p className="text-xs text-red-500 text-center">{localError}</p>
-          )}
         </div>
       </div>
     </Modal>
